@@ -69,7 +69,8 @@ public class MapManager : MonoBehaviour {
     private void generateNonEdge(int col, int row)
     {
         int value = Random.Range(0, 6);
-        GameObject g = new GameObject("InnerTile" + col + ":" + row + "::" + value);
+
+        GameObject g = (value == 1) ? new GameObject("SandTile" + col + ":" + row + "::" + value) : new GameObject("InnerTile" + col + ":" + row + "::" + value);
 
         g.transform.position = new Vector3(
             col * 2 - 8,
@@ -79,14 +80,22 @@ public class MapManager : MonoBehaviour {
 
         var spriteComponent = g.AddComponent<SpriteRenderer>();
 
-        int colorVal = 0;
+        float colorVal = 0f;
 
         if (value == 5)
         {
             var colliderComponent = g.AddComponent<BoxCollider2D>();
             colliderComponent.size = new Vector2(2, 2);
 
-            colorVal = 1;
+            colorVal = 1f;
+        }
+        else if (value == 1)
+        {
+            var colliderComponent = g.AddComponent<BoxCollider2D>();
+            colliderComponent.isTrigger = true;
+            colliderComponent.size = new Vector2(0.85f, 0.85f);
+
+            colorVal = 0.5f;
         }
 
         spriteComponent.color = new Color(colorVal, 255, 255);
