@@ -6,45 +6,57 @@ public class MapManager : MonoBehaviour {
     public int[, ] grid;
     public Sprite sprite;
     private int cameraHeight, cameraWidth;
-    // Start is called before the first frame update
+
+    private int rows, columns;
+
     void Start () {
         cameraHeight = (int) Camera.main.orthographicSize;
         cameraWidth = cameraHeight * (int) Camera.main.aspect;
-        int rows = cameraHeight * 10;
-        int columns = 9;
+
+        rows = cameraHeight * 20;
+        columns = 9;
+
         grid = new int[columns, rows];
 
         for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
-                //Starting Area
-                if (rowIndex < 5) {
+                // Starting Area
+                if (rowIndex < 8 && !isOuterWall(columnIndex, rowIndex)) {
                     grid[columnIndex, rowIndex] = 0;
-
-                } else {
-                    grid[columnIndex, rowIndex] = Random.Range (0, 2);
+                    generateTile(columnIndex, rowIndex, grid[columnIndex, rowIndex]);
                 }
-
-                //Outer Walls
-                if (columnIndex == 0 || columnIndex == 8 ||
-                    rowIndex == 0 || rowIndex == rows - 1) {
+                // Outer walls
+                else if (isOuterWall(columnIndex, rowIndex))
+                {
                     grid[columnIndex, rowIndex] = 1;
+                    generateTile(columnIndex, rowIndex, grid[columnIndex, rowIndex]);
                 }
-                generateTile (columnIndex, rowIndex, grid[columnIndex, rowIndex]);
+                // Anything else
+                else
+                {
+                    generateNonEdge(columnIndex, rowIndex);
+                }
             }
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-
+    private bool isOuterWall(int column, int row)
+    {
+        return (column == 0 || column == columns - 1 || row == 0 || row == rows - 1);
     }
 
     private void generateTile (int column, int row, int value) {
-        GameObject g = new GameObject (column + ":" + row + "::" + value);
-        g.transform.position = new Vector3 (column * 2 - 8,
-            row * 2 - (float) 6.5);
+        string tileTitle = (value == 1 ? "OuterTile" : "StartingTile");
+        GameObject g = new GameObject (tileTitle + column + ":" + row + "::" + value);
+
+        g.transform.position = new Vector3(
+            column * 2 - 8,
+            row * 2 - (float) 6.5,
+            1
+        );
 
         var spriteComponent = g.AddComponent<SpriteRenderer> ();
+
         spriteComponent.color = new Color (value, 255, 255);
         spriteComponent.sprite = sprite;
 
@@ -52,5 +64,32 @@ public class MapManager : MonoBehaviour {
             var colliderComponent = g.AddComponent<BoxCollider2D> ();
             colliderComponent.size = new Vector2 (2, 2);
         }
+    }
+
+    private void generateNonEdge(int col, int row)
+    {
+        int value = Random.Range(0, 6);
+        GameObject g = new GameObject("InnerTile" + col + ":" + row + "::" + value);
+
+        g.transform.position = new Vector3(
+            col * 2 - 8,
+            row * 2 - (float) 6.5,
+            1
+        );
+
+        var spriteComponent = g.AddComponent<SpriteRenderer>();
+
+        int colorVal = 0;
+
+        if (value == 5)
+        {
+            var colliderComponent = g.AddComponent<BoxCollider2D>();
+            colliderComponent.size = new Vector2(2, 2);
+
+            colorVal = 1;
+        }
+
+        spriteComponent.color = new Color(colorVal, 255, 255);
+        spriteComponent.sprite = sprite;
     }
 }
