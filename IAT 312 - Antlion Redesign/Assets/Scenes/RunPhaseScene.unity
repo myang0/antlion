@@ -321,6 +321,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44aca866e07e1e4aa893e1428e1adce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innerWallPrefab: {fileID: 5270751776832806672, guid: 2f720018ec8ee5449b5d3dca545b7199,
+    type: 3}
+  floorTilePrefab: {fileID: 6635668803160179835, guid: bd68b05fe9003204ea8459691c23ed4f,
+    type: 3}
+  sandTilePrefab: {fileID: 2264061155486987101, guid: 025dc5c7e87708f4a8b2440c932bd3da,
+    type: 3}
+  outerWallPrefab: {fileID: 6226882833733561900, guid: 355ce45836cdbad49a2f427be741f468,
+    type: 3}
   sprite: {fileID: 21300000, guid: 1c3febbf9e914a24faba0b7444a9138d, type: 3}
 --- !u!4 &998005487
 Transform:

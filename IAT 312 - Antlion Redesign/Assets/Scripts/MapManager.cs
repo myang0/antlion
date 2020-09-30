@@ -25,49 +25,48 @@ public class MapManager : MonoBehaviour {
         cameraHeight = (int) Camera.main.orthographicSize;
         cameraWidth = cameraHeight * (int) Camera.main.aspect;
 
-        rows = cameraHeight * 25;
+        rows = 450;
         columns = 9;
 
         grid = new int[columns, rows];
 
         for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
-                if (rowIndex < 8 && !isOuterWall(columnIndex, rowIndex)) { // Starting area
+                if (rowIndex < 8 && !isOuterWall (columnIndex, rowIndex)) { // Starting area
                     grid[columnIndex, rowIndex] = 0;
-                    generateTile(columnIndex, rowIndex, grid[columnIndex, rowIndex]);
-                } else if (isOuterWall(columnIndex, rowIndex)) { // Outer walls
+                    generateTile (columnIndex, rowIndex, grid[columnIndex, rowIndex]);
+                } else if (isOuterWall (columnIndex, rowIndex)) { // Outer walls
                     grid[columnIndex, rowIndex] = 1;
-                    generateTile(columnIndex, rowIndex, grid[columnIndex, rowIndex]);
+                    generateTile (columnIndex, rowIndex, grid[columnIndex, rowIndex]);
                 } else { // Everything else
-                    generateNonEdge(columnIndex, rowIndex);
+                    generateNonEdge (columnIndex, rowIndex);
                 }
             }
         }
     }
 
-    private bool isOuterWall(int column, int row) {
+    private bool isOuterWall (int column, int row) {
         return (column == 0 || column == columns - 1 || row == 0 || row == rows - 1);
     }
 
     private void generateTile (int column, int row, int value) {
-        Instantiate(floorTilePrefab, new Vector3(column * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
+        Instantiate (floorTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value == 1) {
-            Instantiate(outerWallPrefab, new Vector3(column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            Instantiate (outerWallPrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         }
     }
 
-    private void generateNonEdge(int col, int row)
-    {
-        int value = Random.Range(0, 6);
+    private void generateNonEdge (int col, int row) {
+        int value = Random.Range (0, 6);
 
-        Instantiate(floorTilePrefab, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
+        Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value == 5) {
-            GameObject wall = Instantiate(innerWallPrefab, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            GameObject wall = Instantiate (innerWallPrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
             wall.name = "InnerTile" + col + ":" + row + "::" + value;
         } else if (value == 0) {
-            Instantiate(sandTilePrefab, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            Instantiate (sandTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         } else {
 
         }
