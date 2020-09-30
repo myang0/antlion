@@ -11,25 +11,35 @@ public class PlayerMovement : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask wallLayers;
 
-    Vector2 movement;
+    public bool isStunned = false;
 
-    // Start is called before the first frame update
+    Vector2 movement;
+    Vector2 kbVector;
+
+    public int kbTimer = 0;
+
     void Start() {
-        
+
     }
 
-    // Update is called once per frame
     void Update() {
-       movement.x = Input.GetAxisRaw("Horizontal");
-       movement.y = Input.GetAxisRaw("Vertical");
+        if (!isStunned) {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
+       
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Attack();
+        }
 
-       if (Input.GetKeyDown(KeyCode.Space)) {
-           Attack();
-       }
+        if (kbTimer > 0) {
+            rigidBody.AddForce(kbVector * kbTimer, ForceMode2D.Force);
+            kbTimer--;
+            isStunned = (kbTimer != 0);
+        }
     }
 
     void FixedUpdate() {
-        // Movement
         rigidBody.MovePosition(rigidBody.position + movement * movementSpeed * Time.fixedDeltaTime);
     }
 
@@ -60,5 +70,18 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.tag == "Boulder") {
+            Rigidbody2D boulderRb = col.gameObject.GetComponent<Rigidbody2D>();
+            Vector2 difference = boulderRb.transform.position - transform.position;
+            difference = - difference.normalized;
+
+            kbVector = difference;
+            kbTimer = 120;
+
+            isStunned = true;
+        }
     }
 }
