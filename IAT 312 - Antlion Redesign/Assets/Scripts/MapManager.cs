@@ -21,6 +21,12 @@ public class MapManager : MonoBehaviour {
 
     private int rows, columns;
 
+    private enum Direction {
+        Left,
+        Right,
+        Up
+    }
+
     void Start () {
         cameraHeight = (int) Camera.main.orthographicSize;
         cameraWidth = cameraHeight * (int) Camera.main.aspect;
@@ -43,6 +49,7 @@ public class MapManager : MonoBehaviour {
                 }
             }
         }
+        generatePath ();
     }
 
     private bool isOuterWall (int column, int row) {
@@ -60,6 +67,9 @@ public class MapManager : MonoBehaviour {
     private void generateNonEdge (int col, int row) {
         int value = Random.Range (0, 6);
 
+        //important to store value for path gen to identify tiles
+        grid[col, row] = value;
+
         Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value == 5) {
@@ -70,5 +80,41 @@ public class MapManager : MonoBehaviour {
         } else {
 
         }
+    }
+
+    private void generatePath () {
+        int rowIndex = 1;
+        int columnIndex = Random.Range (1, 8);
+        searchPath (columnIndex, rowIndex, Direction.Up);
+    }
+
+    private void searchPath (int column, int row, Direction prevDir) {
+        while (grid[column, row] == 5) {
+            GameObject tile = GameObject.Find ("InnerTile" + column + ":" + row + "::" + 5);
+            grid[column, row] = -1;
+            Destroy (tile);
+        }
+
+        Direction direction = (Direction) Random.Range (0, 3);
+        if (canPathLeft (column, prevDir, direction)) {
+            column--;
+        } else if (canPathRight (column, prevDir, direction)) {
+            column++;
+        } else {
+            row++;
+            direction = Direction.Up;
+        }
+
+        if (row != rows - 2) {
+            searchPath (column, row, direction);
+        }
+    }
+
+    private bool canPathRight (int column, Direction prevDir, Direction direction) {
+        return (direction == Direction.Right) && (column != 7) && (prevDir == Direction.Up);
+    }
+
+    private bool canPathLeft (int column, Direction prevDir, Direction direction) {
+        return (direction == Direction.Left) && (column != 1) && (prevDir == Direction.Up);
     }
 }

@@ -8,6 +8,9 @@ public class AntlionBehavior : MonoBehaviour {
         Alive,
         Dead
     }
+
+    [SerializeField]
+    private GameObject brokenInnerWallPrefab;
     private Status status = Status.NotSpawned;
     public float movementSpeed = 4f;
     private GameObject antlion;
@@ -33,6 +36,7 @@ public class AntlionBehavior : MonoBehaviour {
 
     private void OnCollisionEnter2D (Collision2D collider) {
         if (collider.gameObject.layer == 8) {
+            Instantiate (brokenInnerWallPrefab, collider.gameObject.transform.position, Quaternion.identity);
             Destroy (collider.gameObject);
         }
     }
