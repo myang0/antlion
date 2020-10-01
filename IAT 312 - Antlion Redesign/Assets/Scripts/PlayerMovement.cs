@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    [SerializeField]
-    private GameObject brokenInnerWallPrefab;
     public float movementSpeed = 5f;
     public Rigidbody2D rigidBody;
 
@@ -49,7 +47,7 @@ public class PlayerMovement : MonoBehaviour {
         if (cName.Contains ("SandTile")) {
             movementSpeed = 2.5f;
         } else if (cName.Contains ("BrokenWallTile")) {
-            movementSpeed = 3f;
+            movementSpeed = 2f;
         }
     }
 
@@ -64,7 +62,6 @@ public class PlayerMovement : MonoBehaviour {
         Collider2D[] hitWalls = Physics2D.OverlapCircleAll (attackPoint.position, attackRange, wallLayers);
 
         foreach (Collider2D wall in hitWalls) {
-            Instantiate (brokenInnerWallPrefab, wall.gameObject.transform.position, Quaternion.identity);
             Destroy (wall.gameObject);
         }
     }

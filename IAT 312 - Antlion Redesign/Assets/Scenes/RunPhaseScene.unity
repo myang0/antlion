@@ -239,8 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8526ec6ba2e05814f8dfa5f1d28c260c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenInnerWallPrefab: {fileID: 7826114015194214536, guid: 00b8db2c263e4914b9ce912e9b1c732e,
-    type: 3}
   movementSpeed: 5
   rigidBody: {fileID: 27470213}
   attackPoint: {fileID: 650463011}
@@ -395,8 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b97e5d82bfbbd4784c9f671c2b1c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenInnerWallPrefab: {fileID: 7826114015194214536, guid: 00b8db2c263e4914b9ce912e9b1c732e,
-    type: 3}
   movementSpeed: 4
   spriteRenderer: {fileID: 395146984}
   boxCollider: {fileID: 395146983}
@@ -410,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 395146982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
