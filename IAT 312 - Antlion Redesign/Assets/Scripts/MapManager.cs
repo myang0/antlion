@@ -30,6 +30,11 @@ public class MapManager : MonoBehaviour {
     private int boulderRespawnTime = 8;
 
     private Vector2 screenBounds;
+    private enum Direction {
+        Left,
+        Right,
+        Up
+    }
 
     void Start () {
         cameraHeight = (int) Camera.main.orthographicSize;
@@ -44,44 +49,47 @@ public class MapManager : MonoBehaviour {
 
         for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
-                if (rowIndex < 8 && !isOuterWall(columnIndex, rowIndex)) { // Starting area
+                if (rowIndex < 8 && !isOuterWall (columnIndex, rowIndex)) { // Starting area
                     grid[columnIndex, rowIndex] = 0;
-                    generateTile(columnIndex, rowIndex, grid[columnIndex, rowIndex]);
-                } else if (isOuterWall(columnIndex, rowIndex)) { // Outer walls
+                    generateTile (columnIndex, rowIndex, grid[columnIndex, rowIndex]);
+                } else if (isOuterWall (columnIndex, rowIndex)) { // Outer walls
                     grid[columnIndex, rowIndex] = 1;
-                    generateTile(columnIndex, rowIndex, grid[columnIndex, rowIndex]);
+                    generateTile (columnIndex, rowIndex, grid[columnIndex, rowIndex]);
                 } else { // Everything else
-                    generateNonEdge(columnIndex, rowIndex);
+                    generateNonEdge (columnIndex, rowIndex);
                 }
             }
         }
 
         StartCoroutine(boulderWave());
+        generatePath ();
     }
 
-    private bool isOuterWall(int column, int row) {
+    private bool isOuterWall (int column, int row) {
         return (column == 0 || column == columns - 1 || row == 0 || row == rows - 1);
     }
 
     private void generateTile (int column, int row, int value) {
-        Instantiate(floorTilePrefab, new Vector3(column * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
+        Instantiate (floorTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value == 1) {
-            Instantiate(outerWallPrefab, new Vector3(column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            Instantiate (outerWallPrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         }
     }
 
-    private void generateNonEdge(int col, int row)
-    {
-        int value = Random.Range(0, 6);
+    private void generateNonEdge (int col, int row) {
+        int value = Random.Range (0, 6);
 
-        Instantiate(floorTilePrefab, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
+        //important to store value for path gen to identify tiles
+        grid[col, row] = value;
+
+        Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value == 5) {
-            GameObject wall = Instantiate(innerWallPrefab, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            GameObject wall = Instantiate (innerWallPrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
             wall.name = "InnerTile" + col + ":" + row + "::" + value;
         } else if (value == 0) {
-            Instantiate(sandTilePrefab, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            Instantiate (sandTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         } else {
 
         }
@@ -103,5 +111,40 @@ public class MapManager : MonoBehaviour {
             yield return new WaitForSeconds(boulderRespawnTime);
             spawnBoulder();
         }
+    }
+    private void generatePath () {
+        int rowIndex = 1;
+        int columnIndex = Random.Range (1, 8);
+        searchPath (columnIndex, rowIndex, Direction.Up);
+    }
+
+    private void searchPath (int column, int row, Direction prevDir) {
+        while (grid[column, row] == 5) {
+            GameObject tile = GameObject.Find ("InnerTile" + column + ":" + row + "::" + 5);
+            grid[column, row] = -1;
+            Destroy (tile);
+        }
+
+        Direction direction = (Direction) Random.Range (0, 3);
+        if (canPathLeft (column, prevDir, direction)) {
+            column--;
+        } else if (canPathRight (column, prevDir, direction)) {
+            column++;
+        } else {
+            row++;
+            direction = Direction.Up;
+        }
+
+        if (row != rows - 2) {
+            searchPath (column, row, direction);
+        }
+    }
+
+    private bool canPathRight (int column, Direction prevDir, Direction direction) {
+        return (direction == Direction.Right) && (column != 7) && (prevDir == Direction.Up);
+    }
+
+    private bool canPathLeft (int column, Direction prevDir, Direction direction) {
+        return (direction == Direction.Left) && (column != 1) && (prevDir == Direction.Up);
     }
 }

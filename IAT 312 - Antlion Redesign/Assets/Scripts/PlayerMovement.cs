@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
+    [SerializeField]
+    private GameObject brokenInnerWallPrefab;
     public float movementSpeed = 5f;
     public Rigidbody2D rigidBody;
 
@@ -43,33 +44,36 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.MovePosition(rigidBody.position + movement * movementSpeed * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider) {
+    private void OnTriggerEnter2D (Collider2D collider) {
         string cName = collider.name;
-        if (cName.Contains("SandTile")) {
+        if (cName.Contains ("SandTile")) {
             movementSpeed = 2.5f;
+        } else if (cName.Contains ("BrokenWallTile")) {
+            movementSpeed = 3f;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collider) {
+    private void OnTriggerExit2D (Collider2D collider) {
         string cName = collider.name;
-        if (cName.Contains("SandTile")) {
+        if (cName.Contains ("SandTile") || cName.Contains ("BrokenWallTile")) {
             movementSpeed = 5f;
         }
     }
 
-    void Attack() {
-        Collider2D[] hitWalls = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, wallLayers);
+    void Attack () {
+        Collider2D[] hitWalls = Physics2D.OverlapCircleAll (attackPoint.position, attackRange, wallLayers);
 
-        foreach(Collider2D wall in hitWalls) {
-            Destroy(wall.gameObject);
+        foreach (Collider2D wall in hitWalls) {
+            Instantiate (brokenInnerWallPrefab, wall.gameObject.transform.position, Quaternion.identity);
+            Destroy (wall.gameObject);
         }
     }
 
-    void OnDrawGizmosSelected() {
+    void OnDrawGizmosSelected () {
         if (attackPoint == null)
             return;
 
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere (attackPoint.position, attackRange);
     }
 
     void OnCollisionEnter2D(Collision2D col) {
