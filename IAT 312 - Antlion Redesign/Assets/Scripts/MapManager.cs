@@ -42,7 +42,7 @@ public class MapManager : MonoBehaviour {
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
-        rows = cameraHeight * 25;
+        rows = cameraHeight * 30;
         columns = 9;
 
         grid = new int[columns, rows];
@@ -85,7 +85,7 @@ public class MapManager : MonoBehaviour {
 
         Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
-        if (value == 5) {
+        if (value > 3) {
             GameObject wall = Instantiate (innerWallPrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
             wall.name = "InnerTile" + col + ":" + row + "::" + value;
         } else if (value == 0) {
