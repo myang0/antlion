@@ -15,15 +15,27 @@ public class MapManager : MonoBehaviour {
     [SerializeField]
     private GameObject outerWallPrefab;
 
+    [SerializeField]
+    private GameObject boulderPrefab;
+
+    [SerializeField]
+    private GameObject player;
+
     public int[, ] grid;
     public Sprite sprite;
     private int cameraHeight, cameraWidth;
 
     private int rows, columns;
 
+    private int boulderRespawnTime = 8;
+
+    private Vector2 screenBounds;
+
     void Start () {
         cameraHeight = (int) Camera.main.orthographicSize;
         cameraWidth = cameraHeight * (int) Camera.main.aspect;
+
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
         rows = cameraHeight * 25;
         columns = 9;
@@ -43,6 +55,8 @@ public class MapManager : MonoBehaviour {
                 }
             }
         }
+
+        StartCoroutine(boulderWave());
     }
 
     private bool isOuterWall(int column, int row) {
@@ -70,6 +84,24 @@ public class MapManager : MonoBehaviour {
             Instantiate(sandTilePrefab, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         } else {
 
+        }
+    }
+
+    private void spawnBoulder() {
+        float playerYPos = player.transform.position.y;
+        Instantiate(
+            boulderPrefab,
+            new Vector3(Random.Range(-screenBounds.x * 0.75f, screenBounds.x * 0.75f), playerYPos + (screenBounds.y * 4), 0), 
+            Quaternion.identity
+        );
+
+        boulderRespawnTime = Random.Range(8, 13);
+    }
+
+    IEnumerator boulderWave() {
+        while (true) {
+            yield return new WaitForSeconds(boulderRespawnTime);
+            spawnBoulder();
         }
     }
 }

@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     Vector2 kbVector;
 
-    public int kbTimer = 0;
+    public float kbTimer = 0f;
 
     void Start() {
 
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (kbTimer > 0) {
-            rigidBody.AddForce(kbVector * kbTimer, ForceMode2D.Force);
+            rigidBody.AddForce(kbVector * (kbTimer * 0.3f), ForceMode2D.Force);
             kbTimer--;
             isStunned = (kbTimer != 0);
         }
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             difference = - difference.normalized;
 
             kbVector = difference;
-            kbTimer = 120;
+            kbTimer = 240;
 
             isStunned = true;
         }
