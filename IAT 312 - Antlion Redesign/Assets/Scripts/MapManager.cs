@@ -3,102 +3,148 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour {
+    [SerializeField]
+    private GameObject innerWallPrefab;
+
+    [SerializeField]
+    private GameObject floorTilePrefab;
+
+    [SerializeField]
+    private GameObject sandTilePrefab;
+
+    [SerializeField]
+    private GameObject outerWallPrefab;
+
+    [SerializeField]
+    private GameObject boulderPrefab;
+
+    [SerializeField]
+    private GameObject player;
+
     public int[, ] grid;
     public Sprite sprite;
     private int cameraHeight, cameraWidth;
 
     private int rows, columns;
 
+    private int boulderRespawnTime = 8;
+
+    private Vector2 screenBounds;
+    private enum Direction {
+        Left,
+        Right,
+        Up
+    }
+
     void Start () {
         cameraHeight = (int) Camera.main.orthographicSize;
         cameraWidth = cameraHeight * (int) Camera.main.aspect;
 
-        rows = cameraHeight * 20;
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+
+        rows = cameraHeight * 25;
         columns = 9;
 
         grid = new int[columns, rows];
 
         for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
-                // Starting Area
-                if (rowIndex < 8 && !isOuterWall(columnIndex, rowIndex)) {
+                if (rowIndex < 8 && !isOuterWall (columnIndex, rowIndex)) { // Starting area
                     grid[columnIndex, rowIndex] = 0;
-                    generateTile(columnIndex, rowIndex, grid[columnIndex, rowIndex]);
-                }
-                // Outer walls
-                else if (isOuterWall(columnIndex, rowIndex))
-                {
+                    generateTile (columnIndex, rowIndex, grid[columnIndex, rowIndex]);
+                } else if (isOuterWall (columnIndex, rowIndex)) { // Outer walls
                     grid[columnIndex, rowIndex] = 1;
-                    generateTile(columnIndex, rowIndex, grid[columnIndex, rowIndex]);
-                }
-                // Anything else
-                else
-                {
-                    generateNonEdge(columnIndex, rowIndex);
+                    generateTile (columnIndex, rowIndex, grid[columnIndex, rowIndex]);
+                } else { // Everything else
+                    generateNonEdge (columnIndex, rowIndex);
                 }
             }
         }
+
+        StartCoroutine(boulderWave());
+        generatePath ();
     }
 
-    private bool isOuterWall(int column, int row)
-    {
+    private bool isOuterWall (int column, int row) {
         return (column == 0 || column == columns - 1 || row == 0 || row == rows - 1);
     }
 
     private void generateTile (int column, int row, int value) {
-        string tileTitle = (value == 1 ? "OuterTile" : "StartingTile");
-        GameObject g = new GameObject (tileTitle + column + ":" + row + "::" + value);
-
-        g.transform.position = new Vector3(
-            column * 2 - 8,
-            row * 2 - (float) 6.5,
-            1
-        );
-
-        var spriteComponent = g.AddComponent<SpriteRenderer> ();
-
-        spriteComponent.color = new Color (value, 255, 255);
-        spriteComponent.sprite = sprite;
+        Instantiate (floorTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value == 1) {
-            var colliderComponent = g.AddComponent<BoxCollider2D> ();
-            colliderComponent.size = new Vector2 (2, 2);
+            Instantiate (outerWallPrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         }
     }
 
-    private void generateNonEdge(int col, int row)
-    {
-        int value = Random.Range(0, 6);
+    private void generateNonEdge (int col, int row) {
+        int value = Random.Range (0, 6);
 
-        GameObject g = (value == 1) ? new GameObject("SandTile" + col + ":" + row + "::" + value) : new GameObject("InnerTile" + col + ":" + row + "::" + value);
+        //important to store value for path gen to identify tiles
+        grid[col, row] = value;
 
-        g.transform.position = new Vector3(
-            col * 2 - 8,
-            row * 2 - (float) 6.5,
-            1
+        Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
+
+        if (value == 5) {
+            GameObject wall = Instantiate (innerWallPrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            wall.name = "InnerTile" + col + ":" + row + "::" + value;
+        } else if (value == 0) {
+            Instantiate (sandTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+        } else {
+
+        }
+    }
+
+    private void spawnBoulder() {
+        float playerYPos = player.transform.position.y;
+        Instantiate(
+            boulderPrefab,
+            new Vector3(Random.Range(-screenBounds.x * 0.75f, screenBounds.x * 0.75f), playerYPos + (screenBounds.y * 4), 0), 
+            Quaternion.identity
         );
 
-        var spriteComponent = g.AddComponent<SpriteRenderer>();
+        boulderRespawnTime = Random.Range(8, 13);
+    }
 
-        float colorVal = 0f;
-
-        if (value == 5)
-        {
-            var colliderComponent = g.AddComponent<BoxCollider2D>();
-            colliderComponent.size = new Vector2(2, 2);
-
-            colorVal = 1f;
+    IEnumerator boulderWave() {
+        while (true) {
+            yield return new WaitForSeconds(boulderRespawnTime);
+            spawnBoulder();
         }
-        else if (value == 1)
-        {
-            var colliderComponent = g.AddComponent<BoxCollider2D>();
-            colliderComponent.isTrigger = true;
-            colliderComponent.size = new Vector2(0.85f, 0.85f);
+    }
+    private void generatePath () {
+        int rowIndex = 1;
+        int columnIndex = Random.Range (1, 8);
+        searchPath (columnIndex, rowIndex, Direction.Up);
+    }
 
-            colorVal = 0.5f;
+    private void searchPath (int column, int row, Direction prevDir) {
+        while (grid[column, row] == 5) {
+            GameObject tile = GameObject.Find ("InnerTile" + column + ":" + row + "::" + 5);
+            grid[column, row] = -1;
+            Destroy (tile);
         }
 
-        spriteComponent.color = new Color(colorVal, 255, 255);
-        spriteComponent.sprite = sprite;
+        Direction direction = (Direction) Random.Range (0, 3);
+        if (canPathLeft (column, prevDir, direction)) {
+            column--;
+        } else if (canPathRight (column, prevDir, direction)) {
+            column++;
+        } else {
+            row++;
+            direction = Direction.Up;
+        }
+
+        if (row != rows - 2) {
+            searchPath (column, row, direction);
+        }
+    }
+
+    private bool canPathRight (int column, Direction prevDir, Direction direction) {
+        return (direction == Direction.Right) && (column != 7) && (prevDir == Direction.Up);
+    }
+
+    private bool canPathLeft (int column, Direction prevDir, Direction direction) {
+        return (direction == Direction.Left) && (column != 1) && (prevDir == Direction.Up);
     }
 }
