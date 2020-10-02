@@ -11,6 +11,7 @@ public class AntlionBehavior : MonoBehaviour {
 
     private Status status = Status.NotSpawned;
     public float movementSpeed = 4f;
+    public float rageMovementSpeed = 6f;
     private GameObject antlion;
     private GameObject player;
     public SpriteRenderer spriteRenderer;
@@ -25,9 +26,20 @@ public class AntlionBehavior : MonoBehaviour {
 
     void FixedUpdate () {
         if (status == Status.Alive) {
-            Vector3 dir = (player.transform.position - rigidBody.transform.position).normalized;
-            if (Vector3.Distance (player.transform.position, rigidBody.transform.position) > 1) {
-                rigidBody.MovePosition (rigidBody.transform.position + dir * movementSpeed * Time.fixedDeltaTime);
+            Vector3 playerPos = player.transform.position;
+            Vector3 antlionPos = rigidBody.transform.position;
+            Vector3 dir = (playerPos - antlionPos).normalized;
+
+            if (Vector3.Distance (playerPos, antlionPos) > 1) {
+                //If player is not behind antlion and antlion isn't too far behind
+                if (playerPos.y - antlionPos.y > 0 && playerPos.y - antlionPos.y < 8) {
+                    rigidBody.MovePosition (antlionPos + dir * movementSpeed * Time.fixedDeltaTime);
+                } else {
+                    rigidBody.MovePosition (antlionPos + dir * rageMovementSpeed * Time.fixedDeltaTime);
+                }
+
+                float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
             }
         }
     }
