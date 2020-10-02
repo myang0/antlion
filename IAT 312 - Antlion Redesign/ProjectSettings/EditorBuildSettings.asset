@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RunPhaseScene.unity
     guid: 65328291a528f6a428ad691ff43ff05e
+  - enabled: 1
+    path: Assets/Scenes/FightPhase.unity
+    guid: 53c8dd0becc4d3241bfba150c3fd3592
   m_configObjects: {}
