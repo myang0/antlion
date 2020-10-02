@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7826114015194214550}
   - component: {fileID: 7826114015194214551}
   m_Layer: 0
-  m_Name: SandTile 1
+  m_Name: BrokenWallTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,5 +106,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.4, y: 1.4}
   m_EdgeRadius: 0

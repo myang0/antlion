@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour {
         if (cName.Contains ("SandTile")) {
             movementSpeed = 2.5f;
         } else if (cName.Contains ("BrokenWallTile")) {
-            movementSpeed = 2f;
+            movementSpeed = 1.75f;
         }
     }
 

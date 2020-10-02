@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour {
     [SerializeField]
@@ -26,6 +27,7 @@ public class MapManager : MonoBehaviour {
     private int cameraHeight, cameraWidth;
 
     private int rows, columns;
+    private int numRows;
 
     private int boulderRespawnTime = 8;
 
@@ -42,7 +44,8 @@ public class MapManager : MonoBehaviour {
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
-        rows = cameraHeight * 30;
+        numRows = 30;
+        rows = cameraHeight * numRows;
         columns = 9;
 
         grid = new int[columns, rows];
@@ -63,6 +66,12 @@ public class MapManager : MonoBehaviour {
 
         StartCoroutine(boulderWave());
         generatePath ();
+    }
+
+    void Update() {
+        if (player.transform.position.y > (1.85 * rows)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     private bool isOuterWall (int column, int row) {

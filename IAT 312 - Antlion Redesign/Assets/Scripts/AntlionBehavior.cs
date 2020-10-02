@@ -14,7 +14,7 @@ public class AntlionBehavior : MonoBehaviour {
     private GameObject antlion;
     private GameObject player;
     public SpriteRenderer spriteRenderer;
-    public BoxCollider2D boxCollider;
+    public PolygonCollider2D polyCollider;
     public Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
@@ -42,7 +42,8 @@ public class AntlionBehavior : MonoBehaviour {
     void Update () {
         if ((player.transform.position.y > 12) && status == Status.NotSpawned) {
             spriteRenderer.enabled = true;
-            boxCollider.enabled = true;
+            // boxCollider.enabled = true;
+            polyCollider.enabled = true;
             status = Status.Alive;
         }
     }
