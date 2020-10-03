@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
-    public float movementSpeed = 5f;
+    private float baseMovementSpeed = 5f;
+    public float currentMovementSpeed = 5f;
+
     public Rigidbody2D rigidBody;
 
     public Transform attackPoint;
@@ -17,8 +20,18 @@ public class PlayerMovement : MonoBehaviour {
 
     public float kbTimer = 0f;
 
-    void Start() {
+    public void applyBuffs(float healthBoost, float attackBoost, float speedBoost) {
+        baseMovementSpeed *= speedBoost;
+        currentMovementSpeed = baseMovementSpeed;
 
+        // TODO: apply attack boost
+
+        // TODO: apply heal
+    }
+
+    void Start() {
+        DontDestroyOnLoad(gameObject);
+        SceneManager.activeSceneChanged += sceneTransition;
     }
 
     void Update() {
@@ -39,22 +52,22 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        rigidBody.MovePosition(rigidBody.position + movement * movementSpeed * Time.fixedDeltaTime);
+        rigidBody.MovePosition(rigidBody.position + movement * currentMovementSpeed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter2D (Collider2D collider) {
         string cName = collider.name;
         if (cName.Contains ("SandTile")) {
-            movementSpeed = 2.5f;
+            currentMovementSpeed = baseMovementSpeed / 2;
         } else if (cName.Contains ("BrokenWallTile")) {
-            movementSpeed = 1.75f;
+            currentMovementSpeed = baseMovementSpeed / 3;
         }
     }
 
     private void OnTriggerExit2D (Collider2D collider) {
         string cName = collider.name;
         if (cName.Contains ("SandTile") || cName.Contains ("BrokenWallTile")) {
-            movementSpeed = 5f;
+            currentMovementSpeed = baseMovementSpeed;
         }
     }
 
@@ -84,5 +97,9 @@ public class PlayerMovement : MonoBehaviour {
 
             isStunned = true;
         }
+    }
+
+    void sceneTransition(Scene current, Scene next) {
+        transform.position = new Vector3(0, 0, 0);
     }
 }

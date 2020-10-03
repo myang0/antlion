@@ -8,6 +8,9 @@ public class MapManager : MonoBehaviour {
     private GameObject innerWallPrefab;
 
     [SerializeField]
+    private GameObject tintedWallPrefab;
+
+    [SerializeField]
     private GameObject floorTilePrefab;
 
     [SerializeField]
@@ -95,12 +98,13 @@ public class MapManager : MonoBehaviour {
         Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value > 3) {
-            GameObject wall = Instantiate (innerWallPrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            int sndRand = Random.Range(0, 51);
+            GameObject wallType = (sndRand == 0) ? tintedWallPrefab : innerWallPrefab;
+
+            GameObject wall = Instantiate (wallType, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
             wall.name = "InnerTile" + col + ":" + row + "::" + value;
         } else if (value == 0) {
             Instantiate (sandTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
-        } else {
-
         }
     }
 
@@ -121,6 +125,7 @@ public class MapManager : MonoBehaviour {
             spawnBoulder();
         }
     }
+
     private void generatePath () {
         int rowIndex = 1;
         int columnIndex = Random.Range (1, 8);
