@@ -20,6 +20,9 @@ public class PickupItem : MonoBehaviour
         if (col.tag == "Player") {
             for (int i = 0; i < inventory.items.Length; i++) {
                 if (!inventory.isFull[i]) {
+                    inventory.selectedItemIndex = inventory.numItemsCarried;
+                    inventory.numItemsCarried += 1;
+
                     inventory.isFull[i] = true;
                     inventory.items[i] = gameObject;
 
