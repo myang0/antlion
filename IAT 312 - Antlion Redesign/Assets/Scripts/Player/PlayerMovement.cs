@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
-    private float baseMovementSpeed = 5f;
-    public float currentMovementSpeed = 5f;
+    public float baseMovementSpeed = 5f;
+    private float currentMovementSpeed = 5f;
 
     public Rigidbody2D rigidBody;
 
@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Start() {
+        currentMovementSpeed = baseMovementSpeed;
+
         DontDestroyOnLoad(gameObject);
         SceneManager.activeSceneChanged += sceneTransition;
     }

@@ -25,6 +25,8 @@ public class PickupItem : MonoBehaviour
 
                     hitbox.enabled = false;
                     sprite.enabled = false;
+
+                    DontDestroyOnLoad(gameObject);
                     
                     i = inventory.items.Length;
                 }
