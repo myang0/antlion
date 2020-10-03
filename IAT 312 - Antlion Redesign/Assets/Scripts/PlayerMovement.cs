@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
     public float movementSpeed = 5f;
     public Rigidbody2D rigidBody;
-
+    [SerializeField]
+    private CinemachineVirtualCamera vcam;
+    private CinemachineBasicMultiChannelPerlin vcamNoise;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask wallLayers;
@@ -17,8 +20,17 @@ public class PlayerMovement : MonoBehaviour {
 
     public float kbTimer = 0f;
 
-    void Start () {
+    [SerializeField]
+    private int health = 100;
+    [SerializeField]
+    private bool shielded = false;
+    [SerializeField]
+    private float shieldedSpeed = 7.5f;
 
+    void Start () {
+        if (vcam) {
+            vcamNoise = vcam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin> ();
+        }
     }
 
     void Update () {
@@ -36,17 +48,23 @@ public class PlayerMovement : MonoBehaviour {
             kbTimer--;
             isStunned = (kbTimer != 0);
         }
+
+        if (health < 0) {
+            Destroy (this.gameObject);
+        }
     }
 
     void FixedUpdate () {
-        rigidBody.MovePosition (rigidBody.position + movement * movementSpeed * Time.fixedDeltaTime);
+        if (!shielded) {
+            rigidBody.MovePosition (rigidBody.position + movement * movementSpeed * Time.fixedDeltaTime);
+        } else {
+            rigidBody.MovePosition (rigidBody.position + movement * shieldedSpeed * Time.fixedDeltaTime);
+        }
 
-        if (!isStunned && (movement.x != 0 || movement.y != 0)) {
+        if ((movement.x != 0 || movement.y != 0)) {
             float angle = Mathf.Atan2 (movement.y, movement.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
-        } else if (isStunned) {
-            //for fun
-            // transform.rotation = Quaternion.AngleAxis (rigidBody.rotation + 20, Vector3.forward);
+            Quaternion rotationAngle = Quaternion.AngleAxis (angle - 90, Vector3.forward);
+            transform.rotation = rotationAngle;
         }
     }
 
@@ -82,15 +100,44 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnCollisionEnter2D (Collision2D col) {
-        if (col.gameObject.tag == "Boulder") {
-            Rigidbody2D boulderRb = col.gameObject.GetComponent<Rigidbody2D> ();
-            Vector2 difference = boulderRb.transform.position - transform.position;
-            difference = -difference.normalized;
+        if (!shielded) {
+            if (col.gameObject.tag == "Boulder") {
+                Rigidbody2D boulderRb = col.gameObject.GetComponent<Rigidbody2D> ();
+                Vector2 difference = boulderRb.transform.position - transform.position;
+                difference = -difference.normalized;
+                kbVector = difference;
+                kbTimer = 240;
 
-            kbVector = difference;
-            kbTimer = 240;
-
-            isStunned = true;
+                isStunned = true;
+            } else if (col.gameObject == GameObject.Find ("Antlion")) {
+                // int damageTaken = Random.Range (5, 10);
+                int damageTaken = Random.Range (25, 35);
+                health = health - damageTaken;
+                StartCoroutine (activateShield ());
+                StartCoroutine (activateScreenShake ());
+            }
         }
+    }
+
+    IEnumerator activateScreenShake () {
+        vcamNoise.m_AmplitudeGain = 7f;
+        vcamNoise.m_FrequencyGain = 4f;
+        yield return new WaitForSeconds (0.5f);
+        vcamNoise.m_FrequencyGain = 0f;
+    }
+
+    IEnumerator activateShield () {
+        shielded = true;
+        isStunned = false;
+        yield return new WaitForSeconds (2);
+        shielded = false;
+    }
+
+    public Vector2 getMovement () {
+        return movement;
+    }
+
+    public bool getShielded () {
+        return shielded;
     }
 }
