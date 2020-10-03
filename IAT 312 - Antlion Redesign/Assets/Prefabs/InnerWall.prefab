@@ -140,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5270751776832806672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc545270c2c5c154bac4490d5ad409e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 94d777c35db60f242889437a742df39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   brokenInnerWallPrefab: {fileID: 7826114015194214536, guid: 00b8db2c263e4914b9ce912e9b1c732e,

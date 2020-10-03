@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5836676584282823569}
   - component: {fileID: 5836676584282823570}
   - component: {fileID: 5836676584282823571}
+  - component: {fileID: 1961267722155720619}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -145,10 +146,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5836676584282823574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8526ec6ba2e05814f8dfa5f1d28c260c, type: 3}
+  m_Script: {fileID: 11500000, guid: 832937302f6b32a4ba84dcbaff74228a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  baseMovementSpeed: 5
   rigidBody: {fileID: 5836676584282823569}
   attackPoint: {fileID: 5836676583768913207}
   attackRange: 0.5
@@ -173,3 +174,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.17}
   serializedVersion: 2
   m_Radius: 1.3
+--- !u!114 &1961267722155720619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836676584282823574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b0e25c3ea0405469f3ab6dbc54681a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFull: 000000000000
+  items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
