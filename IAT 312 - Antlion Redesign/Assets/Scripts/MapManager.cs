@@ -8,6 +8,9 @@ public class MapManager : MonoBehaviour {
     private GameObject innerWallPrefab;
 
     [SerializeField]
+    private GameObject tintedWallPrefab;
+
+    [SerializeField]
     private GameObject floorTilePrefab;
 
     [SerializeField]
@@ -21,6 +24,9 @@ public class MapManager : MonoBehaviour {
 
     [SerializeField]
     private GameObject player;
+
+    [SerializeField]
+    private GameObject cameraBoundry;
 
     public int[, ] grid;
     public Sprite sprite;
@@ -38,17 +44,23 @@ public class MapManager : MonoBehaviour {
         Up
     }
 
+    private int wallSpawnThreshold = 3;
+
     void Start () {
         cameraHeight = (int) Camera.main.orthographicSize;
         cameraWidth = cameraHeight * (int) Camera.main.aspect;
 
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        screenBounds = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width, Screen.height, Camera.main.transform.position.z));
 
         numRows = 30;
         rows = cameraHeight * numRows;
         columns = 9;
 
+        //lowest tile of map is at y = 6.5, +1 for tile radius
+        float cameraOffset = (float) 7.5;
         grid = new int[columns, rows];
+        cameraBoundry.transform.position = new Vector3 (0, rows - cameraOffset, 0);
+        cameraBoundry.GetComponent<BoxCollider> ().size = new Vector3 (18, rows * 2, 1);
 
         for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
@@ -64,13 +76,13 @@ public class MapManager : MonoBehaviour {
             }
         }
 
-        StartCoroutine(boulderWave());
+        StartCoroutine (boulderWave ());
         generatePath ();
     }
 
-    void Update() {
+    void Update () {
         if (player.transform.position.y > (1.85 * rows)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
         }
     }
 
@@ -88,6 +100,7 @@ public class MapManager : MonoBehaviour {
 
     private void generateNonEdge (int col, int row) {
         int value = Random.Range (0, 6);
+        // int value = wallSpawnThreshold + 1;
 
         //important to store value for path gen to identify tiles
         grid[col, row] = value;
@@ -95,32 +108,34 @@ public class MapManager : MonoBehaviour {
         Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value > 3) {
-            GameObject wall = Instantiate (innerWallPrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+            int sndRand = Random.Range(0, 51);
+            GameObject wallType = (sndRand == 0) ? tintedWallPrefab : innerWallPrefab;
+
+            GameObject wall = Instantiate (wallType, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
             wall.name = "InnerTile" + col + ":" + row + "::" + value;
         } else if (value == 0) {
             Instantiate (sandTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
-        } else {
-
         }
     }
 
-    private void spawnBoulder() {
+    private void spawnBoulder () {
         float playerYPos = player.transform.position.y;
-        Instantiate(
+        Instantiate (
             boulderPrefab,
-            new Vector3(Random.Range(-screenBounds.x * 0.75f, screenBounds.x * 0.75f), playerYPos + (screenBounds.y * 4), 0), 
+            new Vector3 (Random.Range (-screenBounds.x * 0.75f, screenBounds.x * 0.75f), playerYPos + (screenBounds.y * 4), 0),
             Quaternion.identity
         );
 
-        boulderRespawnTime = Random.Range(8, 13);
+        boulderRespawnTime = Random.Range (8, 13);
     }
 
-    IEnumerator boulderWave() {
+    IEnumerator boulderWave () {
         while (true) {
-            yield return new WaitForSeconds(boulderRespawnTime);
-            spawnBoulder();
+            yield return new WaitForSeconds (boulderRespawnTime);
+            spawnBoulder ();
         }
     }
+
     private void generatePath () {
         int rowIndex = 1;
         int columnIndex = Random.Range (1, 8);
@@ -128,10 +143,23 @@ public class MapManager : MonoBehaviour {
     }
 
     private void searchPath (int column, int row, Direction prevDir) {
-        while (grid[column, row] == 5) {
-            GameObject tile = GameObject.Find ("InnerTile" + column + ":" + row + "::" + 5);
+        while (grid[column, row] > wallSpawnThreshold) {
+            GameObject tile = GameObject.Find ("InnerTile" + column + ":" + row + "::" + grid[column, row]);
+            if (tile == null) {
+                Debug.Log ("Wall at [" + column + ":" + row + "] is null. Name: [" +
+                    "InnerTile" + column + ":" + row + "::" + grid[column, row] + "]");
+            }
             grid[column, row] = -1;
-            Destroy (tile);
+            // Destroy (tile);
+            // Debug.Log(tile.GetComponent<InnerWallBehaviour>());
+
+            if (tile != null) {
+                tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
+            } else {
+                tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
+            }
+            // tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
+            // Debug.Log ("Destroyed wall at [" + column + ":" + row + "]");
         }
 
         Direction direction = (Direction) Random.Range (0, 3);
