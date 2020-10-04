@@ -151,7 +151,14 @@ public class MapManager : MonoBehaviour {
             }
             grid[column, row] = -1;
             // Destroy (tile);
-            tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
+            // Debug.Log(tile.GetComponent<InnerWallBehaviour>());
+
+            if (tile != null) {
+                tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
+            } else {
+                tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
+            }
+            // tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
             // Debug.Log ("Destroyed wall at [" + column + ":" + row + "]");
         }
 

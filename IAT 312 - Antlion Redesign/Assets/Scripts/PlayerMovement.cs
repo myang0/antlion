@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         currentMovementSpeed = baseMovementSpeed;
 
-        DontDestroyOnLoad(gameObject);
         SceneManager.activeSceneChanged += sceneTransition;
     
         if (vcam) {
