@@ -2,26 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoostItem : MonoBehaviour
-{
-    private PlayerMovement player;
+public class BoostItem : MonoBehaviour {
+    // [SerializeField]
+    // private PlayerMovement player;
 
-    [SerializeField]
-    private float healthBoost;
+    [SerializeField] private float healthBoost;
 
-    [SerializeField]
-    private float attackBoost;
+    [SerializeField] private float attackBoost;
 
-    [SerializeField]
-    private float speedBoost;
+    [SerializeField] private float speedBoost;
 
     void Start() {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        // player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        if (col.tag == "Player") {
-            player.applyBuffs(healthBoost, attackBoost, speedBoost);
+        if (col.CompareTag("Player")) {
+            col.gameObject.GetComponent<PlayerMovement>()
+                .ApplyBuffs(healthBoost, attackBoost, speedBoost);
 
             Destroy(gameObject);
         }

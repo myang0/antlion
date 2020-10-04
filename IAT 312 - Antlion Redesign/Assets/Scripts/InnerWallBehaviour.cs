@@ -1,26 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 public class InnerWallBehaviour : MonoBehaviour {
-    [SerializeField]
-    private GameObject brokenInnerWallPrefab;
-
+    [SerializeField] private GameObject brokenInnerWallPrefab;
+    
     private bool isQuitting = false;
 
-    void OnApplicationQuit () {
+    void OnApplicationQuit() {
         isQuitting = true;
     }
 
-    void OnDestroy () {
-        if (!isQuitting) {
-            Instantiate (brokenInnerWallPrefab, transform.position, Quaternion.identity);
+    void OnDestroy() {
+        if (isQuitting) return;
+        if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene")) {
+            GameObject mapManager = GameObject.Find("MapManager");
+            if (mapManager && !mapManager.GetComponent<MapManager>().isSceneOver) {
+                Instantiate(brokenInnerWallPrefab, transform.position, Quaternion.identity);
+            }
+        } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase")) {
+            GameObject mapManager = GameObject.Find("FightMapManager");
+            Instantiate(brokenInnerWallPrefab, transform.position, Quaternion.identity);
         }
     }
 
-    public void pathGenDestroy () {
+    public void PathGenDestroy() {
         isQuitting = true;
-        Destroy (this.gameObject);
+        Destroy(this.gameObject);
     }
 }

@@ -23,22 +23,24 @@ public class ShieldBehavior : MonoBehaviour {
     void Update () { }
 
     private void FixedUpdate () {
-        movement = playerMovement.getMovement ();
+        movement = playerMovement.GETMovement ();
         rigidBody = playerMovement.rigidBody;
-        moveShield ();
-        rotateShield ();
-        displayShield ();
+        if (player) {
+            MoveShield ();
+            RotateShield ();
+            DisplayShield ();
+        }
     }
 
-    private void displayShield () {
-        if (!state && playerMovement.getShielded ()) {
+    private void DisplayShield () {
+        if (!state && playerMovement.GETShielded ()) {
             shieldBrightness = 1f;
             state = true;
         } else if (state) {
             shieldBrightness = shieldBrightness - 0.01f;
             spriteRenderer.color = new Color (255, 255, 255, shieldBrightness);
 
-            if (!playerMovement.getShielded ()) {
+            if (!playerMovement.GETShielded ()) {
                 shieldBrightness = 0f;
                 state = false;
                 spriteRenderer.color = new Color (255, 255, 255, shieldBrightness);
@@ -46,7 +48,7 @@ public class ShieldBehavior : MonoBehaviour {
         }
     }
 
-    private void rotateShield () {
+    private void RotateShield () {
         if ((movement.x != 0 || movement.y != 0)) {
             float angle = Mathf.Atan2 (movement.y, movement.x) * Mathf.Rad2Deg;
             Quaternion rotationAngle = Quaternion.AngleAxis (angle - 90, Vector3.forward);
@@ -54,7 +56,7 @@ public class ShieldBehavior : MonoBehaviour {
         }
     }
 
-    private void moveShield () {
+    private void MoveShield () {
         float xOffset = 0;
         float yOffset = 0;
         if (movement.x > 0) {

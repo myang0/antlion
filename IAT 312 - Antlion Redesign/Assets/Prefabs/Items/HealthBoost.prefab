@@ -121,6 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59a96097311d9742b531a391954c0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBoost: 0
+  healthBoost: 75
   attackBoost: 1
   speedBoost: 1
