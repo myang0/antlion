@@ -23,7 +23,7 @@ public class ShieldBehavior : MonoBehaviour {
     void Update () { }
 
     private void FixedUpdate () {
-        movement = playerMovement.getMovement ();
+        movement = playerMovement.GETMovement ();
         rigidBody = playerMovement.rigidBody;
         moveShield ();
         rotateShield ();
@@ -31,14 +31,14 @@ public class ShieldBehavior : MonoBehaviour {
     }
 
     private void displayShield () {
-        if (!state && playerMovement.getShielded ()) {
+        if (!state && playerMovement.GETShielded ()) {
             shieldBrightness = 1f;
             state = true;
         } else if (state) {
             shieldBrightness = shieldBrightness - 0.01f;
             spriteRenderer.color = new Color (255, 255, 255, shieldBrightness);
 
-            if (!playerMovement.getShielded ()) {
+            if (!playerMovement.GETShielded ()) {
                 shieldBrightness = 0f;
                 state = false;
                 spriteRenderer.color = new Color (255, 255, 255, shieldBrightness);

@@ -30,19 +30,10 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private float shieldedSpeed = 7.5f;
 
-    public void applyBuffs(float healthBoost, float attackBoost, float speedBoost) {
-        baseMovementSpeed *= speedBoost;
-        currentMovementSpeed = baseMovementSpeed;
-
-        // TODO: apply attack boost
-
-        health += healthBoost;
-    }
-
     void Start() {
         currentMovementSpeed = baseMovementSpeed;
 
-        SceneManager.activeSceneChanged += sceneTransition;
+        SceneManager.activeSceneChanged += SceneTransition;
     
         if (vcam) {
             vcamNoise = vcam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin> ();
@@ -77,10 +68,22 @@ public class PlayerMovement : MonoBehaviour {
         } else {
             rigidBody.MovePosition (rigidBody.position + movement * (shieldedSpeed * Time.fixedDeltaTime));
         }
+        RotateAnt();
+    }
+    
+    public void ApplyBuffs(float healthBoost, float attackBoost, float speedBoost) {
+        baseMovementSpeed *= speedBoost;
+        currentMovementSpeed = baseMovementSpeed;
 
+        // TODO: apply attack boost
+
+        health += healthBoost;
+    }
+
+    private void RotateAnt() {
         if ((movement.x != 0 || movement.y != 0)) {
-            float angle = Mathf.Atan2 (movement.y, movement.x) * Mathf.Rad2Deg;
-            Quaternion rotationAngle = Quaternion.AngleAxis (angle - 90, Vector3.forward);
+            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+            Quaternion rotationAngle = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             transform.rotation = rotationAngle;
         }
     }
@@ -130,35 +133,35 @@ public class PlayerMovement : MonoBehaviour {
                 // int damageTaken = Random.Range (5, 10);
                 int damageTaken = Random.Range (25, 35);
                 health = health - damageTaken;
-                StartCoroutine (activateShield ());
-                StartCoroutine (activateScreenShake ());
+                StartCoroutine (ActivateShield ());
+                StartCoroutine (ActivateScreenShake ());
             }
         }
     }
 
-    IEnumerator activateScreenShake () {
+    IEnumerator ActivateScreenShake () {
         vcamNoise.m_AmplitudeGain = 7f;
         vcamNoise.m_FrequencyGain = 4f;
         yield return new WaitForSeconds (0.5f);
         vcamNoise.m_FrequencyGain = 0f;
     }
 
-    IEnumerator activateShield () {
+    IEnumerator ActivateShield () {
         shielded = true;
         isStunned = false;
         yield return new WaitForSeconds (2);
         shielded = false;
     }
 
-    public Vector2 getMovement () {
+    public Vector2 GETMovement () {
         return movement;
     }
 
-    public bool getShielded () {
+    public bool GETShielded () {
         return shielded;
     }
 
-    void sceneTransition(Scene current, Scene next) {
+    void SceneTransition(Scene current, Scene next) {
         transform.position = new Vector3(0, 0, 0);
     }
 }

@@ -21,7 +21,7 @@ public class BoostItem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.tag == "Player") {
-            player.applyBuffs(healthBoost, attackBoost, speedBoost);
+            player.ApplyBuffs(healthBoost, attackBoost, speedBoost);
 
             Destroy(gameObject);
         }

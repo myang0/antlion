@@ -11,7 +11,7 @@ public class AntlionBehavior : MonoBehaviour {
 
     private Status status = Status.NotSpawned;
     public float movementSpeed = 4f;
-    public float rageMovementSpeed = 6f;
+    public float rageMovementSpeed = 8f;
     private GameObject antlion;
     private GameObject player;
     public SpriteRenderer spriteRenderer;
