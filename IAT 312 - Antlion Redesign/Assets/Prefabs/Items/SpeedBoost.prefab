@@ -123,4 +123,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBoost: 0
   attackBoost: 1
-  speedBoost: 1.25
+  speedBoost: 1.1

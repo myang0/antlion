@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6226882833733561889}
   - component: {fileID: 6226882833733561890}
   - component: {fileID: 6226882833733561891}
+  - component: {fileID: -2641156505080600577}
   m_Layer: 0
   m_Name: OuterWall
-  m_TagString: Untagged
+  m_TagString: OuterWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,3 +109,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2641156505080600577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226882833733561900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9afbdb59f4ceffa4eba3d55d22990873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

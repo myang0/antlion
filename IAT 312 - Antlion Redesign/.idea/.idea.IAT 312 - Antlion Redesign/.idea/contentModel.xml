@@ -17,7 +17,6 @@
             </e>
           </e>
         </e>
-        <e p="PlayerContainer.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AntlionBehavior.cs" t="Include" />
           <e p="BoostItem.cs" t="Include" />
@@ -27,8 +26,11 @@
           <e p="Inventory.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="MapManager.cs" t="Include" />
+          <e p="OuterWallBehavior.cs" t="Include" />
           <e p="PickupItem.cs" t="Include" />
+          <e p="PlayerContainer.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
+          <e p="SandSpitBehavior.cs" t="Include" />
           <e p="ShieldBehavior.cs" t="Include" />
           <e p="TintedWallBehaviour.cs" t="Include" />
         </e>

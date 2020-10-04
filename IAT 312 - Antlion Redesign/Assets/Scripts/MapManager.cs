@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour {
+
     [SerializeField]
     private GameObject innerWallPrefab;
 
@@ -27,6 +28,8 @@ public class MapManager : MonoBehaviour {
 
     [SerializeField]
     private GameObject cameraBoundry;
+
+    public bool isSceneOver = false;
 
     public int[,] grid;
     public Sprite sprite;
@@ -60,6 +63,15 @@ public class MapManager : MonoBehaviour {
         StartCoroutine (BoulderWave ());
         GeneratePath ();
     }
+    
+    void Update () {
+        if (player) {
+            if (player.transform.position.y > (1.9 * rows)) {
+                isSceneOver = true;
+                SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+            }
+        }
+    }
 
     private void GenerateMap() {
         for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
@@ -89,24 +101,20 @@ public class MapManager : MonoBehaviour {
         cameraBoundry.GetComponent<BoxCollider>().size = new Vector3(18, rows * 2, 1);
     }
 
-    void Update () {
-        if (player.transform.position.y > (1.9 * rows)) {
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-        }
-    }
-
     private bool IsOuterWall (int column, int row) {
         return (column == 0 || column == columns - 1 || row == 0 || row == rows - 1);
     }
 
     private void GenerateTile (int column, int row, int value) {
         grid[column, row] = value;
-        Instantiate (floorTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
+        // Instantiate (floorTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
 
         if (value == 1) {
             Instantiate (outerWallPrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         } else if (value == 2) {
             Instantiate (sandTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+        } else {
+            Instantiate (floorTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
         }
     }
 
@@ -118,7 +126,7 @@ public class MapManager : MonoBehaviour {
         //important to store value for path gen to identify tiles
         grid[col, row] = value;
 
-        Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
+        // Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
         if (value > 3) {
             int sndRand = Random.Range(0, 51);
@@ -128,6 +136,8 @@ public class MapManager : MonoBehaviour {
             wall.name = "InnerTile" + col + ":" + row + "::" + value;
         } else if (value == 0) {
             Instantiate (sandTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
+        } else {
+            Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
         }
     }
 
@@ -167,10 +177,11 @@ public class MapManager : MonoBehaviour {
             // Debug.Log(tile.GetComponent<InnerWallBehaviour>());
 
             if (tile != null && !tile.CompareTag("TintedWall")) {
-                tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
+                Instantiate(floorTilePrefab, tile.transform.position, Quaternion.identity);
+                tile.GetComponent<InnerWallBehaviour> ().PathGenDestroy ();
             }
             // tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
-            Debug.Log ("Destroyed wall at [" + column + ":" + row + "]");
+            // Debug.Log ("Destroyed wall at [" + column + ":" + row + "]");
         }
 
         Direction direction = (Direction) Random.Range (0, 3);
