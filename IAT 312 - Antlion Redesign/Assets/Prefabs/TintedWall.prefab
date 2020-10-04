@@ -123,10 +123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleLoot:
   - {fileID: 8245286020663017731, guid: 1c8e38b184ecca84fa2db1b66c3052df, type: 3}
-  - {fileID: 3542659388845579144, guid: 8ab885dfe65655844a418828c02bb46e, type: 3}
-  - {fileID: 4153463914929258907, guid: 674d9c3cb19e96d48b6d59de2d0c9186, type: 3}
   - {fileID: 7319740312721636735, guid: d150b7f8431cf4b4da1d9f4804070bd6, type: 3}
-  - {fileID: 4336648752967630470, guid: a30a66d8719b8a04f9defb62c54eab37, type: 3}
   - {fileID: 1445802445498792400, guid: da4f1989fe2dc814989645360979560f, type: 3}
+  - {fileID: 3542659388845579144, guid: 8ab885dfe65655844a418828c02bb46e, type: 3}
+  - {fileID: 4336648752967630470, guid: a30a66d8719b8a04f9defb62c54eab37, type: 3}
+  - {fileID: 4153463914929258907, guid: 674d9c3cb19e96d48b6d59de2d0c9186, type: 3}
   floorTilePrefab: {fileID: 6635668803160179835, guid: bd68b05fe9003204ea8459691c23ed4f,
     type: 3}

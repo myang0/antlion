@@ -9,6 +9,9 @@ TagManager:
   - TintedWall
   - OuterWall
   - FloorTile
+  - Axe
+  - Sword
+  - Crossbow
   layers:
   - Default
   - TransparentFX

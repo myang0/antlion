@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour {
             currentMovementSpeed = baseMovementSpeed / 3;
         } else if (cName.Contains("SandSpit")) {
             collider.GetComponent<SandSpitBehavior>().SpawnSandTile();
-            TakeDamage(25, 35);
+            TakeDamage(15, 25);
         } else if (collider.CompareTag("FloorTile")) {
             currentMovementSpeed = baseMovementSpeed;
         }
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour {
 
                 isStunned = true;
             } else if (col.gameObject == GameObject.Find ("Antlion")) {
-                TakeDamage(25, 35);
+                TakeDamage(15, 25);
             }
         }
     }
