@@ -26,26 +26,36 @@ public class AntlionBehavior : MonoBehaviour {
 
     void FixedUpdate() {
         if (status == Status.Alive) {
-            Vector3 playerPos = player.transform.position;
             Vector3 antlionPos = rigidBody.transform.position;
-            if (playerPos.y - antlionPos.y > 2) {
-                playerPos = new Vector3(playerPos.x, playerPos.y + 8, playerPos.z);
-            } else if (playerPos.y - antlionPos.y < -2) {
-                playerPos = new Vector3(playerPos.x, playerPos.y - 8, playerPos.z);
-            }
-
-            Vector3 dir = (playerPos - antlionPos).normalized;
-
-            if (Vector3.Distance(playerPos, antlionPos) > 1) {
-                //If player is not behind antlion and antlion isn't too far behind
-                if (playerPos.y - antlionPos.y > 0 && playerPos.y - antlionPos.y < 16) {
-                    rigidBody.MovePosition(antlionPos +
-                                           dir * (movementSpeed * Time.fixedDeltaTime));
-                } else {
-                    rigidBody.MovePosition(antlionPos +
-                                           dir * (rageMovementSpeed * Time.fixedDeltaTime));
+            if (player) {
+                Vector3 playerPos = player.transform.position;
+                if (playerPos.y - antlionPos.y > 2) {
+                    playerPos = new Vector3(playerPos.x, playerPos.y + 8, playerPos.z);
+                } else if (playerPos.y - antlionPos.y < -2) {
+                    playerPos = new Vector3(playerPos.x, playerPos.y - 8, playerPos.z);
                 }
 
+                Vector3 dir = (playerPos - antlionPos).normalized;
+
+                if (Vector3.Distance(playerPos, antlionPos) > 1) {
+                    
+                    //If player is not behind antlion and antlion isn't too far behind
+                    if (playerPos.y - antlionPos.y > 0 && playerPos.y - antlionPos.y < 16) {
+                        rigidBody.MovePosition(antlionPos +
+                                               dir * (movementSpeed * Time.fixedDeltaTime));
+                    } else { //If antlion needs to catch up, it speeds up
+                        rigidBody.MovePosition(antlionPos +
+                                               dir * (rageMovementSpeed * Time.fixedDeltaTime));
+                    }
+                    //Rotation
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+                }
+            } else {
+                //Player is dead, antlion runs off screen
+                Vector3 dir = new Vector3(0f, 2f, 0f);
+                rigidBody.MovePosition(antlionPos +
+                                       dir * (movementSpeed * Time.fixedDeltaTime));
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             }

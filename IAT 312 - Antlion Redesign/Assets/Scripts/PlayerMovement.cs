@@ -66,15 +66,16 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (health < 0) {
+            vcamNoise.m_FrequencyGain = 0f;
             Destroy (this.gameObject);
         }
     }
 
     void FixedUpdate () {
         if (!shielded) {
-            rigidBody.MovePosition (rigidBody.position + movement * currentMovementSpeed * Time.fixedDeltaTime);
+            rigidBody.MovePosition (rigidBody.position + movement * (currentMovementSpeed * Time.fixedDeltaTime));
         } else {
-            rigidBody.MovePosition (rigidBody.position + movement * shieldedSpeed * Time.fixedDeltaTime);
+            rigidBody.MovePosition (rigidBody.position + movement * (shieldedSpeed * Time.fixedDeltaTime));
         }
 
         if ((movement.x != 0 || movement.y != 0)) {
@@ -117,7 +118,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnCollisionEnter2D (Collision2D col) {
         if (!shielded) {
-            if (col.gameObject.tag == "Boulder") {
+            if (col.gameObject.CompareTag("Boulder")) {
                 Rigidbody2D boulderRb = col.gameObject.GetComponent<Rigidbody2D> ();
                 Vector2 difference = boulderRb.transform.position - transform.position;
                 difference = -difference.normalized;

@@ -100,6 +100,7 @@ public class MapManager : MonoBehaviour {
 
     private void generateNonEdge (int col, int row) {
         int value = Random.Range (0, 6);
+        int randomRotation = Random.Range(0, 4);
         // int value = wallSpawnThreshold + 1;
 
         //important to store value for path gen to identify tiles
