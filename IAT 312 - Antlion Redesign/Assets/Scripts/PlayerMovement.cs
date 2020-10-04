@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour {
     public float kbTimer = 0f;
 
     [SerializeField]
-    private int health = 100;
+    private float health = 100;
     [SerializeField]
     private bool shielded = false;
     [SerializeField]
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // TODO: apply attack boost
 
-        // TODO: apply heal
+        health += healthBoost;
     }
 
     void Start() {

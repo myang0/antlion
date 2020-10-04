@@ -143,7 +143,7 @@ public class MapManager : MonoBehaviour {
     }
 
     private void searchPath (int column, int row, Direction prevDir) {
-        while (grid[column, row] > wallSpawnThreshold) {
+        if (grid[column, row] > wallSpawnThreshold) {
             GameObject tile = GameObject.Find ("InnerTile" + column + ":" + row + "::" + grid[column, row]);
             if (tile == null) {
                 Debug.Log ("Wall at [" + column + ":" + row + "] is null. Name: [" +
@@ -153,13 +153,11 @@ public class MapManager : MonoBehaviour {
             // Destroy (tile);
             // Debug.Log(tile.GetComponent<InnerWallBehaviour>());
 
-            if (tile != null) {
-                tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
-            } else {
+            if (tile != null && !tile.CompareTag("TintedWall")) {
                 tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
             }
             // tile.GetComponent<InnerWallBehaviour> ().pathGenDestroy ();
-            // Debug.Log ("Destroyed wall at [" + column + ":" + row + "]");
+            Debug.Log ("Destroyed wall at [" + column + ":" + row + "]");
         }
 
         Direction direction = (Direction) Random.Range (0, 3);
