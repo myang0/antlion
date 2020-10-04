@@ -30,26 +30,17 @@ public class PlayerMovement : MonoBehaviour {
 
     public float kbTimer = 0f;
 
-    public int health = 100;
+    public float health = 100;
 
     public bool shielded = false;
     public float shieldedSpeed = 7.5f;
 
     public GameObject projectilePrefab;
 
-    public void applyBuffs(float healthBoost, float attackBoost, float speedBoost) {
-        baseMovementSpeed *= speedBoost;
-        currentMovementSpeed = baseMovementSpeed;
-
-        attackMultiplier *= attackBoost;
-
-        // TODO: apply heal
-    }
-
     void Start() {
         currentMovementSpeed = baseMovementSpeed;
 
-        SceneManager.activeSceneChanged += SceneTransition;
+        SceneManager.activeSceneChanged += sceneTransition;
     
         if (vcam) {
             vcamNoise = vcam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin> ();
@@ -89,7 +80,7 @@ public class PlayerMovement : MonoBehaviour {
         baseMovementSpeed *= speedBoost;
         currentMovementSpeed = baseMovementSpeed;
 
-        // TODO: apply attack boost
+        attackMultiplier *= attackBoost;
 
         health += healthBoost;
     }
