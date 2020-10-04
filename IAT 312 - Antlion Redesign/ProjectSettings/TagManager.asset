@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Boulder
   - InnerWall
+  - TintedWall
+  - OuterWall
+  - FloorTile
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - 
   - NonOuterWalls
-  - 
+  - Antlion
   - 
   - 
   - 

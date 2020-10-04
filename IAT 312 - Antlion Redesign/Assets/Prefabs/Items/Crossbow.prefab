@@ -123,3 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1445802445498792398}
   hitbox: {fileID: 1445802445498792399}
+  remainingUses: 20
+  baseCooldown: 150
+  baseDamage: 0
+  attackRange: 0
+  isRanged: 1

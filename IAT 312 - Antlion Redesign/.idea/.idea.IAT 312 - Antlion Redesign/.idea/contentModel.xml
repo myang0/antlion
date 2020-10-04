@@ -19,13 +19,20 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AntlionBehavior.cs" t="Include" />
+          <e p="BoostItem.cs" t="Include" />
           <e p="BoulderBehaviour.cs" t="Include" />
           <e p="FightMapManager.cs" t="Include" />
           <e p="InnerWallBehaviour.cs" t="Include" />
+          <e p="Inventory.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="MapManager.cs" t="Include" />
+          <e p="OuterWallBehavior.cs" t="Include" />
+          <e p="PickupItem.cs" t="Include" />
+          <e p="PlayerContainer.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
+          <e p="SandSpitBehavior.cs" t="Include" />
           <e p="ShieldBehavior.cs" t="Include" />
+          <e p="TintedWallBehaviour.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
