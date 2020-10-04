@@ -8,11 +8,18 @@ public class PlayerMovement : MonoBehaviour {
     public float baseMovementSpeed = 5f;
     private float currentMovementSpeed = 5f;
 
+    public float attackMultiplier = 1f;
+
     public Rigidbody2D rigidBody;
+
     [SerializeField]
     private CinemachineVirtualCamera vcam;
     private CinemachineBasicMultiChannelPerlin vcamNoise;
+
     public Transform attackPoint;
+    public Transform firePoint;
+    public Transform meleePoint;
+
     public float attackRange = 0.5f;
     public LayerMask wallLayers;
 
@@ -23,18 +30,18 @@ public class PlayerMovement : MonoBehaviour {
 
     public float kbTimer = 0f;
 
-    [SerializeField]
-    private int health = 100;
-    [SerializeField]
-    private bool shielded = false;
-    [SerializeField]
-    private float shieldedSpeed = 7.5f;
+    public int health = 100;
+
+    public bool shielded = false;
+    public float shieldedSpeed = 7.5f;
+
+    public GameObject projectilePrefab;
 
     public void applyBuffs(float healthBoost, float attackBoost, float speedBoost) {
         baseMovementSpeed *= speedBoost;
         currentMovementSpeed = baseMovementSpeed;
 
-        // TODO: apply attack boost
+        attackMultiplier *= attackBoost;
 
         // TODO: apply heal
     }
@@ -55,9 +62,7 @@ public class PlayerMovement : MonoBehaviour {
             movement.y = Input.GetAxisRaw ("Vertical");
         }
 
-        if (Input.GetKeyDown (KeyCode.Space)) {
-            Attack ();
-        }
+        if (Input.GetKeyDown (KeyCode.Space)) Attack();
 
         if (kbTimer > 0) {
             rigidBody.AddForce (kbVector * (kbTimer * 0.3f), ForceMode2D.Force);
@@ -65,9 +70,7 @@ public class PlayerMovement : MonoBehaviour {
             isStunned = (kbTimer != 0);
         }
 
-        if (health < 0) {
-            Destroy (this.gameObject);
-        }
+        if (health < 0) Destroy(gameObject);
     }
 
     void FixedUpdate () {
@@ -126,7 +129,6 @@ public class PlayerMovement : MonoBehaviour {
 
                 isStunned = true;
             } else if (col.gameObject == GameObject.Find ("Antlion")) {
-                // int damageTaken = Random.Range (5, 10);
                 int damageTaken = Random.Range (25, 35);
                 health = health - damageTaken;
                 StartCoroutine (activateShield ());
@@ -155,6 +157,27 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool getShielded () {
         return shielded;
+    }
+
+    public void shootProjectile(float baseDmg) {
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * 20f, ForceMode2D.Impulse);
+
+        Projectile p = projectile.GetComponent<Projectile>();
+        p.damage = baseDmg * attackMultiplier;
+    }
+
+    public void meleeAttack() {
+        StartCoroutine(showMeleeSprite());
+    }
+
+    IEnumerator showMeleeSprite() {
+        SpriteRenderer sprite = meleePoint.GetComponent<SpriteRenderer>();
+        sprite.enabled = true;
+        yield return new WaitForSeconds(0.05f);
+        sprite.enabled = false;
     }
 
     void sceneTransition(Scene current, Scene next) {
