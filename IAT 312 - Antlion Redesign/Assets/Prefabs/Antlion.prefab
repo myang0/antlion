@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 533414960819427355}
   - component: {fileID: 533414960819427354}
   - component: {fileID: 533414960819427353}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Antlion
-  m_TagString: Untagged
+  m_TagString: Antlion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,9 +51,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 4.1
   rageMovementSpeed: 6
+  sandSpitPrefab: {fileID: 0}
   spriteRenderer: {fileID: 533414960819427359}
   polyCollider: {fileID: 533414960819427355}
   rigidBody: {fileID: 533414960819427358}
+  health: 1000
 --- !u!50 &533414960819427358
 Rigidbody2D:
   serializedVersion: 4

@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour {
     public float baseMovementSpeed = 5f;
     [SerializeField] private float currentMovementSpeed = 5f;
 
+    [SerializeField] private SpriteRenderer bite;
+
     public float attackMultiplier = 1f;
 
     public Rigidbody2D rigidBody;
@@ -20,7 +22,9 @@ public class PlayerMovement : MonoBehaviour {
     public Transform meleePoint;
 
     public float attackRange = 0.5f;
+
     public LayerMask wallLayers;
+    public LayerMask antlionLayer;
 
     public bool isStunned = false;
 
@@ -111,10 +115,18 @@ public class PlayerMovement : MonoBehaviour {
     // }
 
     void Attack () {
+        StartCoroutine(ShowBite());
+
         Collider2D[] hitWalls = Physics2D.OverlapCircleAll (attackPoint.position, attackRange, wallLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll (attackPoint.position, attackRange, antlionLayer);
 
         foreach (Collider2D wall in hitWalls) {
             Destroy (wall.gameObject);
+        }
+
+        foreach (Collider2D enemy in hitEnemies) {
+            AntlionBehavior ab = enemy.gameObject.GetComponent<AntlionBehavior>();
+            ab.Damage(15f * attackMultiplier);
         }
     }
 
@@ -162,6 +174,12 @@ public class PlayerMovement : MonoBehaviour {
         shielded = false;
     }
 
+    IEnumerator ShowBite() {
+        bite.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        bite.enabled = false;
+    }
+
     public Vector2 GETMovement () {
         return movement;
     }
@@ -180,15 +198,13 @@ public class PlayerMovement : MonoBehaviour {
         p.damage = baseDmg * attackMultiplier;
     }
 
-    public void meleeAttack() {
-        StartCoroutine(showMeleeSprite());
-    }
+    public void meleeAttack(float attackRadius, float attackDamage) {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll (meleePoint.position, attackRadius, antlionLayer);
 
-    IEnumerator showMeleeSprite() {
-        SpriteRenderer sprite = meleePoint.GetComponent<SpriteRenderer>();
-        sprite.enabled = true;
-        yield return new WaitForSeconds(0.05f);
-        sprite.enabled = false;
+        foreach (Collider2D enemy in hitEnemies) {
+            AntlionBehavior ab = enemy.gameObject.GetComponent<AntlionBehavior>();
+            ab.Damage(attackDamage * attackMultiplier);
+        }
     }
 
     void sceneTransition(Scene current, Scene next) {

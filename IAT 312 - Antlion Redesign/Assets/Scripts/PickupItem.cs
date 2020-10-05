@@ -9,8 +9,7 @@ public class PickupItem : MonoBehaviour {
     private Inventory inventory;
     private PlayerMovement player;
 
-    [SerializeField]
-    private SpriteRenderer sprite;
+    public SpriteRenderer sprite;
 
     [SerializeField]
     private BoxCollider2D hitbox;
@@ -83,6 +82,6 @@ public class PickupItem : MonoBehaviour {
     
     IEnumerator AttackMelee() {
         yield return new WaitForSeconds(0.1f);
-        player.meleeAttack();
+        player.meleeAttack(attackRange, baseDamage);
     }
 }
