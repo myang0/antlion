@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 1962790645}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: VirtualCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -909,6 +909,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mass
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 533414960819427358, guid: 9ffd77b57e3c843408bb9abcbcccd6de,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ffd77b57e3c843408bb9abcbcccd6de, type: 3}

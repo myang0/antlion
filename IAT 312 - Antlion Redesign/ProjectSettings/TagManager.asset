@@ -12,6 +12,7 @@ TagManager:
   - Axe
   - Sword
   - Crossbow
+  - VirtualCam
   layers:
   - Default
   - TransparentFX

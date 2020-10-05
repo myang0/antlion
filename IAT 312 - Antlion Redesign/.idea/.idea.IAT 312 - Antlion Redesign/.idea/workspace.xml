@@ -20,23 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/AttackBoost.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/AttackBoost.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Axe.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Axe.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Crossbow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Crossbow.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/HealthBoost.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/HealthBoost.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/SpeedBoost.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/SpeedBoost.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Sword.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Sword.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TintedWall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TintedWall.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
@@ -60,15 +48,15 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/InnerWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OuterWallBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SandSpitBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BoostItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
       </list>
     </option>
   </component>
@@ -116,7 +104,7 @@
       <updated>1601766328119</updated>
       <workItem from="1601766330611" duration="1882000" />
       <workItem from="1601774712741" duration="558000" />
-      <workItem from="1601845334324" duration="6911000" />
+      <workItem from="1601845334324" duration="11008000" />
     </task>
     <servers />
   </component>
@@ -149,10 +137,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="22" y="128" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601767644826" />
-    <state x="724" y="114" width="774" height="840" key="VCS.FileHistoryDialog" timestamp="1601795342422">
+    <state x="724" y="114" width="774" height="840" key="VCS.FileHistoryDialog" timestamp="1601856718186">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="724" y="114" width="774" height="840" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601795342422" />
+    <state x="724" y="114" width="774" height="840" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601856718186" />
     <state x="1096" y="244" key="run.anything.popup" timestamp="1601806039468">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

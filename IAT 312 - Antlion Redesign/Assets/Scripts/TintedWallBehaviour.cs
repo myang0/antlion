@@ -40,8 +40,7 @@ public class TintedWallBehaviour : MonoBehaviour
         if (isEquipmentSpawn) {
             randIndex = Random.Range(0, 3);
         }
-        Debug.Log(randIndex);
-        Debug.Log(possibleLoot.Length);
+
         Instantiate(possibleLoot[randIndex], transform.position, Quaternion.identity);
         Vector3 floorTilePosition = new Vector3(transform.position.x, transform.position.y, 2);
         Instantiate(floorTilePrefab, floorTilePosition, Quaternion.identity);

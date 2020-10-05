@@ -21,6 +21,9 @@ public class AntlionBehavior : MonoBehaviour {
     public PolygonCollider2D polyCollider;
     public Rigidbody2D rigidBody;
     private bool isSpitReady = true;
+    private float currentRotationSpeed = 2.5f;
+    private float baseRotationSpeed = 0.35f;
+    private float spitReadyRotationSpeed = 2.5f;
 
     // Start is called before the first frame update
     void Start() {
@@ -35,7 +38,8 @@ public class AntlionBehavior : MonoBehaviour {
 
     void FixedUpdate() {
         if (status == Status.Alive) {
-            Vector3 antlionPos = rigidBody.transform.position;
+            //Vector3 antlionPos = rigidBody.position;
+            Vector3 antlionPos = this.transform.position;
             if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene")) {
                 if (player) {
                     RunPhaseMovement(antlionPos);
@@ -46,39 +50,69 @@ public class AntlionBehavior : MonoBehaviour {
                 if (player) {
                     FightPhaseAttack(antlionPos);
                 } else {
-
                 }
             }
         }
     }
 
     private void FightPhaseAttack(Vector3 antlionPos) {
-        Vector3 playerPos = player.transform.position;
-        Vector3 dir = (playerPos - antlionPos).normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Quaternion transformRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-        transform.rotation = transformRotation;
+        Vector3 vectorToPlayer = GETVectorToPlayer(antlionPos);
+        Quaternion angleToPlayer = GETAngleToPlayer(vectorToPlayer);
+        RotateToPlayer(angleToPlayer);
 
-        SpitSand(antlionPos, transformRotation);
-    }
-
-    private void SpitSand(Vector3 antlionPos, Quaternion transformRotation) {
-        if (isSpitReady) {
-            Vector3 spitSpawnPosition = new Vector3(antlionPos.x, antlionPos.y, 0);
-            Vector3 mouthOffset = transformRotation * (new Vector3(0, 2.5f, 0));
-            spitSpawnPosition = spitSpawnPosition + mouthOffset;
-            GameObject sandSpitObject = Instantiate(sandSpitPrefab, spitSpawnPosition, Quaternion.identity);
-            Rigidbody2D sandSpitRigidbody2D = sandSpitObject.GetComponent<Rigidbody2D>();
-            sandSpitRigidbody2D.velocity = transformRotation * (new Vector2(0, 8f));
-            isSpitReady = false;
-            StartCoroutine(SpitAttackTimer());
-            
+        if (isSpitReady && IsFacingPlayer(angleToPlayer)) {
+            SpitSand(antlionPos);
         }
     }
 
+    private void RotateToPlayer(Quaternion transformRotation) {
+        float rotation = Mathf.Min(currentRotationSpeed * Time.deltaTime, 1);
+        transform.rotation = Quaternion.Lerp(transform.rotation, transformRotation, rotation);
+    }
+
+    private Quaternion GETAngleToPlayer(Vector3 dir) {
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion transformRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        return transformRotation;
+    }
+
+    private Vector3 GETVectorToPlayer(Vector3 antlionPos) {
+        Vector3 playerPos = player.transform.position;
+        Vector3 dir = (playerPos - antlionPos).normalized;
+        return dir;
+    }
+
+    private void SpitSand(Vector3 antlionPos) {
+        int numOfShots = Random.Range(2, 6);
+        for (int i = 0; i < numOfShots; i++) {
+            StartCoroutine(SpitBarrage(antlionPos, i*0.2f));
+        }
+        isSpitReady = false;
+        StartCoroutine(SpitAttackTimer());
+    }
+
+    IEnumerator SpitBarrage(Vector3 antlionPos, float delay) {
+        yield return new WaitForSeconds(delay);
+        Quaternion angleToPlayer = GETAngleToPlayer(GETVectorToPlayer(antlionPos));
+        Vector3 spitSpawnPosition = new Vector3(antlionPos.x, antlionPos.y, 0);
+        Vector3 mouthOffset = angleToPlayer * (new Vector3(0, 2.5f, 0));
+        spitSpawnPosition = spitSpawnPosition + mouthOffset;
+        GameObject sandSpitObject =
+            Instantiate(sandSpitPrefab, spitSpawnPosition, Quaternion.identity);
+        Rigidbody2D sandSpitRigidbody2D = sandSpitObject.GetComponent<Rigidbody2D>();
+        sandSpitRigidbody2D.velocity = angleToPlayer * (new Vector2(0, 8f));
+    }
+
+    private bool IsFacingPlayer(Quaternion angleToPlayer) {
+        float dotProduct = Mathf.Abs(Quaternion.Dot(angleToPlayer, transform.rotation));
+        return dotProduct > 0.99;
+    }
+
     IEnumerator SpitAttackTimer() {
+        currentRotationSpeed = baseRotationSpeed;
         yield return new WaitForSeconds(5f);
         isSpitReady = true;
+        currentRotationSpeed = spitReadyRotationSpeed;
     }
 
     private void RunOffScreen(Vector3 antlionPos) {
@@ -130,10 +164,15 @@ public class AntlionBehavior : MonoBehaviour {
                 spriteRenderer.enabled = true;
                 polyCollider.enabled = true;
                 status = Status.Alive;
-            } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase") &&
-                       (player.transform.position.y > 5.5) && status == Status.NotSpawned) {
-                status = Status.Alive;
+            } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase") && 
+                       status == Status.NotSpawned) {
+                StartCoroutine(WakeUpBossPhase());
             }
         }
+    }
+
+    IEnumerator WakeUpBossPhase() {
+        yield return new WaitForSeconds(2f);
+        status = Status.Alive;
     }
 }

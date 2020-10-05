@@ -79,11 +79,12 @@ public class FightMapManager : MonoBehaviour {
     }
 
     private void GenerateTile(int column, int row, int value) {
-        Instantiate(floorTilePrefab, new Vector3(column * 2, row * 2 - 0.5f, 2),
-            Quaternion.identity);
 
         Vector3 tilePosition = new Vector3(column * 2, row * 2 - 0.5f, 1);
         switch (value) {
+            case 0:
+                Instantiate(floorTilePrefab, tilePosition, Quaternion.identity);
+                break;
             case 1:
                 Instantiate(outerWallPrefab, tilePosition, Quaternion.identity);
                 break;
