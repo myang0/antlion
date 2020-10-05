@@ -15,6 +15,7 @@ TagManager:
   - VirtualCam
   - Antlion
   - MeleeSwingCrescent
+  - BiteCrescent
   layers:
   - Default
   - TransparentFX

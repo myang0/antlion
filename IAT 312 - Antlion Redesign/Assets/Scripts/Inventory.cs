@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
         }
         
         GameObject player = GameObject.FindWithTag("Player");
-        if (Input.GetMouseButtonDown(0) & isFightScene() && player) {
+        if (Input.GetMouseButtonDown(0) & isFightScene() && player && selectedItem != null) {
             useCurrentItem();
         }
         
@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour
     }
 
     void useCurrentItem() {
-        if (selectedItem == null) return;
+        // if (selectedItem == null) return;
 
         PickupItem itemComponent = selectedItem.GetComponent<PickupItem>();
         itemComponent.Use();

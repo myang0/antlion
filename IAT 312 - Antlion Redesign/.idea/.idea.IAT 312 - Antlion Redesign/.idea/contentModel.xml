@@ -19,6 +19,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AntlionBehavior.cs" t="Include" />
+          <e p="BitePointBehavior.cs" t="Include" />
           <e p="BoostItem.cs" t="Include" />
           <e p="BoulderBehaviour.cs" t="Include" />
           <e p="FightMapManager.cs" t="Include" />

@@ -61,11 +61,25 @@ public class AntlionBehavior : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("MeleeSwingCrescent")) {
-            GameObject meleePoint = other.gameObject;
-            Damage(meleePoint.GetComponent<MeleePointBehavior>().getWeaponDamage());
-            meleePoint.GetComponent<MeleePointBehavior>().setWeaponDamage(0);
+        // if (IsFightPhase() && (other.CompareTag("MeleeSwingCrescent") ||
+        //                        other.CompareTag("BiteCrescent"))) {
+        //     GameObject meleePoint = other.gameObject;
+        //     Damage(meleePoint.GetComponent<MeleePointBehavior>().getWeaponDamage());
+        //     meleePoint.GetComponent<MeleePointBehavior>().setWeaponDamage(0);
+        // }
+        if (IsFightPhase()) {
+            if (other.CompareTag("MeleeSwingCrescent")) {
+                GameObject attackPoint = other.gameObject;
+                Damage(attackPoint.GetComponent<MeleePointBehavior>().getWeaponDamage());
+            } else if (other.CompareTag("BiteCrescent")) {
+                GameObject attackPoint = other.gameObject;
+                Damage(attackPoint.GetComponent<BitePointBehavior>().getWeaponDamage());
+            }
         }
+    }
+
+    private bool IsFightPhase() {
+        return string.Equals(SceneManager.GetActiveScene().name, "FightPhase");
     }
 
     private void FightPhaseAttack(Vector3 antlionPos) {
@@ -98,8 +112,9 @@ public class AntlionBehavior : MonoBehaviour {
     private void SpitSand(Vector3 antlionPos) {
         int numOfShots = Random.Range(6, 11) + LowHealthSpitMore();
         for (int i = 0; i < numOfShots; i++) {
-            StartCoroutine(SpitBarrage(antlionPos, i*0.05f));
+            StartCoroutine(SpitBarrage(antlionPos, i * 0.05f));
         }
+
         isSpitReady = false;
         StartCoroutine(SpitAttackTimer());
     }
@@ -193,7 +208,7 @@ public class AntlionBehavior : MonoBehaviour {
                 spriteRenderer.enabled = true;
                 polyCollider.enabled = true;
                 status = Status.Alive;
-            } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase") && 
+            } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase") &&
                        status == Status.NotSpawned) {
                 StartCoroutine(WakeUpBossPhase());
             }

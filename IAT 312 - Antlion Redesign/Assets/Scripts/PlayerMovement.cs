@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class PlayerMovement : MonoBehaviour {
     public float baseMovementSpeed = 5f;
     [SerializeField] private float currentMovementSpeed = 5f;
-
+    [SerializeField] private GameObject bitePoint;
     [SerializeField] private SpriteRenderer bite;
 
     public float attackMultiplier = 1f;
@@ -56,7 +56,11 @@ public class PlayerMovement : MonoBehaviour {
             movement.y = Input.GetAxisRaw("Vertical");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) Attack();
+        // if (Input.GetKeyDown(KeyCode.Space)) Attack();
+        Inventory inventory = this.gameObject.GetComponent<Inventory>();
+        if (Input.GetMouseButtonDown(1) && !rotationLock) {
+            Attack();
+        }
 
         if (Input.GetKeyDown(KeyCode.M)) {
             MapManager mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
@@ -131,19 +135,19 @@ public class PlayerMovement : MonoBehaviour {
     void Attack() {
         StartCoroutine(ShowBite());
 
-        Collider2D[] hitWalls =
-            Physics2D.OverlapCircleAll(attackPoint.position, attackRange, wallLayers);
-        Collider2D[] hitEnemies =
-            Physics2D.OverlapCircleAll(attackPoint.position, attackRange, antlionLayer);
-
-        foreach (Collider2D wall in hitWalls) {
-            Destroy(wall.gameObject);
-        }
-
-        foreach (Collider2D enemy in hitEnemies) {
-            AntlionBehavior ab = enemy.gameObject.GetComponent<AntlionBehavior>();
-            ab.Damage(15f * attackMultiplier);
-        }
+        // Collider2D[] hitWalls =
+        //     Physics2D.OverlapCircleAll(attackPoint.position, attackRange, wallLayers);
+        // Collider2D[] hitEnemies =
+        //     Physics2D.OverlapCircleAll(attackPoint.position, attackRange, antlionLayer);
+        //
+        // foreach (Collider2D wall in hitWalls) {
+        //     Destroy(wall.gameObject);
+        // }
+        //
+        // foreach (Collider2D enemy in hitEnemies) {
+        //     AntlionBehavior ab = enemy.gameObject.GetComponent<AntlionBehavior>();
+        //     ab.Damage(15f * attackMultiplier);
+        // }
     }
 
     void OnDrawGizmosSelected() {
@@ -191,14 +195,28 @@ public class PlayerMovement : MonoBehaviour {
     IEnumerator ActivateShield() {
         shielded = true;
         isStunned = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
         shielded = false;
     }
 
     IEnumerator ShowBite() {
-        bite.enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        bite.enabled = false;
+        rotationLock = true;
+        Camera cam = Camera.main;
+        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 vectorToMouse = (transform.position - mousePos).normalized;
+        float angle = Mathf.Atan2(vectorToMouse.y, vectorToMouse.x) * Mathf.Rad2Deg;
+        Quaternion angleToMouse = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+        transform.rotation = angleToMouse;
+        bitePoint.SetActive(!bitePoint.activeInHierarchy);
+        if (bitePoint.activeInHierarchy) {
+            bitePoint.GetComponent<BitePointBehavior>().setWeaponDamage(15f * attackMultiplier);
+        }
+
+        // bite.enabled = true;
+        yield return new WaitForSeconds(0.05f);
+        // bite.enabled = false;
+        bitePoint.SetActive(!bitePoint.activeInHierarchy);
+        rotationLock = false;
     }
 
     public Vector2 GETMovement() {

@@ -55,7 +55,7 @@ public class PickupItem : MonoBehaviour {
 }
 
     public void Use() {
-        if (currentCooldown > 0) return;
+        if (currentCooldown > 0 || player.rotationLock) return;
         
         Vector3 playerPosition = player.transform.position;
         RotatePlayerToAttack(playerPosition);
@@ -97,7 +97,7 @@ public class PickupItem : MonoBehaviour {
     IEnumerator AttackSword() {
         player.rotationLock = true;
         player.showSwingCrescent(baseDamage);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         // player.meleeAttack(attackRange, baseDamage);
         player.showSwingCrescent(baseDamage);
         player.rotationLock = false;
@@ -105,7 +105,7 @@ public class PickupItem : MonoBehaviour {
     IEnumerator AttackAxe() {
         player.rotationLock = true;
         player.showSwingCrescent(baseDamage);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         // player.meleeAttack(attackRange, baseDamage);
         player.showSwingCrescent(baseDamage);
         player.rotationLock = false;

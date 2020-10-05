@@ -27,6 +27,10 @@ public class InnerWallBehaviour : MonoBehaviour {
         }
     }
 
+    // private void OnCollisionEnter2D(Collision2D other) {
+    //     throw new NotImplementedException();
+    // }
+
     public void PathGenDestroy() {
         isQuitting = true;
         Destroy(this.gameObject);
