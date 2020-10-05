@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7319740312721636707}
   m_Layer: 0
   m_Name: Axe
-  m_TagString: Untagged
+  m_TagString: Axe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5676ccc8441e234ba5f3d1dfc26897d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordSwing: {fileID: 0}
+  axeSwing: {fileID: 959767356689974878, guid: 03e11fce27de8c44eba3ca7f8b118d7f, type: 3}
+  crossbowSwing: {fileID: 0}
   sprite: {fileID: 7319740312721636705}
   hitbox: {fileID: 7319740312721636734}
   remainingUses: 10

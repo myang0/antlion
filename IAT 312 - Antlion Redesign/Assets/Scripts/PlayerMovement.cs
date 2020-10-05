@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public Rigidbody2D rigidBody;
 
-    [SerializeField]
     private CinemachineVirtualCamera vcam;
     private CinemachineBasicMultiChannelPerlin vcamNoise;
 
@@ -41,10 +40,7 @@ public class PlayerMovement : MonoBehaviour {
         currentMovementSpeed = baseMovementSpeed;
 
         SceneManager.activeSceneChanged += sceneTransition;
-    
-        if (vcam) {
-            vcamNoise = vcam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin> ();
-        }
+        SetupCameraNoise();
     }
 
     void Update () {
@@ -101,7 +97,7 @@ public class PlayerMovement : MonoBehaviour {
             currentMovementSpeed = baseMovementSpeed / 3;
         } else if (cName.Contains("SandSpit")) {
             collider.GetComponent<SandSpitBehavior>().SpawnSandTile();
-            TakeDamage(25, 35);
+            TakeDamage(15, 25);
         } else if (collider.CompareTag("FloorTile")) {
             currentMovementSpeed = baseMovementSpeed;
         }
@@ -140,7 +136,7 @@ public class PlayerMovement : MonoBehaviour {
 
                 isStunned = true;
             } else if (col.gameObject == GameObject.Find ("Antlion")) {
-                TakeDamage(25, 35);
+                TakeDamage(15, 25);
             }
         }
     }
@@ -198,5 +194,13 @@ public class PlayerMovement : MonoBehaviour {
     void sceneTransition(Scene current, Scene next) {
         currentMovementSpeed = baseMovementSpeed;
         transform.position = new Vector3(14, 1.5f, 0);
+        SetupCameraNoise();
+        
+    }
+    
+    private void SetupCameraNoise() {
+        GameObject vcamObject = GameObject.FindWithTag("VirtualCam");
+        vcam = vcamObject.GetComponent<CinemachineVirtualCamera>();
+        vcamNoise = vcam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
     }
 }

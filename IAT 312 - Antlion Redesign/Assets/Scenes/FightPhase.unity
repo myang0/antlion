@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 599617596}
   m_Layer: 0
   m_Name: VirtualCamera
-  m_TagString: Untagged
+  m_TagString: VirtualCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,8 +267,8 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 5
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
+    NearClipPlane: 0.001
+    FarClipPlane: 100
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -390,6 +390,8 @@ MonoBehaviour:
     type: 3}
   floorTilePrefab: {fileID: 6635668803160179835, guid: bd68b05fe9003204ea8459691c23ed4f,
     type: 3}
+  tintedWallPrefab: {fileID: 6461619888412667259, guid: d215a5bb0c43b0c488a44a92eb96032b,
+    type: 3}
   vcam: {fileID: 599617594}
   camBoundry: {fileID: 956686128}
 --- !u!4 &1221813872
@@ -481,8 +483,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.001
+  far clip plane: 100
   field of view: 40
   orthographic: 1
   orthographic size: 5

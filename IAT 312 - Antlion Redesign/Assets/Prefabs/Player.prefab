@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7328688380341577567}
   - component: {fileID: 7328688380341577566}
   m_Layer: 0
-  m_Name: PlayerNew
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.89, y: 1.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -150,14 +150,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMovementSpeed: 5
+  currentMovementSpeed: 5
+  attackMultiplier: 1
   rigidBody: {fileID: 7328688380341577555}
+  vcam: {fileID: 0}
   attackPoint: {fileID: 7328688379819493877}
+  firePoint: {fileID: 0}
+  meleePoint: {fileID: 0}
   attackRange: 0.3
   wallLayers:
     serializedVersion: 2
     m_Bits: 256
   isStunned: 0
   kbTimer: 0
+  health: 100
+  shielded: 0
+  shieldedSpeed: 7.5
+  projectilePrefab: {fileID: 0}
 --- !u!60 &7328688380341577567
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -176,7 +185,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.89, y: 1.13}
-    newSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.89, y: 1.13}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -213,18 +222,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83b0e25c3ea0405469f3ab6dbc54681a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFull: 000000000000
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_GameObject: {fileID: 7328688380341577556}
   m_Enabled: 1
   m_Avatar: {fileID: 0}

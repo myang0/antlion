@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour
 {
@@ -23,11 +24,15 @@ public class Inventory : MonoBehaviour
             if (numItemsCarried > 0) nextItem();
         }
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) & isFightScene()) {
             useCurrentItem();
         }
 
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        if (cam) mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private bool isFightScene() {
+        return string.Equals(SceneManager.GetActiveScene().name, "FightPhase");
     }
 
     void prevItem() {

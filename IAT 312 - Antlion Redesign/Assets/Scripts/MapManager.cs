@@ -86,7 +86,7 @@ public class MapManager : MonoBehaviour {
                     GenerateTile(columnIndex, rowIndex, 0);
                 } else if (rowIndex > rows - 5 && rowIndex < rows - 1) {
                     GenerateTile(columnIndex, rowIndex, 2);
-                } else {
+                }else {
                     // Everything else
                     GenerateNonEdge(columnIndex, rowIndex);
                 }

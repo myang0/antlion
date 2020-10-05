@@ -8,6 +8,7 @@ public class FightMapManager : MonoBehaviour {
     [SerializeField] private GameObject outerWallPrefab;
     [SerializeField] private GameObject sandTilePrefab;
     [SerializeField] private GameObject floorTilePrefab;
+    [SerializeField] private GameObject tintedWallPrefab;
     [SerializeField] private CinemachineVirtualCamera vcam;
     [SerializeField] private BoxCollider camBoundry;
 
@@ -30,9 +31,9 @@ public class FightMapManager : MonoBehaviour {
         columns = 15;
         rows = 15;
         grid = new int[columns, rows];
-        
+
         antlion = GameObject.Find("Antlion");
-        antlion.transform.position = new Vector3(columns-1, rows-1, 0);
+        antlion.transform.position = new Vector3(columns - 1, rows - 1, 0);
 
         SetupCamera();
         GenerateMap();
@@ -43,11 +44,15 @@ public class FightMapManager : MonoBehaviour {
             for (int rowIdx = 0; rowIdx < rows; rowIdx++) {
                 int gridValue = IsOuterWall(colIdx, rowIdx) ? 1 : 0;
                 grid[colIdx, rowIdx] = gridValue;
-                GenerateTile(colIdx, rowIdx, gridValue);
+
                 if ((rowIdx == 4 || rowIdx == 10) && (colIdx == 4 || colIdx == 10)) {
                     GenerateTile(colIdx, rowIdx, 1);
                 } else if ((rowIdx > 5 && rowIdx < 9) && (colIdx > 5 && colIdx < 9)) {
                     GenerateTile(colIdx, rowIdx, 2);
+                } else if (rowIdx == 1 && (colIdx == 6 || colIdx == 8) || (rowIdx == 2 && colIdx == 7)) {
+                    GenerateTile(colIdx, rowIdx, 3);
+                } else {
+                    GenerateTile(colIdx, rowIdx, gridValue);
                 }
             }
         }
@@ -57,6 +62,7 @@ public class FightMapManager : MonoBehaviour {
         player = GameObject.FindWithTag("Player");
         Assert.IsNotNull(player, "Player is null??? WTF");
         vcam.Follow = player.transform;
+        vcam.m_Lens.OrthographicSize = 6;
         var position = vcam.transform.position;
         position = new Vector3(position.x, position.y, 0);
         vcam.transform.position = position;
@@ -64,7 +70,7 @@ public class FightMapManager : MonoBehaviour {
             vcam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
         vcamNoise.m_AmplitudeGain = 7f;
         vcamNoise.m_FrequencyGain = 0f;
-        camBoundry.transform.position = new Vector3(columns-1, rows-1.5f, 0);
+        camBoundry.transform.position = new Vector3(columns - 1, rows - 1.5f, 0);
         camBoundry.size = new Vector3(2 * columns, 2 * rows, 1);
     }
 
@@ -73,15 +79,22 @@ public class FightMapManager : MonoBehaviour {
     }
 
     private void GenerateTile(int column, int row, int value) {
-        Instantiate(floorTilePrefab, new Vector3(column * 2, row * 2 - 0.5f, 2),
-            Quaternion.identity);
-        
-        if (value == 1) {
-            Instantiate(outerWallPrefab, new Vector3(column * 2, row * 2 - 0.5f, 1),
-                Quaternion.identity);
-        } else if (value == 2) {
-            Instantiate(sandTilePrefab, new Vector3(column * 2, row * 2 - 0.5f, 1),
-                Quaternion.identity);
+
+        Vector3 tilePosition = new Vector3(column * 2, row * 2 - 0.5f, 1);
+        switch (value) {
+            case 0:
+                Instantiate(floorTilePrefab, tilePosition, Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(outerWallPrefab, tilePosition, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(sandTilePrefab, tilePosition, Quaternion.identity);
+                break;
+            case 3:
+                GameObject tintedWall = Instantiate(tintedWallPrefab, tilePosition, Quaternion.identity);
+                tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
+                break;
         }
     }
 }
