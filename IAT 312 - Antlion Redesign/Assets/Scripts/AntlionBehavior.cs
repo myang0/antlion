@@ -189,7 +189,7 @@ public class AntlionBehavior : MonoBehaviour {
     }
 
     IEnumerator WakeUpBossPhase() {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         status = Status.Alive;
     }
 
