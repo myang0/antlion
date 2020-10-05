@@ -15,8 +15,8 @@ public class PickupItem : MonoBehaviour {
     private BoxCollider2D hitbox;
 
     public int remainingUses;
-    public int baseCooldown;
-    private int currentCooldown = 0;
+    public float baseCooldown;
+    private float currentCooldown = 0;
 
     public float baseDamage;
     public float attackRange;
@@ -29,7 +29,7 @@ public class PickupItem : MonoBehaviour {
     }
 
     void Update() {
-        if (currentCooldown > 0) currentCooldown--;
+        // if (currentCooldown > 0) currentCooldown--;
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -76,6 +76,7 @@ public class PickupItem : MonoBehaviour {
         }
 
         currentCooldown = baseCooldown;
+        StartCoroutine(AttackCooldown(baseCooldown));
     }
 
     private void RotatePlayerToAttack(Vector3 playerPosition) {
@@ -105,9 +106,14 @@ public class PickupItem : MonoBehaviour {
     IEnumerator AttackAxe() {
         player.rotationLock = true;
         player.showSwingCrescent(baseDamage);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         // player.meleeAttack(attackRange, baseDamage);
         player.showSwingCrescent(baseDamage);
         player.rotationLock = false;
+    }
+
+    IEnumerator AttackCooldown(float cooldown) {
+        yield return new WaitForSeconds(cooldown);
+        currentCooldown = 0;
     }
 }

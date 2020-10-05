@@ -128,7 +128,7 @@ MonoBehaviour:
   sprite: {fileID: 7319740312721636705}
   hitbox: {fileID: 7319740312721636734}
   remainingUses: 30
-  baseCooldown: 150
+  baseCooldown: 0.5
   baseDamage: 40
   attackRange: 1.2
   isRanged: 0
