@@ -51,34 +51,40 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
-        if (!isStunned) {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.P)) {
+            Time.timeScale = Time.timeScale == 0 ? 1 : 0;
         }
 
-        // if (Input.GetKeyDown(KeyCode.Space)) Attack();
-        Inventory inventory = this.gameObject.GetComponent<Inventory>();
-        if (Input.GetMouseButtonDown(1) && !rotationLock) {
-            Attack();
-        }
+        if (Time.timeScale != 0) {
+            if (!isStunned) {
+                movement.x = Input.GetAxisRaw("Horizontal");
+                movement.y = Input.GetAxisRaw("Vertical");
+            }
 
-        if (Input.GetKeyDown(KeyCode.M)) {
-            MapManager mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
-            Vector3 newPosition = new Vector3(transform.position.x, mapManager.getEndOfRunMap(),
-                transform.position.z);
-            transform.position = newPosition;
-            Debug.Log("test");
-        }
+            // if (Input.GetKeyDown(KeyCode.Space)) Attack();
+            Inventory inventory = this.gameObject.GetComponent<Inventory>();
+            if (Input.GetMouseButtonDown(1) && !rotationLock) {
+                Attack();
+            }
 
-        if (kbTimer > 0) {
-            rigidBody.AddForce(kbVector * (kbTimer * 0.3f), ForceMode2D.Force);
-            kbTimer--;
-            isStunned = (kbTimer != 0);
-        }
+            if (Input.GetKeyDown(KeyCode.M)) {
+                MapManager mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
+                Vector3 newPosition = new Vector3(transform.position.x, mapManager.getEndOfRunMap(),
+                    transform.position.z);
+                transform.position = newPosition;
+                Debug.Log("test");
+            }
 
-        if (health < 0) {
-            vcamNoise.m_FrequencyGain = 0f;
-            Destroy(this.gameObject);
+            if (kbTimer > 0) {
+                rigidBody.AddForce(kbVector * (kbTimer * 0.3f), ForceMode2D.Force);
+                kbTimer--;
+                isStunned = (kbTimer != 0);
+            }
+
+            if (health < 0) {
+                vcamNoise.m_FrequencyGain = 0f;
+                Destroy(this.gameObject);
+            }
         }
     }
 
@@ -209,7 +215,7 @@ public class PlayerMovement : MonoBehaviour {
         transform.rotation = angleToMouse;
         bitePoint.SetActive(!bitePoint.activeInHierarchy);
         if (bitePoint.activeInHierarchy) {
-            bitePoint.GetComponent<BitePointBehavior>().setWeaponDamage(15f * attackMultiplier);
+            bitePoint.GetComponent<BitePointBehavior>().setWeaponDamage(10f * attackMultiplier);
         }
 
         // bite.enabled = true;

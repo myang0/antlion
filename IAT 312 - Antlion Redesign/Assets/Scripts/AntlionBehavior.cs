@@ -121,13 +121,13 @@ public class AntlionBehavior : MonoBehaviour {
 
     private int LowHealthSpitMore() {
         if (health < 200) {
-            return 6;
+            return 16;
         } else if (health < 400) {
-            return 4;
+            return 8;
         } else if (health < 600) {
-            return 2;
+            return 4;
         } else if (health < 800) {
-            return 1;
+            return 2;
         }
 
         return 0;
