@@ -122,12 +122,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordSwing: {fileID: 0}
-  axeSwing: {fileID: 959767356689974878, guid: 03e11fce27de8c44eba3ca7f8b118d7f, type: 3}
+  axeSwing: {fileID: 2114773741255387642, guid: 03e11fce27de8c44eba3ca7f8b118d7f,
+    type: 3}
   crossbowSwing: {fileID: 0}
   sprite: {fileID: 7319740312721636705}
   hitbox: {fileID: 7319740312721636734}
   remainingUses: 30
-  baseCooldown: 300
+  baseCooldown: 150
   baseDamage: 40
-  attackRange: 1.5
+  attackRange: 1.2
   isRanged: 0

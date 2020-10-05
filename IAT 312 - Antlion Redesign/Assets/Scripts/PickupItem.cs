@@ -66,10 +66,10 @@ public class PickupItem : MonoBehaviour {
             StartCoroutine(AttackCrossbow());
         } else if (this.gameObject.CompareTag("Axe")) {
             Instantiate(axeSwing, position, Quaternion.identity);
-            StartCoroutine(AttackMelee());
+            StartCoroutine(AttackAxe());
         } else if (this.gameObject.CompareTag("Sword")) {
             Instantiate(swordSwing, position, Quaternion.identity);
-            StartCoroutine(AttackMelee());
+            StartCoroutine(AttackSword());
         }
 
         currentCooldown = baseCooldown;
@@ -80,8 +80,16 @@ public class PickupItem : MonoBehaviour {
         player.shootProjectile(baseDamage);
     }
     
-    IEnumerator AttackMelee() {
-        yield return new WaitForSeconds(0.1f);
+    IEnumerator AttackSword() {
+        player.showSwingCrescent();
+        yield return new WaitForSeconds(0.2f);
         player.meleeAttack(attackRange, baseDamage);
+        player.showSwingCrescent();
+    }
+    IEnumerator AttackAxe() {
+        player.showSwingCrescent();
+        yield return new WaitForSeconds(0.2f);
+        player.meleeAttack(attackRange, baseDamage);
+        player.showSwingCrescent();
     }
 }

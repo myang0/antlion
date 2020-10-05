@@ -66,10 +66,10 @@ public class MapManager : MonoBehaviour {
     
     void Update () {
         if (player) {
-            if (player.transform.position.y > (1.9 * rows)) {
+            // if (player.transform.position.y > (1.9 * rows)) {
                 isSceneOver = true;
                 SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-            }
+            // }
         }
     }
 

@@ -49,4 +49,11 @@ public class TintedWallBehaviour : MonoBehaviour
     public void ForceEquipmentSpawn() {
         isEquipmentSpawn = true;
     }
+    
+    private void OnTriggerEnter2D (Collider2D collider) {
+        string cName = collider.name;
+        if (cName.Contains("SandSpit")) {
+            collider.GetComponent<SandSpitBehavior>().SpawnSandTile();
+        }
+    }
 }

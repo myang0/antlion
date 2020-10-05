@@ -22,15 +22,16 @@ public class AntlionBehavior : MonoBehaviour {
     public Rigidbody2D rigidBody;
     private bool isSpitReady = true;
     private float currentRotationSpeed = 2.5f;
-    private float baseRotationSpeed = 0.35f;
+    private float baseRotationSpeed = 0.2f;
     private float spitReadyRotationSpeed = 2.5f;
-
     public float health = 1000;
+    private float maxHealth;
 
     // Start is called before the first frame update
     void Start() {
         antlion = GameObject.Find("Antlion");
         player = GameObject.Find("Player");
+        maxHealth = health;
 
         if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase")) {
             spriteRenderer.enabled = true;
@@ -85,12 +86,26 @@ public class AntlionBehavior : MonoBehaviour {
     }
 
     private void SpitSand(Vector3 antlionPos) {
-        int numOfShots = Random.Range(2, 6);
+        int numOfShots = Random.Range(2, 5) + LowHealthSpitMore();
         for (int i = 0; i < numOfShots; i++) {
             StartCoroutine(SpitBarrage(antlionPos, i*0.2f));
         }
         isSpitReady = false;
         StartCoroutine(SpitAttackTimer());
+    }
+
+    private int LowHealthSpitMore() {
+        if (health < 200) {
+            return 4;
+        } else if (health < 400) {
+            return 3;
+        } else if (health < 600) {
+            return 2;
+        } else if (health < 800) {
+            return 1;
+        }
+
+        return 0;
     }
 
     IEnumerator SpitBarrage(Vector3 antlionPos, float delay) {
@@ -174,7 +189,7 @@ public class AntlionBehavior : MonoBehaviour {
     }
 
     IEnumerator WakeUpBossPhase() {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         status = Status.Alive;
     }
 

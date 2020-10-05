@@ -219,4 +219,9 @@ public class PlayerMovement : MonoBehaviour {
         vcam = vcamObject.GetComponent<CinemachineVirtualCamera>();
         vcamNoise = vcam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
     }
+
+    public void showSwingCrescent() {
+        SpriteRenderer renderer = meleePoint.GetComponent<SpriteRenderer>();
+        renderer.enabled = !renderer.enabled;
+    }
 }

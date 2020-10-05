@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class ShieldBehavior : MonoBehaviour {
@@ -29,6 +30,8 @@ public class ShieldBehavior : MonoBehaviour {
             MoveShield ();
             RotateShield ();
             DisplayShield ();
+        } else {
+            Destroy(this.gameObject);
         }
     }
 

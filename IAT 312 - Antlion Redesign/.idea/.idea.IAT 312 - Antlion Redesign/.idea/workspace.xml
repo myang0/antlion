@@ -20,14 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Axe.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Axe.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Crossbow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Crossbow.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Sword.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Sword.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwing.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShieldBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShieldBehavior.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe1.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe1.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axeSwing.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axeSwing.anim" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,19 +55,19 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/BoulderBehaviour.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/InnerWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OuterWallBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SandSpitBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BoostItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
       </list>
     </option>
   </component>
@@ -105,6 +116,7 @@
       <workItem from="1601766330611" duration="1882000" />
       <workItem from="1601774712741" duration="558000" />
       <workItem from="1601845334324" duration="11008000" />
+      <workItem from="1601880949322" duration="2506000" />
     </task>
     <servers />
   </component>
