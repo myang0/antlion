@@ -58,6 +58,14 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space)) Attack();
 
+        if (Input.GetKeyDown(KeyCode.M)) {
+            MapManager mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
+            Vector3 newPosition = new Vector3(transform.position.x, mapManager.getEndOfRunMap(),
+                transform.position.z);
+            transform.position = newPosition;
+            Debug.Log("test");
+        }
+
         if (kbTimer > 0) {
             rigidBody.AddForce(kbVector * (kbTimer * 0.3f), ForceMode2D.Force);
             kbTimer--;

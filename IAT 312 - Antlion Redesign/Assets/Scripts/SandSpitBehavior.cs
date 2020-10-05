@@ -15,7 +15,7 @@ public class SandSpitBehavior : MonoBehaviour {
 
     public void SpawnSandTile() {
         int sandSpawnChance = Random.Range(0, 100);
-        if (sandSpawnChance > 80) {
+        if (sandSpawnChance > 60) {
             GameObject floorTile = GETClosestFloorTile();
             Vector3 floorTilePosition = floorTile.transform.position;
             Instantiate(sandTilePrefab, new Vector3(floorTilePosition.x, floorTilePosition.y, 1),
