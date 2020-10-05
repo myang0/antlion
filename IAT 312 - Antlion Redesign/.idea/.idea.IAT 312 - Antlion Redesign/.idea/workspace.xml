@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Boulder.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Boulder.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/AttackBoost.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/AttackBoost.prefab" afterDir="false" />
@@ -117,7 +118,7 @@
       <workItem from="1601766330611" duration="1882000" />
       <workItem from="1601774712741" duration="558000" />
       <workItem from="1601845334324" duration="11008000" />
-      <workItem from="1601880949322" duration="9505000" />
+      <workItem from="1601880949322" duration="9703000" />
     </task>
     <servers />
   </component>
