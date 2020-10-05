@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
 
     public Camera cam;
 
-    private Vector2 mousePos;
+    private Vector3 mousePos;
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
@@ -23,12 +23,12 @@ public class Inventory : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.E)) {
             if (numItemsCarried > 0) nextItem();
         }
-
-        if (Input.GetMouseButtonDown(0) & isFightScene()) {
+        
+        GameObject player = GameObject.FindWithTag("Player");
+        if (Input.GetMouseButtonDown(0) & isFightScene() && player) {
             useCurrentItem();
         }
-
-        if (cam) mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        
     }
 
     private bool isFightScene() {

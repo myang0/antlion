@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SandSpitBehavior : MonoBehaviour {
     [SerializeField] private GameObject sandTilePrefab;
@@ -13,11 +14,14 @@ public class SandSpitBehavior : MonoBehaviour {
     }
 
     public void SpawnSandTile() {
-        GameObject floorTile = GETClosestFloorTile();
-        Vector3 floorTilePosition = floorTile.transform.position;
-        Instantiate(sandTilePrefab, new Vector3(floorTilePosition.x, floorTilePosition.y, 1),
-            Quaternion.identity);
-        Destroy(floorTile);
+        int sandSpawnChance = Random.Range(0, 100);
+        if (sandSpawnChance > 80) {
+            GameObject floorTile = GETClosestFloorTile();
+            Vector3 floorTilePosition = floorTile.transform.position;
+            Instantiate(sandTilePrefab, new Vector3(floorTilePosition.x, floorTilePosition.y, 1),
+                Quaternion.identity);
+            Destroy(floorTile);
+        }
         Destroy(this.gameObject);
     }
 

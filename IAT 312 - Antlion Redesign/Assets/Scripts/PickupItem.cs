@@ -56,10 +56,13 @@ public class PickupItem : MonoBehaviour {
 
     public void Use() {
         if (currentCooldown > 0) return;
+        
+        Vector3 playerPosition = player.transform.position;
+        RotatePlayerToAttack(playerPosition);
 
         remainingUses--;
-        Vector3 position = new Vector3(player.transform.position.x, player.transform.position.y,
-            player.transform.position.z);
+        Vector3 position = new Vector3(playerPosition.x, playerPosition.y,
+            playerPosition.z);
         
         if (this.gameObject.CompareTag("Crossbow")) {
             Instantiate(crossbowSwing, position, Quaternion.identity);
@@ -75,21 +78,36 @@ public class PickupItem : MonoBehaviour {
         currentCooldown = baseCooldown;
     }
 
+    private void RotatePlayerToAttack(Vector3 playerPosition) {
+        Camera cam = Camera.main;
+        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 vectorToMouse = (playerPosition - mousePos).normalized;
+        float angle = Mathf.Atan2(vectorToMouse.y, vectorToMouse.x) * Mathf.Rad2Deg;
+        Quaternion angleToMouse = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+        player.transform.rotation = angleToMouse;
+    }
+
     IEnumerator AttackCrossbow() {
+        player.rotationLock = true;
         yield return new WaitForSeconds(0.1f);
         player.shootProjectile(baseDamage);
+        player.rotationLock = false;
     }
     
     IEnumerator AttackSword() {
-        player.showSwingCrescent();
+        player.rotationLock = true;
+        player.showSwingCrescent(baseDamage);
         yield return new WaitForSeconds(0.2f);
-        player.meleeAttack(attackRange, baseDamage);
-        player.showSwingCrescent();
+        // player.meleeAttack(attackRange, baseDamage);
+        player.showSwingCrescent(baseDamage);
+        player.rotationLock = false;
     }
     IEnumerator AttackAxe() {
-        player.showSwingCrescent();
+        player.rotationLock = true;
+        player.showSwingCrescent(baseDamage);
         yield return new WaitForSeconds(0.2f);
-        player.meleeAttack(attackRange, baseDamage);
-        player.showSwingCrescent();
+        // player.meleeAttack(attackRange, baseDamage);
+        player.showSwingCrescent(baseDamage);
+        player.rotationLock = false;
     }
 }

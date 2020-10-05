@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class AntlionBehavior : MonoBehaviour {
     private enum Status {
@@ -58,6 +60,14 @@ public class AntlionBehavior : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("MeleeSwingCrescent")) {
+            GameObject meleePoint = other.gameObject;
+            Damage(meleePoint.GetComponent<MeleePointBehavior>().getWeaponDamage());
+            meleePoint.GetComponent<MeleePointBehavior>().setWeaponDamage(0);
+        }
+    }
+
     private void FightPhaseAttack(Vector3 antlionPos) {
         Vector3 vectorToPlayer = GETVectorToPlayer(antlionPos);
         Quaternion angleToPlayer = GETAngleToPlayer(vectorToPlayer);
@@ -86,9 +96,9 @@ public class AntlionBehavior : MonoBehaviour {
     }
 
     private void SpitSand(Vector3 antlionPos) {
-        int numOfShots = Random.Range(2, 5) + LowHealthSpitMore();
+        int numOfShots = Random.Range(6, 11) + LowHealthSpitMore();
         for (int i = 0; i < numOfShots; i++) {
-            StartCoroutine(SpitBarrage(antlionPos, i*0.2f));
+            StartCoroutine(SpitBarrage(antlionPos, i*0.05f));
         }
         isSpitReady = false;
         StartCoroutine(SpitAttackTimer());
@@ -96,9 +106,9 @@ public class AntlionBehavior : MonoBehaviour {
 
     private int LowHealthSpitMore() {
         if (health < 200) {
-            return 4;
+            return 6;
         } else if (health < 400) {
-            return 3;
+            return 4;
         } else if (health < 600) {
             return 2;
         } else if (health < 800) {
@@ -111,6 +121,8 @@ public class AntlionBehavior : MonoBehaviour {
     IEnumerator SpitBarrage(Vector3 antlionPos, float delay) {
         yield return new WaitForSeconds(delay);
         Quaternion angleToPlayer = GETAngleToPlayer(GETVectorToPlayer(antlionPos));
+        float randomAngle = Random.Range(-20, 20);
+        angleToPlayer *= Quaternion.Euler(Vector3.forward * randomAngle);
         Vector3 spitSpawnPosition = new Vector3(antlionPos.x, antlionPos.y, 0);
         Vector3 mouthOffset = angleToPlayer * (new Vector3(0, 2.5f, 0));
         spitSpawnPosition = spitSpawnPosition + mouthOffset;

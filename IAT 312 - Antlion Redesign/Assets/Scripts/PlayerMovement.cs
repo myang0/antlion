@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour {
     public float baseMovementSpeed = 5f;
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool shielded = false;
     public float shieldedSpeed = 7.5f;
+    public bool rotationLock = false;
 
     public GameObject projectilePrefab;
 
@@ -47,35 +50,38 @@ public class PlayerMovement : MonoBehaviour {
         SetupCameraNoise();
     }
 
-    void Update () {
+    void Update() {
         if (!isStunned) {
-            movement.x = Input.GetAxisRaw ("Horizontal");
-            movement.y = Input.GetAxisRaw ("Vertical");
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
         }
 
-        if (Input.GetKeyDown (KeyCode.Space)) Attack();
+        if (Input.GetKeyDown(KeyCode.Space)) Attack();
 
         if (kbTimer > 0) {
-            rigidBody.AddForce (kbVector * (kbTimer * 0.3f), ForceMode2D.Force);
+            rigidBody.AddForce(kbVector * (kbTimer * 0.3f), ForceMode2D.Force);
             kbTimer--;
             isStunned = (kbTimer != 0);
         }
 
         if (health < 0) {
             vcamNoise.m_FrequencyGain = 0f;
-            Destroy (this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
-    void FixedUpdate () {
+    void FixedUpdate() {
         if (!shielded) {
-            rigidBody.MovePosition (rigidBody.position + movement * (currentMovementSpeed * Time.fixedDeltaTime));
+            rigidBody.MovePosition(rigidBody.position +
+                                   movement * (currentMovementSpeed * Time.fixedDeltaTime));
         } else {
-            rigidBody.MovePosition (rigidBody.position + movement * (shieldedSpeed * Time.fixedDeltaTime));
+            rigidBody.MovePosition(rigidBody.position +
+                                   movement * (shieldedSpeed * Time.fixedDeltaTime));
         }
+
         RotateAnt();
     }
-    
+
     public void ApplyBuffs(float healthBoost, float attackBoost, float speedBoost) {
         baseMovementSpeed *= speedBoost;
         currentMovementSpeed = baseMovementSpeed;
@@ -86,22 +92,22 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void RotateAnt() {
-        if ((movement.x != 0 || movement.y != 0)) {
+        if ((movement.x != 0 || movement.y != 0) && !rotationLock) {
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
             Quaternion rotationAngle = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             transform.rotation = rotationAngle;
         }
     }
 
-    private void OnTriggerEnter2D (Collider2D collider) {
+    private void OnTriggerEnter2D(Collider2D collider) {
         string cName = collider.name;
-        if (cName.Contains ("SandTile")) {
+        if (cName.Contains("SandTile")) {
             currentMovementSpeed = baseMovementSpeed / 2;
-        } else if (cName.Contains ("BrokenWallTile")) {
-            currentMovementSpeed = baseMovementSpeed / 3;
+        } else if (cName.Contains("BrokenWallTile")) {
+            currentMovementSpeed = baseMovementSpeed / 3.5f;
         } else if (cName.Contains("SandSpit")) {
             collider.GetComponent<SandSpitBehavior>().SpawnSandTile();
-            TakeDamage(15, 25);
+            TakeDamage(10, 15);
         } else if (collider.CompareTag("FloorTile")) {
             currentMovementSpeed = baseMovementSpeed;
         }
@@ -114,14 +120,16 @@ public class PlayerMovement : MonoBehaviour {
     //     }
     // }
 
-    void Attack () {
+    void Attack() {
         StartCoroutine(ShowBite());
 
-        Collider2D[] hitWalls = Physics2D.OverlapCircleAll (attackPoint.position, attackRange, wallLayers);
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll (attackPoint.position, attackRange, antlionLayer);
+        Collider2D[] hitWalls =
+            Physics2D.OverlapCircleAll(attackPoint.position, attackRange, wallLayers);
+        Collider2D[] hitEnemies =
+            Physics2D.OverlapCircleAll(attackPoint.position, attackRange, antlionLayer);
 
         foreach (Collider2D wall in hitWalls) {
-            Destroy (wall.gameObject);
+            Destroy(wall.gameObject);
         }
 
         foreach (Collider2D enemy in hitEnemies) {
@@ -130,47 +138,52 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    void OnDrawGizmosSelected () {
+    void OnDrawGizmosSelected() {
         if (attackPoint == null)
             return;
 
-        Gizmos.DrawWireSphere (attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    void OnCollisionEnter2D (Collision2D col) {
+    void OnCollisionEnter2D(Collision2D col) {
         if (!shielded) {
             if (col.gameObject.CompareTag("Boulder")) {
-                Rigidbody2D boulderRb = col.gameObject.GetComponent<Rigidbody2D> ();
+                Rigidbody2D boulderRb = col.gameObject.GetComponent<Rigidbody2D>();
                 Vector2 difference = boulderRb.transform.position - transform.position;
                 difference = -difference.normalized;
                 kbVector = difference;
                 kbTimer = 240;
 
                 isStunned = true;
-            } else if (col.gameObject == GameObject.Find ("Antlion")) {
-                TakeDamage(15, 25);
+            } else if (col.gameObject == GameObject.Find("Antlion")) {
+                if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene")) {
+                    TakeDamage(15, 20);
+                } else {
+                    TakeDamage(5, 10);
+                }
             }
         }
     }
 
     private void TakeDamage(int minDamage, int maxDamage) {
+        if (shielded) return;
         int damageTaken = Random.Range(minDamage, maxDamage);
         health = health - damageTaken;
         StartCoroutine(ActivateShield());
         StartCoroutine(ActivateScreenShake());
     }
 
-    IEnumerator ActivateScreenShake () {
+    IEnumerator ActivateScreenShake() {
         vcamNoise.m_AmplitudeGain = 7f;
         vcamNoise.m_FrequencyGain = 4f;
-        yield return new WaitForSeconds (0.5f);
+        yield return new WaitForSeconds(0.5f);
         vcamNoise.m_FrequencyGain = 0f;
     }
 
-    IEnumerator ActivateShield () {
+    IEnumerator ActivateShield() {
         shielded = true;
         isStunned = false;
-        yield return new WaitForSeconds (2);
+        yield return new WaitForSeconds(2);
         shielded = false;
     }
 
@@ -180,16 +193,17 @@ public class PlayerMovement : MonoBehaviour {
         bite.enabled = false;
     }
 
-    public Vector2 GETMovement () {
+    public Vector2 GETMovement() {
         return movement;
     }
 
-    public bool GETShielded () {
+    public bool GETShielded() {
         return shielded;
     }
 
     public void shootProjectile(float baseDmg) {
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        GameObject projectile =
+            Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * 20f, ForceMode2D.Impulse);
@@ -198,30 +212,35 @@ public class PlayerMovement : MonoBehaviour {
         p.damage = baseDmg * attackMultiplier;
     }
 
-    public void meleeAttack(float attackRadius, float attackDamage) {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll (meleePoint.position, attackRadius, antlionLayer);
-
-        foreach (Collider2D enemy in hitEnemies) {
-            AntlionBehavior ab = enemy.gameObject.GetComponent<AntlionBehavior>();
-            ab.Damage(attackDamage * attackMultiplier);
-        }
-    }
+    // public void meleeAttack(float attackRadius, float attackDamage) {
+    //     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll (meleePoint.position, attackRadius, antlionLayer);
+    //
+    //     foreach (Collider2D enemy in hitEnemies) {
+    //         AntlionBehavior ab = enemy.gameObject.GetComponent<AntlionBehavior>();
+    //         ab.Damage(attackDamage * attackMultiplier);
+    //     }
+    // }
 
     void sceneTransition(Scene current, Scene next) {
         currentMovementSpeed = baseMovementSpeed;
         transform.position = new Vector3(14, 1.5f, 0);
         SetupCameraNoise();
-        
     }
-    
+
     private void SetupCameraNoise() {
         GameObject vcamObject = GameObject.FindWithTag("VirtualCam");
         vcam = vcamObject.GetComponent<CinemachineVirtualCamera>();
         vcamNoise = vcam.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
     }
 
-    public void showSwingCrescent() {
-        SpriteRenderer renderer = meleePoint.GetComponent<SpriteRenderer>();
-        renderer.enabled = !renderer.enabled;
+    public void showSwingCrescent(float baseDamage) {
+        // SpriteRenderer renderer = meleePoint.GetComponent<SpriteRenderer>();
+        // renderer.enabled = !renderer.enabled;
+        GameObject meleePointGameObject = meleePoint.gameObject;
+        meleePointGameObject.SetActive(!meleePointGameObject.activeInHierarchy);
+        if (meleePointGameObject.activeInHierarchy) {
+            meleePointGameObject.GetComponent<MeleePointBehavior>()
+                .setWeaponDamage(baseDamage * attackMultiplier);
+        }
     }
 }

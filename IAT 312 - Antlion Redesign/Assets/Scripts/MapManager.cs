@@ -128,13 +128,13 @@ public class MapManager : MonoBehaviour {
 
         // Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
-        if (value > 3) {
-            int sndRand = Random.Range(0, 51);
+        if (value > 4) {
+            int sndRand = Random.Range(0, 33);
             GameObject wallType = (sndRand == 0) ? tintedWallPrefab : innerWallPrefab;
 
             GameObject wall = Instantiate (wallType, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
             wall.name = "InnerTile" + col + ":" + row + "::" + value;
-        } else if (value == 0) {
+        } else if (value > 3) {
             Instantiate (sandTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         } else {
             Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);

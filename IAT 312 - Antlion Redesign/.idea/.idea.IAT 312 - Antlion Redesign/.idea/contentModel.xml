@@ -26,6 +26,7 @@
           <e p="Inventory.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="MapManager.cs" t="Include" />
+          <e p="MeleePointBehavior.cs" t="Include" />
           <e p="OuterWallBehavior.cs" t="Include" />
           <e p="PickupItem.cs" t="Include" />
           <e p="PlayerContainer.cs" t="Include" />
@@ -37,6 +38,7 @@
           <e p="UIAntlionHealth.cs" t="Include" />
           <e p="UIPlayerHealth.cs" t="Include" />
           <e p="UIWeapon.cs" t="Include" />
+          <e p="UIWeaponDurability.cs" t="Include" />
           <e p="WeaponSwingBehavior.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">

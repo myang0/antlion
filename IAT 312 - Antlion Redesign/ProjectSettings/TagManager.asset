@@ -14,6 +14,7 @@ TagManager:
   - Crossbow
   - VirtualCam
   - Antlion
+  - MeleeSwingCrescent
   layers:
   - Default
   - TransparentFX
