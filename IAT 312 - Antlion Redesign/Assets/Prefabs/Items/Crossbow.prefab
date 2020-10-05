@@ -129,6 +129,6 @@ MonoBehaviour:
   hitbox: {fileID: 1445802445498792399}
   remainingUses: 20
   baseCooldown: 150
-  baseDamage: 0
+  baseDamage: 15
   attackRange: 0
   isRanged: 1

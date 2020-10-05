@@ -25,6 +25,8 @@ public class AntlionBehavior : MonoBehaviour {
     private float baseRotationSpeed = 0.35f;
     private float spitReadyRotationSpeed = 2.5f;
 
+    public float health = 1000;
+
     // Start is called before the first frame update
     void Start() {
         antlion = GameObject.Find("Antlion");
@@ -174,5 +176,15 @@ public class AntlionBehavior : MonoBehaviour {
     IEnumerator WakeUpBossPhase() {
         yield return new WaitForSeconds(2f);
         status = Status.Alive;
+    }
+
+    public void Damage(float damage) {
+        health -= damage;
+
+        Debug.Log("Hit!");
+
+        if (health <= 0) {
+            Destroy(gameObject);
+        }
     }
 }

@@ -126,8 +126,8 @@ MonoBehaviour:
   crossbowSwing: {fileID: 0}
   sprite: {fileID: 7319740312721636705}
   hitbox: {fileID: 7319740312721636734}
-  remainingUses: 10
+  remainingUses: 30
   baseCooldown: 300
-  baseDamage: 0
-  attackRange: 0
+  baseDamage: 40
+  attackRange: 1.5
   isRanged: 0
