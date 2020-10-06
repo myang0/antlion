@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -201,7 +202,7 @@ public class PlayerMovement : MonoBehaviour {
     IEnumerator ActivateShield() {
         shielded = true;
         isStunned = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         shielded = false;
     }
 
