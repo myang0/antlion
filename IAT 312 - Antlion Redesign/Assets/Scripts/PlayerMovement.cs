@@ -171,7 +171,7 @@ public class PlayerMovement : MonoBehaviour {
                 Vector2 difference = boulderRb.transform.position - transform.position;
                 difference = -difference.normalized;
                 kbVector = difference;
-                kbTimer = 240;
+                kbTimer = 120;
 
                 isStunned = true;
             } else if (col.gameObject == GameObject.Find("Antlion")) {
@@ -188,6 +188,8 @@ public class PlayerMovement : MonoBehaviour {
         if (shielded) return;
         int damageTaken = Random.Range(minDamage, maxDamage);
         health = health - damageTaken;
+        kbTimer = 0;
+        isStunned = false;
         StartCoroutine(ActivateShield());
         StartCoroutine(ActivateScreenShake());
     }
@@ -256,6 +258,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void sceneTransition(Scene current, Scene next) {
         currentMovementSpeed = baseMovementSpeed;
+        kbTimer = 0;
+        isStunned = false;
         transform.position = new Vector3(14, 1.5f, 0);
         SetupCameraNoise();
     }
