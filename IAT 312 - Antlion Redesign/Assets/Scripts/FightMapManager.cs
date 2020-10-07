@@ -62,7 +62,7 @@ public class FightMapManager : MonoBehaviour {
         player = GameObject.FindWithTag("Player");
         Assert.IsNotNull(player, "Player is null??? WTF");
         vcam.Follow = player.transform;
-        vcam.m_Lens.OrthographicSize = 6;
+        vcam.m_Lens.OrthographicSize = 10;
         var position = vcam.transform.position;
         position = new Vector3(position.x, position.y, 0);
         vcam.transform.position = position;
