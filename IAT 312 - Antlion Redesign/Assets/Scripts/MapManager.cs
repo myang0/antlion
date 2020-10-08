@@ -46,6 +46,8 @@ public class MapManager : MonoBehaviour {
         Right,
         Up
     }
+    
+    private enum Tile {Floor, OuterWall, Sand, TintedWall, InnerWall}
 
     private int wallSpawnThreshold = 3;
 
@@ -61,6 +63,7 @@ public class MapManager : MonoBehaviour {
 
         SetupCameraBoundry();
         GenerateMap();
+        // GenerateEntrance();
         StartCoroutine (BoulderWave ());
         GeneratePath ();
     }
@@ -82,22 +85,40 @@ public class MapManager : MonoBehaviour {
     private void GenerateMap() {
         for (int columnIndex = 0; columnIndex < columns; columnIndex++) {
             for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
-                if (rowIndex < 8 && !IsOuterWall(columnIndex, rowIndex)) {
+                if (rowIndex < 4 && !IsOuterWall(columnIndex, rowIndex)) {
                     // Starting area
-                    GenerateTile(columnIndex, rowIndex, 0);
+                    GenerateTile(columnIndex, rowIndex, Tile.Floor);
+                } else if (isEntranceOrExit(columnIndex, rowIndex)) {
+                    GenerateTile(columnIndex, rowIndex, Tile.Floor);
                 } else if (IsOuterWall(columnIndex, rowIndex)) {
                     // Outer walls
-                    GenerateTile(columnIndex, rowIndex, 1);
-                } else if (rowIndex == rows - 5) {
-                    GenerateTile(columnIndex, rowIndex, 0);
-                } else if (rowIndex > rows - 5 && rowIndex < rows - 1) {
-                    GenerateTile(columnIndex, rowIndex, 2);
-                }else {
+                    GenerateTile(columnIndex, rowIndex, Tile.OuterWall);
+                } else if (rowIndex == rows - 5 || rowIndex == 4) {
+                    if (columnIndex % 2 == 0) {
+                        GenerateTile(columnIndex, rowIndex, Tile.Floor);
+                    } else {
+                        GameObject antiAntlionOuterWall = Instantiate (outerWallPrefab,
+                            new Vector3 (columnIndex * 2 - 8,
+                                rowIndex * 2 - (float) 6.5, 1), Quaternion.identity);
+                        antiAntlionOuterWall.tag = "Untagged";
+                    }
+                }  else if (rowIndex > rows - 6) {
+                    GenerateTile(columnIndex, rowIndex, Tile.Floor);
+                } else {
                     // Everything else
                     GenerateNonEdge(columnIndex, rowIndex);
                 }
             }
         }
+    }
+
+    private void GenerateEntrance() {
+        
+    }
+
+    private bool isEntranceOrExit(int columnIndex, int rowIndex) {
+        return (columnIndex == (columns / 2) - 1 || columnIndex == columns / 2) &&
+               (rowIndex == 0 || rowIndex == rows - 1);
     }
 
     private void SetupCameraBoundry() {
@@ -111,15 +132,15 @@ public class MapManager : MonoBehaviour {
         return (column == 0 || column == columns - 1 || row == 0 || row == rows - 1);
     }
 
-    private void GenerateTile (int column, int row, int value) {
-        grid[column, row] = value;
+    private void GenerateTile (int column, int row, Tile value) {
+        // grid[column, row] = value;
         // Instantiate (floorTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
 
-        if (value == 1) {
+        if (value == Tile.OuterWall) {
             Instantiate (outerWallPrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
-        } else if (value == 2) {
+        } else if (value == Tile.Sand) {
             Instantiate (sandTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
-        } else {
+        } else if (value == Tile.Floor) {
             Instantiate (floorTilePrefab, new Vector3 (column * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
         }
     }

@@ -248,7 +248,7 @@ public class AntlionBehavior : MonoBehaviour {
     void Update() {
         if (player) {
             if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene") &&
-                (player.transform.position.y > 12) && status == Status.NotSpawned) {
+                (player.transform.position.y > 22) && status == Status.NotSpawned) {
                 spriteRenderer.enabled = true;
                 polyCollider.enabled = true;
                 status = Status.Alive;
