@@ -25,7 +25,8 @@ public class Inventory : MonoBehaviour
         }
         
         GameObject player = GameObject.FindWithTag("Player");
-        if (Input.GetMouseButtonDown(0) & isFightScene() && player && selectedItem != null) {
+        if (Input.GetMouseButtonDown(0) && player && selectedItem != null) {
+            // if (Input.GetMouseButtonDown(0) & isFightScene() && player && selectedItem != null) {
             useCurrentItem();
         }
         

@@ -48,6 +48,7 @@ public class PickupItem : MonoBehaviour {
                 sprite.enabled = false;
 
                 DontDestroyOnLoad(gameObject);
+                this.transform.parent = player.gameObject.transform.parent;
                 
                 i = inventory.items.Length;
             }
@@ -106,7 +107,7 @@ public class PickupItem : MonoBehaviour {
     IEnumerator AttackAxe() {
         player.rotationLock = true;
         player.showSwingCrescent(baseDamage);
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.2f);
         // player.meleeAttack(attackRange, baseDamage);
         player.showSwingCrescent(baseDamage);
         player.rotationLock = false;

@@ -52,11 +52,7 @@ public class ShieldBehavior : MonoBehaviour {
     }
 
     private void RotateShield () {
-        if ((movement.x != 0 || movement.y != 0)) {
-            float angle = Mathf.Atan2 (movement.y, movement.x) * Mathf.Rad2Deg;
-            Quaternion rotationAngle = Quaternion.AngleAxis (angle - 90, Vector3.forward);
-            transform.rotation = rotationAngle;
-        }
+        transform.rotation = player.transform.rotation;
     }
 
     private void MoveShield () {

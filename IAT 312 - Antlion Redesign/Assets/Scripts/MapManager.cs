@@ -69,6 +69,7 @@ public class MapManager : MonoBehaviour {
             if (player.transform.position.y > (1.9 * rows)) {
                 isSceneOver = true;
                 SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+                player.GetComponent<PlayerMovement>().SceneTransition();
             }
         }
     }

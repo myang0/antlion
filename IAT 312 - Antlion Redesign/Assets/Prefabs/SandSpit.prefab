@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fb18ce37fa14a4ea0efbde04871db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sandTilePrefab: {fileID: 2264061155486987101, guid: 025dc5c7e87708f4a8b2440c932bd3da,
+  sandTilePrefab: {fileID: 5029717193280403436, guid: 7236ee1efe45a9f438a81af7b6e0eebd,
     type: 3}

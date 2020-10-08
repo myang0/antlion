@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class FightMapManager : MonoBehaviour {
     private GameObject antlion;
 
     public int[,] grid;
+    private enum Tile {Floor, OuterWall, Sand, TintedWall}
 
     private int cameraHeight;
 
@@ -44,17 +46,38 @@ public class FightMapManager : MonoBehaviour {
             for (int rowIdx = 0; rowIdx < rows; rowIdx++) {
                 int gridValue = IsOuterWall(colIdx, rowIdx) ? 1 : 0;
                 grid[colIdx, rowIdx] = gridValue;
-
+                
+                //
                 if ((rowIdx == 4 || rowIdx == 10) && (colIdx == 4 || colIdx == 10)) {
-                    GenerateTile(colIdx, rowIdx, 1);
+                    GenerateTile(colIdx, rowIdx, Tile.TintedWall);
                 } else if ((rowIdx > 5 && rowIdx < 9) && (colIdx > 5 && colIdx < 9)) {
-                    GenerateTile(colIdx, rowIdx, 2);
-                } else if (rowIdx == 1 && (colIdx == 6 || colIdx == 8) || (rowIdx == 2 && colIdx == 7)) {
-                    GenerateTile(colIdx, rowIdx, 3);
+                    GenerateTile(colIdx, rowIdx, Tile.Sand);
+                } else if (IsOuterWall(colIdx, rowIdx)) {
+                    GenerateTile(colIdx, rowIdx, Tile.OuterWall);
                 } else {
-                    GenerateTile(colIdx, rowIdx, gridValue);
+                    GenerateTile(colIdx, rowIdx, Tile.Floor);
                 }
             }
+        }
+    }
+    
+    private void GenerateTile(int column, int row, Tile tileType) {
+
+        Vector3 tilePosition = new Vector3(column * 2, row * 2 - 0.5f, 1);
+        switch (tileType) {
+            case Tile.Floor:
+                Instantiate(floorTilePrefab, tilePosition, Quaternion.identity);
+                break;
+            case Tile.OuterWall:
+                Instantiate(outerWallPrefab, tilePosition, Quaternion.identity);
+                break;
+            case Tile.Sand:
+                Instantiate(sandTilePrefab, tilePosition, Quaternion.identity);
+                break;
+            case Tile.TintedWall:
+                GameObject tintedWall = Instantiate(tintedWallPrefab, tilePosition, Quaternion.identity);
+                tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
+                break;
         }
     }
 
@@ -76,25 +99,5 @@ public class FightMapManager : MonoBehaviour {
 
     private bool IsOuterWall(int column, int row) {
         return (column == 0 || column == columns - 1 || row == 0 || row == rows - 1);
-    }
-
-    private void GenerateTile(int column, int row, int value) {
-
-        Vector3 tilePosition = new Vector3(column * 2, row * 2 - 0.5f, 1);
-        switch (value) {
-            case 0:
-                Instantiate(floorTilePrefab, tilePosition, Quaternion.identity);
-                break;
-            case 1:
-                Instantiate(outerWallPrefab, tilePosition, Quaternion.identity);
-                break;
-            case 2:
-                Instantiate(sandTilePrefab, tilePosition, Quaternion.identity);
-                break;
-            case 3:
-                GameObject tintedWall = Instantiate(tintedWallPrefab, tilePosition, Quaternion.identity);
-                tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
-                break;
-        }
     }
 }

@@ -16,6 +16,8 @@ TagManager:
   - Antlion
   - MeleeSwingCrescent
   - BiteCrescent
+  - PlayerContainer
+  - EscMenu
   layers:
   - Default
   - TransparentFX

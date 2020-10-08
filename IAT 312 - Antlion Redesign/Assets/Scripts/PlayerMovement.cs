@@ -47,15 +47,11 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         currentMovementSpeed = baseMovementSpeed;
 
-        SceneManager.activeSceneChanged += sceneTransition;
+        // SceneManager.activeSceneChanged += sceneTransition;
         SetupCameraNoise();
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            Time.timeScale = Time.timeScale == 0 ? 1 : 0;
-        }
-
         if (Time.timeScale != 0) {
             if (!isStunned) {
                 movement.x = Input.GetAxisRaw("Horizontal");
@@ -65,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
             // if (Input.GetKeyDown(KeyCode.Space)) Attack();
             Inventory inventory = this.gameObject.GetComponent<Inventory>();
             if (Input.GetMouseButtonDown(1) && !rotationLock) {
-                Attack();
+                StartCoroutine(ShowBite());
             }
 
             if (Input.GetKeyDown(KeyCode.M)) {
@@ -90,7 +86,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (!shielded) {
+        // enable self stun on attack
+        // if (rotationLock) return;
+        
+        if (!shielded ) {
             rigidBody.MovePosition(rigidBody.position +
                                    movement * (currentMovementSpeed * Time.fixedDeltaTime));
         } else {
@@ -132,31 +131,6 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    // private void OnTriggerExit2D (Collider2D collider) {
-    //     string cName = collider.name;
-    //     if (cName.Contains ("SandTile") || cName.Contains ("BrokenWallTile")) {
-    //         currentMovementSpeed = baseMovementSpeed;
-    //     }
-    // }
-
-    void Attack() {
-        StartCoroutine(ShowBite());
-
-        // Collider2D[] hitWalls =
-        //     Physics2D.OverlapCircleAll(attackPoint.position, attackRange, wallLayers);
-        // Collider2D[] hitEnemies =
-        //     Physics2D.OverlapCircleAll(attackPoint.position, attackRange, antlionLayer);
-        //
-        // foreach (Collider2D wall in hitWalls) {
-        //     Destroy(wall.gameObject);
-        // }
-        //
-        // foreach (Collider2D enemy in hitEnemies) {
-        //     AntlionBehavior ab = enemy.gameObject.GetComponent<AntlionBehavior>();
-        //     ab.Damage(15f * attackMultiplier);
-        // }
-    }
-
     void OnDrawGizmosSelected() {
         if (attackPoint == null)
             return;
@@ -195,10 +169,15 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     IEnumerator ActivateScreenShake() {
+        if (!vcam || !vcamNoise) {
+            SetupCameraNoise();
+        }
         vcamNoise.m_AmplitudeGain = 7f;
         vcamNoise.m_FrequencyGain = 4f;
         yield return new WaitForSeconds(0.5f);
         vcamNoise.m_FrequencyGain = 0f;
+        Debug.Log("Shakey!");
+        Debug.Log(vcam + "::" + vcamNoise);
     }
 
     IEnumerator ActivateShield() {
@@ -210,22 +189,26 @@ public class PlayerMovement : MonoBehaviour {
 
     IEnumerator ShowBite() {
         rotationLock = true;
-        Camera cam = Camera.main;
-        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 vectorToMouse = (transform.position - mousePos).normalized;
-        float angle = Mathf.Atan2(vectorToMouse.y, vectorToMouse.x) * Mathf.Rad2Deg;
-        Quaternion angleToMouse = Quaternion.AngleAxis(angle + 90, Vector3.forward);
-        transform.rotation = angleToMouse;
+        transform.rotation = GETAngleToMouse();
         bitePoint.SetActive(!bitePoint.activeInHierarchy);
         if (bitePoint.activeInHierarchy) {
             bitePoint.GetComponent<BitePointBehavior>().setWeaponDamage(10f * attackMultiplier);
         }
 
         // bite.enabled = true;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
         // bite.enabled = false;
         bitePoint.SetActive(!bitePoint.activeInHierarchy);
         rotationLock = false;
+    }
+
+    private Quaternion GETAngleToMouse() {
+        Camera cam = Camera.main;
+        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 vectorToMouse = (transform.position - mousePos).normalized;
+        float angle = Mathf.Atan2(vectorToMouse.y, vectorToMouse.x) * Mathf.Rad2Deg;
+        Quaternion angleToMouse = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+        return angleToMouse;
     }
 
     public Vector2 GETMovement() {
@@ -241,27 +224,20 @@ public class PlayerMovement : MonoBehaviour {
             Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * 20f, ForceMode2D.Impulse);
+        // rb.AddForce(firePoint.up * 20f, ForceMode2D.Impulse);
+        
+        rb.velocity = GETAngleToMouse() * new Vector2(0, 25f);
 
         Projectile p = projectile.GetComponent<Projectile>();
         p.damage = baseDmg * attackMultiplier;
     }
 
-    // public void meleeAttack(float attackRadius, float attackDamage) {
-    //     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll (meleePoint.position, attackRadius, antlionLayer);
-    //
-    //     foreach (Collider2D enemy in hitEnemies) {
-    //         AntlionBehavior ab = enemy.gameObject.GetComponent<AntlionBehavior>();
-    //         ab.Damage(attackDamage * attackMultiplier);
-    //     }
-    // }
-
-    void sceneTransition(Scene current, Scene next) {
+    public void SceneTransition() {
         currentMovementSpeed = baseMovementSpeed;
         kbTimer = 0;
         isStunned = false;
         transform.position = new Vector3(14, 1.5f, 0);
-        SetupCameraNoise();
+        // SetupCameraNoise();
     }
 
     private void SetupCameraNoise() {
@@ -271,8 +247,6 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void showSwingCrescent(float baseDamage) {
-        // SpriteRenderer renderer = meleePoint.GetComponent<SpriteRenderer>();
-        // renderer.enabled = !renderer.enabled;
         GameObject meleePointGameObject = meleePoint.gameObject;
         meleePointGameObject.SetActive(!meleePointGameObject.activeInHierarchy);
         if (meleePointGameObject.activeInHierarchy) {
