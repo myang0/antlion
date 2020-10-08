@@ -16,7 +16,7 @@ public class AntlionBehavior : MonoBehaviour {
     private Status status = Status.NotSpawned;
     public float baseMovementSpeed = 4;
     public float movementSpeed = 4f;
-    public float rageMovementSpeed = 8f;
+    public float rageMovementSpeed = 10f;
     private GameObject antlion;
     private GameObject player;
     [SerializeField] private GameObject sandSpitPrefab;
@@ -198,17 +198,17 @@ public class AntlionBehavior : MonoBehaviour {
 
     private void RunPhaseMovement() {
         Vector3 playerPos = player.transform.position;
-        if (playerPos.y - antlionPos.y > 2) {
-            playerPos = new Vector3(playerPos.x, playerPos.y + 8, playerPos.z);
-        } else if (playerPos.y - antlionPos.y < -2) {
-            playerPos = new Vector3(playerPos.x, playerPos.y - 8, playerPos.z);
-        }
+        // if (playerPos.y - antlionPos.y > 2) {
+        //     playerPos = new Vector3(playerPos.x, playerPos.y + 8, playerPos.z);
+        // } else if (playerPos.y - antlionPos.y < -2) {
+        //     playerPos = new Vector3(playerPos.x, playerPos.y - 8, playerPos.z);
+        // }
 
         Vector3 dir = (playerPos - antlionPos).normalized;
 
         if (Vector3.Distance(playerPos, antlionPos) > 1) {
             //If player is not behind antlion and antlion isn't too far behind
-            if (playerPos.y - antlionPos.y > 0 && playerPos.y - antlionPos.y < 16) {
+            if (playerPos.y - antlionPos.y > 0 && playerPos.y - antlionPos.y < 10) {
                 rigidBody.MovePosition(antlionPos +
                                        dir * (movementSpeed * Time.fixedDeltaTime));
             } else {
@@ -227,9 +227,13 @@ public class AntlionBehavior : MonoBehaviour {
         if (col.gameObject.layer == 8) {
             Destroy(col.gameObject);
         } else if (col.gameObject.CompareTag("Boulder")) {
-            Damage(75);
+            Damage(20);
             StartCoroutine(BoulderStun());
             Destroy(col.gameObject);
+        }
+
+        if (col.gameObject.CompareTag("OuterWall")) {
+            Physics2D.IgnoreCollision(polyCollider, col.gameObject.GetComponent<Collider2D>());
         }
     }
 

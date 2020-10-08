@@ -54,8 +54,9 @@ public class MapManager : MonoBehaviour {
         cameraWidth = cameraHeight * (int) Camera.main.aspect;
         screenBounds = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width, Screen.height, Camera.main.transform.position.z));
         numRows = 30;
-        rows = cameraHeight * numRows;
-        columns = 9;
+        // rows = cameraHeight * numRows;
+        rows = 150;
+        columns = 18;
         grid = new int[columns,rows];
 
         SetupCameraBoundry();
@@ -102,8 +103,8 @@ public class MapManager : MonoBehaviour {
     private void SetupCameraBoundry() {
         float cameraOffset = (float) 7.5;
         grid = new int[columns, rows];
-        cameraBoundry.transform.position = new Vector3(0, rows - cameraOffset, 0);
-        cameraBoundry.GetComponent<BoxCollider>().size = new Vector3(18, rows * 2, 1);
+        cameraBoundry.transform.position = new Vector3(columns * 0.5f, rows - cameraOffset, 0);
+        cameraBoundry.GetComponent<BoxCollider>().size = new Vector3(columns * 2, rows * 2, 1);
     }
 
     private bool IsOuterWall (int column, int row) {
@@ -124,7 +125,7 @@ public class MapManager : MonoBehaviour {
     }
 
     private void GenerateNonEdge (int col, int row) {
-        int value = Random.Range (0, 6);
+        int value = Random.Range (0, 10);
         int randomRotation = Random.Range(0, 4);
         // int value = wallSpawnThreshold + 1;
 
@@ -133,13 +134,13 @@ public class MapManager : MonoBehaviour {
 
         // Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);
 
-        if (value > 4) {
+        if (value > 6) {
             int sndRand = Random.Range(0, 33);
             GameObject wallType = (sndRand == 0) ? tintedWallPrefab : innerWallPrefab;
 
             GameObject wall = Instantiate (wallType, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
             wall.name = "InnerTile" + col + ":" + row + "::" + value;
-        } else if (value > 3) {
+        } else if (value > 4) {
             Instantiate (sandTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 1), Quaternion.identity);
         } else {
             Instantiate (floorTilePrefab, new Vector3 (col * 2 - 8, row * 2 - (float) 6.5, 2), Quaternion.identity);

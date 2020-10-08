@@ -22,6 +22,7 @@
           <e p="BitePointBehavior.cs" t="Include" />
           <e p="BoostItem.cs" t="Include" />
           <e p="BoulderBehaviour.cs" t="Include" />
+          <e p="Dialogue.cs" t="Include" />
           <e p="DontDestroyOnLoad.cs" t="Include" />
           <e p="EscMenuBehavior.cs" t="Include" />
           <e p="FightMapManager.cs" t="Include" />
@@ -42,6 +43,7 @@
           <e p="UIPlayerHealth.cs" t="Include" />
           <e p="UIWeapon.cs" t="Include" />
           <e p="UIWeaponDurability.cs" t="Include" />
+          <e p="VNBehavior.cs" t="Include" />
           <e p="WeaponSwingBehavior.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">

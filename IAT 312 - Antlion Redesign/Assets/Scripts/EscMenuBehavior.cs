@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EscMenuBehavior : MonoBehaviour {
     [SerializeField] private GameObject escapeMenuBackground;
+    public bool isEscMenuActive = false;
 
     void Update()
     {
@@ -17,6 +18,7 @@ public class EscMenuBehavior : MonoBehaviour {
     public void EscapeMenu() {
         escapeMenuBackground.SetActive(!escapeMenuBackground.activeInHierarchy);
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        isEscMenuActive = !isEscMenuActive;
     }
 
     public void RestartGame() {
