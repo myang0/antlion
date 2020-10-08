@@ -83,7 +83,7 @@ public class AntlionBehavior : MonoBehaviour {
         RotateToPlayer(GETAngleToPlayer());
 
         if (isAttackReady && IsFacingPlayer(GETAngleToPlayer())) {
-            if (Random.Range(0, 100) > 75) {
+            if (Random.Range(0, 100) > 66) {
                 SpitStreamStart();
             } else {
                 SpitBarrageStart();
@@ -116,7 +116,7 @@ public class AntlionBehavior : MonoBehaviour {
         }
 
         isAttackReady = false;
-        StartCoroutine(AttackDelay(5f));
+        StartCoroutine(AttackDelay(6f));
     }
     
     private void SpitStreamStart() {
