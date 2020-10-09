@@ -20,30 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwing.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/swordSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/swordSwing.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SpriteAtlas.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SpriteAtlas.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe1.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe1.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe3.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe4.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe5.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe5.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe6.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe7.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe7.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe8.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe8.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sprites/axeSwing.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axeSwing.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword3.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword4.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axeSwing.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axeSwing.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +139,7 @@
       <workItem from="1602151465160" duration="2282000" />
       <workItem from="1602185723078" duration="21523000" />
       <workItem from="1602216251396" duration="831000" />
-      <workItem from="1602284075655" duration="3189000" />
+      <workItem from="1602284075655" duration="3514000" />
     </task>
     <servers />
   </component>

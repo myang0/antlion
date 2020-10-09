@@ -19,6 +19,7 @@ TagManager:
   - PlayerContainer
   - EscMenu
   - MapManager
+  - MeleeSwing
   layers:
   - Default
   - TransparentFX
