@@ -29,6 +29,7 @@ public class AntlionBehavior : MonoBehaviour {
     private float spitReadyRotationSpeed = 3f;
     public float health = 1000;
     private float maxHealth;
+    [SerializeField] private bool isInvulnerable = false;
     private Vector3 antlionPos;
 
     // Start is called before the first frame update
@@ -47,13 +48,17 @@ public class AntlionBehavior : MonoBehaviour {
         if (status == Status.Alive) {
             antlionPos = this.transform.position;
             if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene")) {
-                if (player) {
+                if (player && 
+                    !GameObject.FindWithTag("MapManager").GetComponent<MapManager>().isTransitionWallBlocked) {
+                    isInvulnerable = false;
                     RunPhaseMovement();
                 } else {
+                    isInvulnerable = true;
                     RunOffScreen();
                 }
             } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase")) {
                 if (player) {
+                    isInvulnerable = false;
                     FightPhaseAttack();
                 } else {
                 }
@@ -189,7 +194,7 @@ public class AntlionBehavior : MonoBehaviour {
 
     private void RunOffScreen() {
         //Player is dead, antlion runs off screen
-        Vector3 dir = new Vector3(0f, 2f, 0f);
+        Vector3 dir = new Vector3(0f, -2f, 0f);
         rigidBody.MovePosition(antlionPos +
                                dir * (movementSpeed * Time.fixedDeltaTime));
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -198,12 +203,6 @@ public class AntlionBehavior : MonoBehaviour {
 
     private void RunPhaseMovement() {
         Vector3 playerPos = player.transform.position;
-        // if (playerPos.y - antlionPos.y > 2) {
-        //     playerPos = new Vector3(playerPos.x, playerPos.y + 8, playerPos.z);
-        // } else if (playerPos.y - antlionPos.y < -2) {
-        //     playerPos = new Vector3(playerPos.x, playerPos.y - 8, playerPos.z);
-        // }
-
         Vector3 dir = (playerPos - antlionPos).normalized;
 
         if (Vector3.Distance(playerPos, antlionPos) > 1) {
@@ -265,12 +264,16 @@ public class AntlionBehavior : MonoBehaviour {
     }
 
     public void Damage(float damage) {
-        health -= damage;
-
-        Debug.Log("Hit!");
-
-        if (health <= 0) {
-            Destroy(gameObject);
+        if (!isInvulnerable) {
+            Debug.Log("Hit!");
+            health -= damage;
+            if (health <= 0) {
+                Destroy(gameObject);
+            }
+        } else {
+            Debug.Log("Invulnerable!");
         }
+        
+        
     }
 }

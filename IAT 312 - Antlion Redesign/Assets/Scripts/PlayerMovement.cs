@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.M)) {
                 MapManager mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
-                Vector3 newPosition = new Vector3(transform.position.x, mapManager.getEndOfRunMap(),
+                Vector3 newPosition = new Vector3(transform.position.x, mapManager.GETEndOfRunMap(),
                     transform.position.z);
                 transform.position = newPosition;
                 Debug.Log("test");

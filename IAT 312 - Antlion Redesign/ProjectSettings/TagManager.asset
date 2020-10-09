@@ -18,6 +18,7 @@ TagManager:
   - BiteCrescent
   - PlayerContainer
   - EscMenu
+  - MapManager
   layers:
   - Default
   - TransparentFX
