@@ -64,18 +64,24 @@ public class PickupItem : MonoBehaviour {
         remainingUses--;
         Vector3 position = new Vector3(playerPosition.x, playerPosition.y,
             playerPosition.z);
-        
+
+        GameObject weapon = new GameObject();
         if (this.gameObject.CompareTag("Crossbow")) {
-            Instantiate(crossbowSwing, position, Quaternion.identity);
+            weapon = Instantiate(crossbowSwing, position, Quaternion.identity);
             StartCoroutine(AttackCrossbow());
         } else if (this.gameObject.CompareTag("Axe")) {
-            Instantiate(axeSwing, position, Quaternion.identity);
-            StartCoroutine(AttackAxe());
+            weapon = Instantiate(axeSwing, position, Quaternion.identity);
+            // StartCoroutine(AttackAxe());
         } else if (this.gameObject.CompareTag("Sword")) {
-            Instantiate(swordSwing, position, Quaternion.identity);
-            StartCoroutine(AttackSword());
+            weapon = Instantiate(swordSwing, position, Quaternion.identity);
+            // StartCoroutine(AttackSword());
         }
 
+        weapon.transform.parent = player.gameObject.transform.parent;
+        if (weapon.CompareTag("MeleeSwing")) {
+            weapon.GetComponent<MeleeSwingBehavior>().baseDamage = this.baseDamage;
+            weapon.GetComponent<MeleeSwingBehavior>().damageMultiplier = player.attackMultiplier;
+        }
         currentCooldown = baseCooldown;
         StartCoroutine(AttackCooldown(baseCooldown));
     }

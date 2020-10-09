@@ -69,14 +69,18 @@ public class AntlionBehavior : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         // if (IsFightPhase()) {
-            if (other.CompareTag("MeleeSwingCrescent")) {
-                GameObject attackPoint = other.gameObject;
-                Damage(attackPoint.GetComponent<MeleePointBehavior>().getWeaponDamage());
-            } else if (other.CompareTag("BiteCrescent")) {
+            // if (other.CompareTag("MeleeSwingCrescent")) {
+            //     GameObject attackPoint = other.gameObject;
+            //     Damage(attackPoint.GetComponent<MeleePointBehavior>().getWeaponDamage());
+            // } else if (other.CompareTag("BiteCrescent")) {
+            //     GameObject attackPoint = other.gameObject;
+            //     Damage(attackPoint.GetComponent<BitePointBehavior>().getWeaponDamage());
+            // }
+        // }
+        if (other.CompareTag("BiteCrescent")) {
                 GameObject attackPoint = other.gameObject;
                 Damage(attackPoint.GetComponent<BitePointBehavior>().getWeaponDamage());
-            }
-        // }
+        }
     }
 
     private void FightPhaseAttack() {

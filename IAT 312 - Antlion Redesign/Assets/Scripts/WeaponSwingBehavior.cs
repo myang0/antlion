@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WeaponSwingBehavior : MonoBehaviour {
     private GameObject player;
+    private PlayerMovement playerMovement;
     private Animator anim;
 
     void Start() {
@@ -13,6 +14,9 @@ public class WeaponSwingBehavior : MonoBehaviour {
         if (!player) {
             Destroy(this.gameObject);
         }
+
+        playerMovement = player.GetComponent<PlayerMovement>();
+        playerMovement.rotationLock = true;
     }
 
     void Update() {
@@ -21,6 +25,7 @@ public class WeaponSwingBehavior : MonoBehaviour {
     }
 
     void DeleteOnAnimationEnd() {
+        playerMovement.rotationLock = false;
         Destroy(this.gameObject);
     }
 }

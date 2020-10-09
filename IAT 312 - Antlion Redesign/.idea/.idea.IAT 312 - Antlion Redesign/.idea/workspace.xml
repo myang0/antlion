@@ -22,17 +22,28 @@
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BrokenWallTile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BrokenWallTile.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FloorTileTemp.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FloorTileTemp.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SandTile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SandTile.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SandTileTemp.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SandTileTemp.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/swordSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/swordSwing.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sprites/SpriteAtlas.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SpriteAtlas.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe1.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe1.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe3.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe4.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe5.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe5.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe6.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe7.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe7.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axe8.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axe8.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/axeSwing.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/axeSwing.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword3.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword4.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +56,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DontDestroyOnLoad.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UIWeaponDurability.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/MeleeSwingBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LockedWallBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MeleePointBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" root0="FORCE_HIGHLIGHTING" />
@@ -67,16 +79,18 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DontDestroyOnLoad.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LockedWallBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/MeleeSwingBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
       </list>
     </option>
   </component>
@@ -142,7 +156,9 @@
       <workItem from="1602113227486" duration="5843000" />
       <workItem from="1602129720351" duration="6212000" />
       <workItem from="1602151465160" duration="2282000" />
-      <workItem from="1602185723078" duration="21116000" />
+      <workItem from="1602185723078" duration="21523000" />
+      <workItem from="1602216251396" duration="831000" />
+      <workItem from="1602284075655" duration="3189000" />
     </task>
     <servers />
   </component>
@@ -191,24 +207,5 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601846265214" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs</url>
-          <line>30</line>
-          <properties documentPath="C:\Users\The Memebase\Desktop\iat312-antlion-redesign\IAT 312 - Antlion Redesign\Assets\Scripts\FightMapManager.cs" initialLine="29">
-            <startOffsets>
-              <option value="967" />
-            </startOffsets>
-            <endOffsets>
-              <option value="968" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

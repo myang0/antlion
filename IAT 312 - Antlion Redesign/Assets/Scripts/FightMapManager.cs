@@ -51,8 +51,8 @@ public class FightMapManager : MonoBehaviour {
     private void Update() {
         if (player.transform.position.y > 1.5f && isEntranceOpen) {
             isEntranceOpen = false;
-            GenerateTile(columns / 2 - 1, 0, Tile.OuterWall);
-            GenerateTile(columns / 2, 0, Tile.OuterWall);
+            GenerateTileLayerZero(columns / 2 - 1, 0, Tile.OuterWall);
+            GenerateTileLayerZero(columns / 2, 0, Tile.OuterWall);
         }
     }
 
@@ -139,6 +139,26 @@ public class FightMapManager : MonoBehaviour {
     private GameObject GenerateTile(int column, int row, Tile tileType) {
 
         Vector3 tilePosition = new Vector3(column * 2, row * 2 - 0.5f, 1);
+        switch (tileType) {
+            case Tile.Floor:
+                return Instantiate(floorTilePrefab, tilePosition, Quaternion.identity);
+            case Tile.OuterWall:
+                return Instantiate(outerWallPrefab, tilePosition, Quaternion.identity);
+            case Tile.Sand:
+                return Instantiate(sandTilePrefab, tilePosition, Quaternion.identity);
+            case Tile.TintedWall:
+                GameObject tintedWall = Instantiate(tintedWallPrefab, tilePosition, Quaternion.identity);
+                tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
+                return tintedWall;
+            case Tile.LockedWall:
+                return Instantiate(lockedWallPrefab, tilePosition, Quaternion.identity);
+        }
+        return null;
+    }
+    
+    private GameObject GenerateTileLayerZero(int column, int row, Tile tileType) {
+
+        Vector3 tilePosition = new Vector3(column * 2, row * 2 - 0.5f, 0);
         switch (tileType) {
             case Tile.Floor:
                 return Instantiate(floorTilePrefab, tilePosition, Quaternion.identity);

@@ -17,6 +17,7 @@
             </e>
           </e>
         </e>
+        <e p="MeleeSwingBehavior.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AntlionBehavior.cs" t="Include" />
           <e p="BitePointBehavior.cs" t="Include" />
