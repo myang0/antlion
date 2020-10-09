@@ -31,6 +31,8 @@ public class AntlionBehavior : MonoBehaviour {
     private float maxHealth;
     [SerializeField] private bool isInvulnerable = false;
     private Vector3 antlionPos;
+    private const string FightPhaseStr = "FightPhase";
+    private const string RunPhaseSceneStr = "RunPhaseScene";
 
     // Start is called before the first frame update
     void Start() {
@@ -38,7 +40,7 @@ public class AntlionBehavior : MonoBehaviour {
         player = GameObject.Find("Player");
         maxHealth = health;
 
-        if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase")) {
+        if (CompareCurrentSceneTo(FightPhaseStr)) {
             spriteRenderer.enabled = true;
             polyCollider.enabled = true;
         }
@@ -47,7 +49,7 @@ public class AntlionBehavior : MonoBehaviour {
     void FixedUpdate() {
         if (status == Status.Alive) {
             antlionPos = this.transform.position;
-            if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene")) {
+            if (CompareCurrentSceneTo(RunPhaseSceneStr)) {
                 if (player && 
                     !GameObject.FindWithTag("MapManager").GetComponent<MapManager>().isTransitionWallBlocked) {
                     isInvulnerable = false;
@@ -56,9 +58,8 @@ public class AntlionBehavior : MonoBehaviour {
                     isInvulnerable = true;
                     RunOffScreen();
                 }
-            } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase")) {
+            } else if (CompareCurrentSceneTo(FightPhaseStr)) {
                 if (player) {
-                    isInvulnerable = false;
                     FightPhaseAttack();
                 } else {
                 }
@@ -76,10 +77,6 @@ public class AntlionBehavior : MonoBehaviour {
                 Damage(attackPoint.GetComponent<BitePointBehavior>().getWeaponDamage());
             }
         // }
-    }
-
-    private bool IsFightPhase() {
-        return string.Equals(SceneManager.GetActiveScene().name, "FightPhase");
     }
 
     private void FightPhaseAttack() {
@@ -231,7 +228,7 @@ public class AntlionBehavior : MonoBehaviour {
             Destroy(col.gameObject);
         }
 
-        if (col.gameObject.CompareTag("OuterWall")) {
+        if (col.gameObject.CompareTag("OuterWall") && CompareCurrentSceneTo(RunPhaseSceneStr)) {
             Physics2D.IgnoreCollision(polyCollider, col.gameObject.GetComponent<Collider2D>());
         }
     }
@@ -246,21 +243,26 @@ public class AntlionBehavior : MonoBehaviour {
 
     void Update() {
         if (player) {
-            if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene") &&
+            if (CompareCurrentSceneTo(RunPhaseSceneStr) &&
                 (player.transform.position.y > 22) && status == Status.NotSpawned) {
                 spriteRenderer.enabled = true;
                 polyCollider.enabled = true;
                 status = Status.Alive;
-            } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase") &&
-                       status == Status.NotSpawned) {
+            } else if (CompareCurrentSceneTo(FightPhaseStr) &&
+                       status == Status.NotSpawned && player.transform.position.y > 1.5f) {
                 StartCoroutine(WakeUpBossPhase());
             }
         }
     }
 
+    private bool CompareCurrentSceneTo(string scene) {
+        return string.Equals(SceneManager.GetActiveScene().name, scene);
+    }
+
     IEnumerator WakeUpBossPhase() {
         yield return new WaitForSeconds(2f);
         status = Status.Alive;
+        isInvulnerable = false;
     }
 
     public void Damage(float damage) {

@@ -10,6 +10,7 @@ public class FightMapManager : MonoBehaviour {
     [SerializeField] private GameObject sandTilePrefab;
     [SerializeField] private GameObject floorTilePrefab;
     [SerializeField] private GameObject tintedWallPrefab;
+    [SerializeField] private GameObject lockedWallPrefab;
     [SerializeField] private CinemachineVirtualCamera vcam;
     [SerializeField] private BoxCollider camBoundry;
 
@@ -17,11 +18,15 @@ public class FightMapManager : MonoBehaviour {
     private GameObject antlion;
 
     public int[,] grid;
-    private enum Tile {Floor, OuterWall, Sand, TintedWall}
+    private enum Tile {Floor, OuterWall, Sand, TintedWall, LockedWall}
 
     private int cameraHeight;
 
     private int rows, columns;
+    private int hallLength = 5;
+    private int roomSize = 6;
+    public bool isEntranceOpen = true;
+    public bool isExitOpen = false;
 
     void Start() {
         cameraHeight = (int) Camera.main.orthographicSize;
@@ -39,6 +44,73 @@ public class FightMapManager : MonoBehaviour {
 
         SetupCamera();
         GenerateMap();
+        GenerateEntranceAndExit();
+        GenerateLockedWall();
+    }
+
+    private void Update() {
+        if (player.transform.position.y > 1.5f && isEntranceOpen) {
+            isEntranceOpen = false;
+            GenerateTile(columns / 2 - 1, 0, Tile.OuterWall);
+            GenerateTile(columns / 2, 0, Tile.OuterWall);
+        }
+    }
+
+    private void GenerateEntranceAndExit() {
+        int leftEntranceWall = columns / 2 - 2;
+        int leftEntranceFloor = columns / 2 - 1;
+        int rightEntranceWall = columns / 2 + 1;
+        int rightEntranceFloor = columns / 2;
+
+        // generate hall
+        for (int i = 0; i < hallLength; i++) {
+            GenerateTile(leftEntranceWall, 0 - i, Tile.OuterWall);
+            GameObject floorTileLeft = GenerateTile(leftEntranceFloor, 0 - i, Tile.Floor);
+            GenerateTile(rightEntranceWall, 0 - i, Tile.OuterWall);
+            GameObject floorTileRight = GenerateTile(rightEntranceFloor, 0 - i, Tile.Floor);
+            floorTileLeft.tag = "Untagged";
+            floorTileRight.tag = "Untagged";
+        }
+
+        int leftMostColumn = leftEntranceFloor - roomSize / 2;
+        int rightMostColumn = rightEntranceWall + roomSize / 2;
+
+        // generate starting room
+        for (int columnIndex = leftMostColumn; columnIndex < rightMostColumn; columnIndex++) {
+            for (int rowIndex = 0; rowIndex < roomSize; rowIndex++) {
+                //If outer wall of room
+                if (
+                    columnIndex == leftMostColumn || columnIndex == rightMostColumn - 1 ||
+                    rowIndex == 0 || rowIndex == roomSize - 1) {
+                    //if entrance, do not block with walls
+                    if ((columnIndex == leftEntranceFloor || columnIndex == rightEntranceFloor) &&
+                        rowIndex == 0) {
+                        GenerateTile(columnIndex, -hallLength - rowIndex, Tile.Floor);
+                    } else {
+                        //if not entrance, resume
+                        GenerateTile(columnIndex, -hallLength - rowIndex, Tile.OuterWall);
+                    }
+                } else {
+                    //room floor
+                    GenerateTile(columnIndex, -hallLength - rowIndex, Tile.Floor);
+                }
+            }
+        }
+        
+        // generate end hall
+        for (int i = 0; i < hallLength*5; i++) {
+            GenerateTile(leftEntranceWall, rows-1 + i, Tile.OuterWall);
+            GameObject floorTileLeft = GenerateTile(leftEntranceFloor, rows-1 + i, Tile.Floor);
+            GenerateTile(rightEntranceWall, rows-1 + i, Tile.OuterWall);
+            GameObject floorTileRight = GenerateTile(rightEntranceFloor, rows-1 + i, Tile.Floor);
+            floorTileLeft.tag = "Untagged";
+            floorTileRight.tag = "Untagged";
+        }
+    }
+
+    private void GenerateLockedWall() {
+        GenerateTile(columns / 2 - 1, rows - 1, Tile.LockedWall);
+        GenerateTile(columns / 2, rows - 1, Tile.LockedWall);
     }
 
     private void GenerateMap() {
@@ -47,38 +119,41 @@ public class FightMapManager : MonoBehaviour {
                 int gridValue = IsOuterWall(colIdx, rowIdx) ? 1 : 0;
                 grid[colIdx, rowIdx] = gridValue;
                 
-                //
                 if ((rowIdx == 4 || rowIdx == 10) && (colIdx == 4 || colIdx == 10)) {
                     GenerateTile(colIdx, rowIdx, Tile.TintedWall);
                 } else if ((rowIdx > 5 && rowIdx < 9) && (colIdx > 5 && colIdx < 9)) {
                     GenerateTile(colIdx, rowIdx, Tile.Sand);
-                } else if (IsOuterWall(colIdx, rowIdx)) {
+                } else if (IsOuterWall(colIdx, rowIdx) && 
+                           !((colIdx == columns / 2 - 1 || colIdx == columns / 2) &&
+                             (rowIdx == 0 || rowIdx == rows-1))) {
                     GenerateTile(colIdx, rowIdx, Tile.OuterWall);
-                } else {
+                    // GameObject floorTile =
+                } else if (!((colIdx == columns / 2 - 1 || colIdx == columns / 2) &&
+                             (rowIdx == 0 || rowIdx == rows-1))) {
                     GenerateTile(colIdx, rowIdx, Tile.Floor);
                 }
             }
         }
     }
     
-    private void GenerateTile(int column, int row, Tile tileType) {
+    private GameObject GenerateTile(int column, int row, Tile tileType) {
 
         Vector3 tilePosition = new Vector3(column * 2, row * 2 - 0.5f, 1);
         switch (tileType) {
             case Tile.Floor:
-                Instantiate(floorTilePrefab, tilePosition, Quaternion.identity);
-                break;
+                return Instantiate(floorTilePrefab, tilePosition, Quaternion.identity);
             case Tile.OuterWall:
-                Instantiate(outerWallPrefab, tilePosition, Quaternion.identity);
-                break;
+                return Instantiate(outerWallPrefab, tilePosition, Quaternion.identity);
             case Tile.Sand:
-                Instantiate(sandTilePrefab, tilePosition, Quaternion.identity);
-                break;
+                return Instantiate(sandTilePrefab, tilePosition, Quaternion.identity);
             case Tile.TintedWall:
                 GameObject tintedWall = Instantiate(tintedWallPrefab, tilePosition, Quaternion.identity);
                 tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
-                break;
+                return tintedWall;
+            case Tile.LockedWall:
+                return Instantiate(lockedWallPrefab, tilePosition, Quaternion.identity);
         }
+        return null;
     }
 
     private void SetupCamera() {
@@ -94,7 +169,7 @@ public class FightMapManager : MonoBehaviour {
         vcamNoise.m_AmplitudeGain = 7f;
         vcamNoise.m_FrequencyGain = 0f;
         camBoundry.transform.position = new Vector3(columns - 1, rows - 1.5f, 0);
-        camBoundry.size = new Vector3(2 * columns, 2 * rows, 1);
+        camBoundry.size = new Vector3(2 * columns,  (rows +(roomSize + hallLength)*2)*2 , 1);
     }
 
     private bool IsOuterWall(int column, int row) {

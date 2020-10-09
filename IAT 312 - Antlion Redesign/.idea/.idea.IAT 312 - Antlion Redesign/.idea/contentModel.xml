@@ -28,6 +28,7 @@
           <e p="FightMapManager.cs" t="Include" />
           <e p="InnerWallBehaviour.cs" t="Include" />
           <e p="Inventory.cs" t="Include" />
+          <e p="LockedWallBehavior.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="MapManager.cs" t="Include" />
           <e p="MeleePointBehavior.cs" t="Include" />

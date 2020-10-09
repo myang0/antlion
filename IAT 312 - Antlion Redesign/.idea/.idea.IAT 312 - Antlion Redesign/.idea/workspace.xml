@@ -20,13 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BrokenWallTile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BrokenWallTile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FloorTileTemp.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FloorTileTemp.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SandTile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SandTile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SandTileTemp.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SandTileTemp.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sprites/SpriteAtlas.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SpriteAtlas.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +45,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DontDestroyOnLoad.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UIWeaponDurability.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LockedWallBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MeleePointBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EE47BE73-F7EF-409C-A5E5-CE4B121745B7/8c/fae1028a/Quaternion.cs" root0="SKIP_HIGHLIGHTING" />
@@ -50,12 +57,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/OuterWallBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BoostItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIWeaponDurability.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleePointBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/InnerWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BitePointBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Projectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TempSandTileBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SandSpitBehavior.cs" />
@@ -63,12 +68,15 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/DontDestroyOnLoad.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LockedWallBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
       </list>
     </option>
   </component>
@@ -83,7 +91,7 @@
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="settings.editor.selected.configurable" value="CodeLensConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -134,7 +142,7 @@
       <workItem from="1602113227486" duration="5843000" />
       <workItem from="1602129720351" duration="6212000" />
       <workItem from="1602151465160" duration="2282000" />
-      <workItem from="1602185723078" duration="16260000" />
+      <workItem from="1602185723078" duration="21116000" />
     </task>
     <servers />
   </component>
@@ -163,14 +171,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1040" y="246" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601794521868" />
-    <state x="22" y="128" key="SettingsEditor" timestamp="1601931398080">
+    <state x="22" y="128" key="SettingsEditor" timestamp="1602208101258">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="22" y="128" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601931398079" />
+    <state x="22" y="128" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602208101258" />
     <state x="724" y="114" width="774" height="840" key="VCS.FileHistoryDialog" timestamp="1602114115001">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="724" y="114" width="774" height="840" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602114115001" />
+    <state x="1107" y="123" width="666" height="801" key="find.popup" timestamp="1602206545287">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1107" y="123" width="666" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602206545287" />
     <state x="1096" y="244" key="run.anything.popup" timestamp="1601806039468">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -179,5 +191,24 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601846265214" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs</url>
+          <line>30</line>
+          <properties documentPath="C:\Users\The Memebase\Desktop\iat312-antlion-redesign\IAT 312 - Antlion Redesign\Assets\Scripts\FightMapManager.cs" initialLine="29">
+            <startOffsets>
+              <option value="967" />
+            </startOffsets>
+            <endOffsets>
+              <option value="968" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

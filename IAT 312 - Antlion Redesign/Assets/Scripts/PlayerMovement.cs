@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool shielded = false;
     public float shieldedSpeed = 7.5f;
     public bool rotationLock = false;
+    public bool hasKey = false;
 
     public GameObject projectilePrefab;
 
@@ -66,7 +67,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.M)) {
                 MapManager mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
-                Vector3 newPosition = new Vector3(transform.position.x, mapManager.GETEndOfRunMap(),
+                Vector3 newPosition = new Vector3(transform.position.x, mapManager.GETEndOfRunMap()+1f,
                     transform.position.z);
                 transform.position = newPosition;
                 Debug.Log("test");
@@ -236,7 +237,7 @@ public class PlayerMovement : MonoBehaviour {
         currentMovementSpeed = baseMovementSpeed;
         kbTimer = 0;
         isStunned = false;
-        transform.position = new Vector3(14, 1.5f, 0);
+        transform.position = new Vector3(13, -16.5f, 0);
         // SetupCameraNoise();
     }
 
