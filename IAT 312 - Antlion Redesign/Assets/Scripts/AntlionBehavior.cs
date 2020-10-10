@@ -20,6 +20,7 @@ public class AntlionBehavior : MonoBehaviour {
     private GameObject antlion;
     private GameObject player;
     [SerializeField] private GameObject sandSpitPrefab;
+    [SerializeField] private GameObject keyPrefab;
     public SpriteRenderer spriteRenderer;
     public PolygonCollider2D polyCollider;
     public Rigidbody2D rigidBody;
@@ -274,12 +275,11 @@ public class AntlionBehavior : MonoBehaviour {
             Debug.Log("Hit!");
             health -= damage;
             if (health <= 0) {
+                Instantiate(keyPrefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         } else {
             Debug.Log("Invulnerable!");
         }
-        
-        
     }
 }

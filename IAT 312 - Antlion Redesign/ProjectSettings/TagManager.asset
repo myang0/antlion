@@ -21,6 +21,7 @@ TagManager:
   - MapManager
   - MeleeSwing
   - Swarmer
+  - Key
   layers:
   - Default
   - TransparentFX
