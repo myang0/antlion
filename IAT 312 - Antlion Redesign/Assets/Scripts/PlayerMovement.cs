@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public LayerMask wallLayers;
     public LayerMask antlionLayer;
+    public LayerMask swarmerLayer;
 
     public bool isStunned = false;
 
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool hasKey = false;
 
     public GameObject projectilePrefab;
-
+    
     void Start() {
         currentMovementSpeed = baseMovementSpeed;
 
@@ -128,6 +129,17 @@ public class PlayerMovement : MonoBehaviour {
             TakeDamage(10, 15);
         } else if (collider.CompareTag("FloorTile")) {
             currentMovementSpeed = baseMovementSpeed;
+        }
+
+        if (!shielded) {
+            if (collider.CompareTag("Swarmer")) {
+                TakeDamage(5, 10);
+            }
+        }
+
+        if (collider.CompareTag("Key")) {
+            hasKey = true;
+            Destroy(collider.gameObject);
         }
     }
 

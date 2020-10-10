@@ -145,3 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenInnerWallPrefab: {fileID: 7826114015194214536, guid: 00b8db2c263e4914b9ce912e9b1c732e,
     type: 3}
+  brickEffects: {fileID: 8602104401249711700, guid: b3d619b01564a504498b879aaa732b2c,
+    type: 3}

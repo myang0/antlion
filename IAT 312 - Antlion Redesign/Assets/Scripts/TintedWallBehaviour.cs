@@ -12,6 +12,9 @@ public class TintedWallBehaviour : MonoBehaviour
     private GameObject[] possibleLoot;
 
     [SerializeField] private GameObject floorTilePrefab;
+    
+    [SerializeField] private GameObject brickEffects;
+
     private bool isEquipmentSpawn = false;
     private bool isQuitting = false;
     private int randIndex = 0;
@@ -30,9 +33,11 @@ public class TintedWallBehaviour : MonoBehaviour
             GameObject mapManager = GameObject.Find("MapManager");
             if (mapManager && !mapManager.GetComponent<MapManager>().isSceneOver) {
                 SpawnItem();
+                Instantiate(brickEffects, transform.position, Quaternion.identity);
             }
         } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase")) {
             SpawnItem();
+            Instantiate(brickEffects, transform.position, Quaternion.identity);
         }
     }
 

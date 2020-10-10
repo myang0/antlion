@@ -13,6 +13,8 @@ public class MapManager : MonoBehaviour {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject cameraBoundry;
 
+    [SerializeField] private GameObject swarmerPrefab;
+
     public bool isSceneOver = false;
 
     public int[,] grid;
@@ -23,6 +25,7 @@ public class MapManager : MonoBehaviour {
     private int numRows;
 
     private int boulderRespawnTime = 8;
+    private int swarmerRespawnTime = 0;
 
     private Vector2 screenBounds;
 
@@ -104,6 +107,8 @@ public class MapManager : MonoBehaviour {
                 for (int i = 0; i < columns; i++) {
                     GenerateTile(i, rows / 2 - 1, Tile.OuterWall);
                 }
+
+                StartCoroutine(SwarmerWave());
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Desert);
             }
@@ -309,10 +314,35 @@ public class MapManager : MonoBehaviour {
         boulderRespawnTime = Random.Range(8, 13);
     }
 
+    private void SpawnSwarmer() {
+        float playerY = player.transform.position.y;
+        float playerX = player.transform.position.x;
+
+        float swarmerX, swarmerY;
+
+        swarmerX = playerX + Random.Range(-screenBounds.x, screenBounds.x);
+        swarmerY = playerY - (screenBounds.y * 4);
+
+        Instantiate(
+            swarmerPrefab,
+            new Vector3(swarmerX, swarmerY, 0),
+            Quaternion.identity
+        );
+
+        swarmerRespawnTime = Random.Range(4, 7);
+    }
+
     IEnumerator BoulderWave() {
         while (true) {
             yield return new WaitForSeconds(boulderRespawnTime);
             SpawnBoulder();
+        }
+    }
+
+    IEnumerator SwarmerWave() {
+        while (true) {
+            yield return new WaitForSeconds(swarmerRespawnTime);
+            SpawnSwarmer();
         }
     }
 

@@ -1258,6 +1258,8 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 27470210}
   cameraBoundry: {fileID: 1682200060}
+  swarmerPrefab: {fileID: 6018191930908399206, guid: f6bcb5ec9029eb148b1dc310321eeadc,
+    type: 3}
   isSceneOver: 0
   sprite: {fileID: 21300000, guid: 1c3febbf9e914a24faba0b7444a9138d, type: 3}
   isEntranceBlocked: 0
@@ -2596,7 +2598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586381726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3674183, y: -19.413572, z: -0.5}
+  m_LocalPosition: {x: 3.3684206, y: -19.413572, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4076,6 +4078,11 @@ PrefabInstance:
       propertyPath: bitePoint
       value: 
       objectReference: {fileID: 1810893372}
+    - target: {fileID: 7328688380341577552, guid: 9302ebfeacd3c744b895cc9bfe94890d,
+        type: 3}
+      propertyPath: swarmerLayer.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 7328688380341577554, guid: 9302ebfeacd3c744b895cc9bfe94890d,
         type: 3}
       propertyPath: m_LocalPosition.x

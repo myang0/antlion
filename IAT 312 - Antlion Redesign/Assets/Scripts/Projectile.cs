@@ -17,4 +17,11 @@ public class Projectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Swarmer")) {
+            Swarmer s = other.GetComponent<Swarmer>();
+            s.inflictDamage(damage);
+        }
+    }
 }

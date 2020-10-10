@@ -20,6 +20,8 @@ TagManager:
   - EscMenu
   - MapManager
   - MeleeSwing
+  - Swarmer
+  - Key
   - VN
   layers:
   - Default
@@ -32,7 +34,7 @@ TagManager:
   - 
   - NonOuterWalls
   - Antlion
-  - 
+  - Swarmer
   - 
   - 
   - 
