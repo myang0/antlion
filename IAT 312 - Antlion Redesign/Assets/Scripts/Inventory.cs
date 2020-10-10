@@ -30,6 +30,10 @@ public class Inventory : MonoBehaviour
                 // if (Input.GetMouseButtonDown(0) & isFightScene() && player && selectedItem != null) {
                 useCurrentItem();
             }
+
+            if (Input.GetKeyDown(KeyCode.F)) {
+                DropSelectedItem();
+            }
         }
 
     }
@@ -58,6 +62,24 @@ public class Inventory : MonoBehaviour
         itemComponent.Use();
 
         if (itemComponent.remainingUses <= 0) removeSelectedItem();
+    }
+
+    void DropSelectedItem() {
+        PickupItem droppedItem = selectedItem.GetComponent<PickupItem>();
+        GameObject player = GameObject.FindWithTag("Player");
+
+        Vector3 newItemPos = new Vector3(
+            player.transform.position.x,
+            player.transform.position.y,
+            0
+        );
+
+        droppedItem.transform.position = newItemPos;
+
+        droppedItem.hitbox.enabled = true;
+        droppedItem.sprite.enabled = true;
+
+        removeSelectedItem();
     }
 
     void removeSelectedItem() {

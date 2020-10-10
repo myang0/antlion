@@ -11,8 +11,7 @@ public class PickupItem : MonoBehaviour {
 
     public SpriteRenderer sprite;
 
-    [SerializeField]
-    private BoxCollider2D hitbox;
+    public BoxCollider2D hitbox;
 
     public int remainingUses;
     public float baseCooldown;
@@ -29,11 +28,17 @@ public class PickupItem : MonoBehaviour {
     }
 
     void Update() {
-        // if (currentCooldown > 0) currentCooldown--;
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            float dist = Vector3.Distance(transform.position, player.transform.position);
+
+            if (dist < 2f) {
+                AddToInventory();
+            }
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
-        if (!col.CompareTag("Player")) return;
+    void AddToInventory() {
+        if (!player) return;
 
         for (int i = 0; i < inventory.items.Length; i++) {
             if (!inventory.isFull[i]) {
@@ -53,7 +58,7 @@ public class PickupItem : MonoBehaviour {
                 i = inventory.items.Length;
             }
         }
-}
+    }
 
     public void Use() {
         if (currentCooldown > 0 || player.rotationLock) return;
