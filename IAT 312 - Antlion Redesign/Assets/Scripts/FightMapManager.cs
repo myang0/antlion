@@ -53,6 +53,8 @@ public class FightMapManager : MonoBehaviour {
             isEntranceOpen = false;
             GenerateTileLayerZero(columns / 2 - 1, 0, Tile.OuterWall);
             GenerateTileLayerZero(columns / 2, 0, Tile.OuterWall);
+            VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
+            vnBehavior.UpdateVN(VNBehavior.DialogueChapter.BossStart);
         }
     }
 

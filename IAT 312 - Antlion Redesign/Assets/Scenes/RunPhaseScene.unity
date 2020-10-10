@@ -2125,9 +2125,10 @@ GameObject:
   - component: {fileID: 1517213242}
   - component: {fileID: 1517213241}
   - component: {fileID: 1517213245}
+  - component: {fileID: 1517213246}
   m_Layer: 5
   m_Name: VN
-  m_TagString: Untagged
+  m_TagString: VN
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2228,6 +2229,18 @@ MonoBehaviour:
   backgroundEdge: {fileID: 666125443}
   speakerName: {fileID: 2060952574}
   speakerWords: {fileID: 371528486}
+--- !u!114 &1517213246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517213240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0df96edd6a6fe42a721752dec4efec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1535463757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2491,6 +2504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escapeMenuBackground: {fileID: 1884947057}
+  vnBackgroundEdge: {fileID: 666125443}
   isEscMenuActive: 0
 --- !u!114 &1577234273
 MonoBehaviour:
@@ -2582,7 +2596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586381726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3728218, y: -19.413572, z: -0.5}
+  m_LocalPosition: {x: 3.3674183, y: -19.413572, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

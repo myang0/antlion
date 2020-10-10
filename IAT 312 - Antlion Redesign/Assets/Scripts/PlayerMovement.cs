@@ -70,7 +70,6 @@ public class PlayerMovement : MonoBehaviour {
                 Vector3 newPosition = new Vector3(transform.position.x, mapManager.GETEndOfRunMap()+1f,
                     transform.position.z);
                 transform.position = newPosition;
-                Debug.Log("test");
             }
 
             if (kbTimer > 0) {
@@ -238,6 +237,8 @@ public class PlayerMovement : MonoBehaviour {
         kbTimer = 0;
         isStunned = false;
         transform.position = new Vector3(13, -16.5f, 0);
+        VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
+        vnBehavior.UpdateVN(VNBehavior.DialogueChapter.StartFightPhase);
         // SetupCameraNoise();
     }
 

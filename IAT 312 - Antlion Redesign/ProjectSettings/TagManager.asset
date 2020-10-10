@@ -20,6 +20,7 @@ TagManager:
   - EscMenu
   - MapManager
   - MeleeSwing
+  - VN
   layers:
   - Default
   - TransparentFX
