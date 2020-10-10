@@ -278,9 +278,9 @@ public class AntlionBehavior : MonoBehaviour {
             health -= damage;
             if (health <= 0) {
                 Instantiate(keyPrefab, transform.position, Quaternion.identity);
+                Destroy(gameObject);
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.BossEnd);
-                Destroy(gameObject);
             }
         } else {
             Debug.Log("Invulnerable!");
