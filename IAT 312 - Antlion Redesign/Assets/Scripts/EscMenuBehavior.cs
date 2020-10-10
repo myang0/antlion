@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class EscMenuBehavior : MonoBehaviour {
     [SerializeField] private GameObject escapeMenuBackground;
+    [SerializeField] private GameObject vnBackgroundEdge;
     public bool isEscMenuActive = false;
 
     void Update()
@@ -17,7 +19,9 @@ public class EscMenuBehavior : MonoBehaviour {
 
     public void EscapeMenu() {
         escapeMenuBackground.SetActive(!escapeMenuBackground.activeInHierarchy);
-        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        if (!vnBackgroundEdge.activeInHierarchy) {
+            Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        }
         isEscMenuActive = !isEscMenuActive;
     }
 

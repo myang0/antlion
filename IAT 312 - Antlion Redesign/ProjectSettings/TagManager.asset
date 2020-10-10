@@ -22,6 +22,7 @@ TagManager:
   - MeleeSwing
   - Swarmer
   - Key
+  - VN
   layers:
   - Default
   - TransparentFX

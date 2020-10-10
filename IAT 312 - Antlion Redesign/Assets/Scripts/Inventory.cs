@@ -18,18 +18,20 @@ public class Inventory : MonoBehaviour
     private Vector3 mousePos;
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            if (numItemsCarried > 0) prevItem();
-        } else if (Input.GetKeyDown(KeyCode.E)) {
-            if (numItemsCarried > 0) nextItem();
+        if (Time.timeScale != 0) {
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                if (numItemsCarried > 0) prevItem();
+            } else if (Input.GetKeyDown(KeyCode.E)) {
+                if (numItemsCarried > 0) nextItem();
+            }
+
+            GameObject player = GameObject.FindWithTag("Player");
+            if (Input.GetMouseButtonDown(0) && player && selectedItem != null) {
+                // if (Input.GetMouseButtonDown(0) & isFightScene() && player && selectedItem != null) {
+                useCurrentItem();
+            }
         }
-        
-        GameObject player = GameObject.FindWithTag("Player");
-        if (Input.GetMouseButtonDown(0) && player && selectedItem != null) {
-            // if (Input.GetMouseButtonDown(0) & isFightScene() && player && selectedItem != null) {
-            useCurrentItem();
-        }
-        
+
     }
 
     private bool isFightScene() {

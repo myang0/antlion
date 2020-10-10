@@ -98,6 +98,8 @@ public class MapManager : MonoBehaviour {
                 for (int i = 0; i < columns; i++) {
                     GenerateTile(i, rows-5, Tile.OuterWall);
                 }
+                VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
+                vnBehavior.UpdateVN(VNBehavior.DialogueChapter.EndRunPhase);
             }
 
             if (player.transform.position.y > (rows/2-1)*2f-4 && !isTransitionWallBlocked) {
@@ -107,6 +109,8 @@ public class MapManager : MonoBehaviour {
                 }
 
                 StartCoroutine(SwarmerWave());
+                VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
+                vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Desert);
             }
         }
     }

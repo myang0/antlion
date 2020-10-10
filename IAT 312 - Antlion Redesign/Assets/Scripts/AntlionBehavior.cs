@@ -51,7 +51,7 @@ public class AntlionBehavior : MonoBehaviour {
         if (status == Status.Alive) {
             antlionPos = this.transform.position;
             if (CompareCurrentSceneTo(RunPhaseSceneStr)) {
-                if (player && 
+                if (player && health > 500 && 
                     !GameObject.FindWithTag("MapManager").GetComponent<MapManager>().isTransitionWallBlocked) {
                     isInvulnerable = false;
                     RunPhaseMovement();
@@ -253,6 +253,8 @@ public class AntlionBehavior : MonoBehaviour {
                 spriteRenderer.enabled = true;
                 polyCollider.enabled = true;
                 status = Status.Alive;
+                VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
+                vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Chase);
             } else if (CompareCurrentSceneTo(FightPhaseStr) &&
                        status == Status.NotSpawned && player.transform.position.y > 1.5f) {
                 StartCoroutine(WakeUpBossPhase());
@@ -276,6 +278,8 @@ public class AntlionBehavior : MonoBehaviour {
             health -= damage;
             if (health <= 0) {
                 Instantiate(keyPrefab, transform.position, Quaternion.identity);
+                VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
+                vnBehavior.UpdateVN(VNBehavior.DialogueChapter.BossEnd);
                 Destroy(gameObject);
             }
         } else {
