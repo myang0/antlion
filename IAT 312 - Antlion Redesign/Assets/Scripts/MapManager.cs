@@ -13,6 +13,8 @@ public class MapManager : MonoBehaviour {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject cameraBoundry;
 
+    // [SerializeField] private GameObject swarmerPrefab;
+
     public bool isSceneOver = false;
 
     public int[,] grid;
@@ -102,6 +104,8 @@ public class MapManager : MonoBehaviour {
                 for (int i = 0; i < columns; i++) {
                     GenerateTile(i, rows / 2 - 1, Tile.OuterWall);
                 }
+
+                // StartCoroutine(SwarmerWave());
             }
         }
     }
@@ -311,6 +315,10 @@ public class MapManager : MonoBehaviour {
             SpawnBoulder();
         }
     }
+
+    // IEnumerator SwarmerWave() {
+
+    // }
 
     private void GeneratePath() {
         int rowIndex = 1;

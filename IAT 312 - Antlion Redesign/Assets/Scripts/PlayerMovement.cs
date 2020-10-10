@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public LayerMask wallLayers;
     public LayerMask antlionLayer;
+    public LayerMask swarmerLayer;
 
     public bool isStunned = false;
 

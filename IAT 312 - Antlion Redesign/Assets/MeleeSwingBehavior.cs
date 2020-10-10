@@ -22,6 +22,10 @@ public class MeleeSwingBehavior : MonoBehaviour {
             } else if (other.CompareTag("Antlion")) {
                 other.gameObject.GetComponent<AntlionBehavior>().Damage(baseDamage * damageMultiplier);
             }
+
+            if (other.CompareTag("Swarmer")) {
+                other.gameObject.GetComponent<Swarmer>().inflictDamage(baseDamage * damageMultiplier);
+            }
         }
     }
 }

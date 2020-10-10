@@ -78,8 +78,8 @@ public class AntlionBehavior : MonoBehaviour {
             // }
         // }
         if (other.CompareTag("BiteCrescent")) {
-                GameObject attackPoint = other.gameObject;
-                Damage(attackPoint.GetComponent<BitePointBehavior>().getWeaponDamage());
+            GameObject attackPoint = other.gameObject;
+            Damage(attackPoint.GetComponent<BitePointBehavior>().getWeaponDamage());
         }
     }
 
