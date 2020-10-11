@@ -35,11 +35,13 @@ public class Inventory : MonoBehaviour
                 DropSelectedItem();
             }
         }
-
     }
 
-    private bool isFightScene() {
-        return string.Equals(SceneManager.GetActiveScene().name, "FightPhase");
+    public bool DoesSlotHaveWeapon(int index) {
+        if (index <= 5) return items[index] != null;
+        
+        Debug.LogError("Invalid Inventory Index");
+        return false;
     }
 
     void prevItem() {
@@ -78,6 +80,7 @@ public class Inventory : MonoBehaviour
 
         droppedItem.hitbox.enabled = true;
         droppedItem.sprite.enabled = true;
+        droppedItem.isDropped = true;
 
         removeSelectedItem();
     }

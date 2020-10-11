@@ -17,22 +17,29 @@
             </e>
           </e>
         </e>
-        <e p="MeleeSwingBehavior.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AntlionBehavior.cs" t="Include" />
           <e p="BitePointBehavior.cs" t="Include" />
           <e p="BoostItem.cs" t="Include" />
           <e p="BoulderBehaviour.cs" t="Include" />
+          <e p="BoulderIndicator.cs" t="Include" />
           <e p="Dialogue.cs" t="Include" />
           <e p="DontDestroyOnLoad.cs" t="Include" />
+          <e p="Enemies" t="Include">
+            <e p="Swarmer.cs" t="Include" />
+          </e>
           <e p="EscMenuBehavior.cs" t="Include" />
           <e p="FightMapManager.cs" t="Include" />
           <e p="InnerWallBehaviour.cs" t="Include" />
           <e p="Inventory.cs" t="Include" />
+          <e p="Items" t="Include">
+            <e p="Key.cs" t="Include" />
+          </e>
           <e p="LockedWallBehavior.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="MapManager.cs" t="Include" />
           <e p="MeleePointBehavior.cs" t="Include" />
+          <e p="MeleeSwingBehavior.cs" t="Include" />
           <e p="OuterWallBehavior.cs" t="Include" />
           <e p="PickupItem.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
@@ -41,6 +48,7 @@
           <e p="ShieldBehavior.cs" t="Include" />
           <e p="TempSandTileBehavior.cs" t="Include" />
           <e p="TintedWallBehaviour.cs" t="Include" />
+          <e p="ToolbarSlotBehavior.cs" t="Include" />
           <e p="UIAntlionHealth.cs" t="Include" />
           <e p="UIPlayerHealth.cs" t="Include" />
           <e p="UIWeapon.cs" t="Include" />

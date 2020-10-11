@@ -19,6 +19,7 @@ public class PickupItem : MonoBehaviour {
 
     public float baseDamage;
     public float attackRange;
+    public bool isDropped = true;
 
     public bool isRanged;
 
@@ -31,7 +32,7 @@ public class PickupItem : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             float dist = Vector3.Distance(transform.position, player.transform.position);
 
-            if (dist < 2f) {
+            if (dist < 2f && isDropped) {
                 AddToInventory();
             }
         }
@@ -39,6 +40,7 @@ public class PickupItem : MonoBehaviour {
 
     void AddToInventory() {
         if (!player) return;
+        isDropped = false;
 
         for (int i = 0; i < inventory.items.Length; i++) {
             if (!inventory.isFull[i]) {

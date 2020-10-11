@@ -27,6 +27,7 @@ public class FightMapManager : MonoBehaviour {
     private int roomSize = 6;
     public bool isEntranceOpen = true;
     public bool isExitOpen = false;
+    public bool playerReachedEnd = false;
 
     void Start() {
         cameraHeight = (int) Camera.main.orthographicSize;
@@ -55,6 +56,10 @@ public class FightMapManager : MonoBehaviour {
             GenerateTileLayerZero(columns / 2, 0, Tile.OuterWall);
             VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
             vnBehavior.UpdateVN(VNBehavior.DialogueChapter.BossStart);
+        }
+
+        if (player.transform.position.y > 50.5f && !playerReachedEnd) {
+            playerReachedEnd = true;
         }
     }
 
