@@ -159,5 +159,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 60
-  speed: 15
+  speed: 10
   rb: {fileID: 6018191930908399210}

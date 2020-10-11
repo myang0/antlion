@@ -25,7 +25,7 @@ public class MapManager : MonoBehaviour {
     private int rows, columns;
     private int numRows;
 
-    private int boulderRespawnTime = 8;
+    private int boulderRespawnTime = 2;
     private int swarmerRespawnTime = 0;
 
     private Vector2 screenBounds;
@@ -42,6 +42,9 @@ public class MapManager : MonoBehaviour {
     public bool isTransitionWallBlocked = false;
     private int hallLength = 5;
     private int roomSize = 6;
+
+    private bool areBouldersSpawning = true;
+    private bool areSwarmersSpawning = true;
 
     private enum Tile {
         Floor,
@@ -99,6 +102,14 @@ public class MapManager : MonoBehaviour {
                 for (int i = 0; i < columns; i++) {
                     GenerateTile(i, rows-5, Tile.OuterWall);
                 }
+
+                areSwarmersSpawning = false;
+                GameObject[] swarmers = GameObject.FindGameObjectsWithTag("Swarmer");
+                for (int i = 0; i < swarmers.Length; i++) {
+                    Swarmer s = swarmers[i].GetComponent<Swarmer>();
+                    s.SetFleeing();
+                } 
+
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.EndRunPhase);
             }
@@ -108,6 +119,8 @@ public class MapManager : MonoBehaviour {
                 for (int i = 0; i < columns; i++) {
                     GenerateTile(i, rows / 2 - 1, Tile.OuterWall);
                 }
+
+                areBouldersSpawning = false;
 
                 StartCoroutine(SwarmerWave());
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
@@ -308,7 +321,7 @@ public class MapManager : MonoBehaviour {
         GameObject boulder = Instantiate(
             boulderPrefab,
             new Vector3(Random.Range(-screenBounds.x * 0.75f, screenBounds.x * 0.75f),
-                playerYPos - (screenBounds.y * 4), 0),
+                playerYPos - (screenBounds.y * 2), 0),
             Quaternion.identity
         );
 
@@ -317,7 +330,7 @@ public class MapManager : MonoBehaviour {
 
         bIndicator.boulder = boulder;
 
-        boulderRespawnTime = Random.Range(8, 13);
+        boulderRespawnTime = Random.Range(2, 5);
     }
 
     private void SpawnSwarmer() {
@@ -339,16 +352,16 @@ public class MapManager : MonoBehaviour {
     }
 
     IEnumerator BoulderWave() {
-        while (true) {
+        while (areBouldersSpawning) {
             yield return new WaitForSeconds(boulderRespawnTime);
-            SpawnBoulder();
+            if (areBouldersSpawning) SpawnBoulder();
         }
     }
 
     IEnumerator SwarmerWave() {
-        while (true) {
+        while (areSwarmersSpawning) {
             yield return new WaitForSeconds(swarmerRespawnTime);
-            SpawnSwarmer();
+            if (areSwarmersSpawning) SpawnSwarmer();
         }
     }
 

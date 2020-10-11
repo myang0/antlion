@@ -11,15 +11,17 @@ public class Swarmer : MonoBehaviour
 
     private GameObject player;
 
-    private bool isMovingToPlayer;
+    private bool isLocked;
     private bool isStunned;
+    private bool isFleeing;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        isMovingToPlayer = true;
+        isLocked = false;
         isStunned = false;
+        isFleeing = false;
     }
 
     void Update()
@@ -27,11 +29,11 @@ public class Swarmer : MonoBehaviour
         Vector3 playerPos = player.transform.position;
         Vector3 swarmerPos = transform.position;
 
-        if (playerDist(playerPos, swarmerPos) < 5f) {
+        if (playerDist(playerPos, swarmerPos) < 7.5f) {
             StartCoroutine(lockMovement());
         }
 
-        if (isMovingToPlayer && !isStunned) {
+        if (IsMovingToPlayer()) {
             moveToPlayer(playerPos, swarmerPos);
             rotateToPlayer(playerPos, swarmerPos);
         }
@@ -83,15 +85,41 @@ public class Swarmer : MonoBehaviour
         }
     }
 
+    public void SetFleeing() {
+        Vector3 playerPos = player.transform.position;
+        Vector3 swarmerPos = transform.position;
+
+        Vector3 vectorAwayFromPlayer = (swarmerPos - playerPos).normalized;
+        rb.velocity = vectorAwayFromPlayer * speed;
+
+        Vector3 vectorToPlayer = (swarmerPos - playerPos).normalized;
+        float angle = -Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
+        Quaternion angleAwayFromPlayer = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = angleAwayFromPlayer;
+
+        isFleeing = true;
+
+        StartCoroutine(DestroyOnTimer());
+    }
+
+    private bool IsMovingToPlayer() {
+        return (!isFleeing && !isLocked && !isStunned);
+    }
+
     IEnumerator lockMovement() {
-        isMovingToPlayer = false;
+        isLocked = true;
         yield return new WaitForSeconds(1.5f);
-        isMovingToPlayer = true;
+        isLocked = false;
     }
 
     IEnumerator stunSwarmer() {
         isStunned = true;
         yield return new WaitForSeconds(1.5f);
         isStunned = false;
+    }
+
+    IEnumerator DestroyOnTimer() {
+        yield return new WaitForSeconds(4f);
+        Destroy(gameObject);
     }
 }
