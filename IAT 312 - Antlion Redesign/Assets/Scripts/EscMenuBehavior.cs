@@ -28,6 +28,8 @@ public class EscMenuBehavior : MonoBehaviour {
     public void RestartGame() {
         Destroy(GameObject.FindGameObjectWithTag("PlayerContainer"));
         Destroy(GameObject.FindGameObjectWithTag("EscMenu"));
+        Destroy(GameObject.FindGameObjectWithTag("VN"));
+        Destroy(GameObject.FindGameObjectWithTag("UI"));
         SceneManager.LoadScene("RunPhaseScene");
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
     }

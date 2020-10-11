@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class ToolbarSlotBehavior : MonoBehaviour {
     [SerializeField] private int slotIndex;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private Slider slider;
+    private GameObject weaponObject;
+    private PickupItem weaponScript;
+    [SerializeField] private GameObject durabilityBar;
     private Image image;
 
     // Start is called before the first frame update
@@ -18,11 +22,17 @@ public class ToolbarSlotBehavior : MonoBehaviour {
     {
         if (inventory) {
             if (inventory.DoesSlotHaveWeapon(slotIndex)) {
-                image.overrideSprite = inventory.items[slotIndex].GetComponent<SpriteRenderer>().sprite;
+                durabilityBar.SetActive(true);
+                weaponObject = inventory.items[slotIndex];
+                weaponScript = weaponObject.GetComponent<PickupItem>();
+                image.overrideSprite = weaponObject.GetComponent<SpriteRenderer>().sprite;
+                slider.maxValue = weaponScript.baseUses;
+                slider.value = weaponScript.remainingUses;
                 image.color = new Color(255, 255, 255, 1);
             } else {
                 image.overrideSprite = null;
                 image.color = new Color(255, 255 ,255, 0);
+                durabilityBar.SetActive(false);
             }
         }    
     }
