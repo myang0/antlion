@@ -10,13 +10,14 @@ public class InnerWallBehaviour : MonoBehaviour {
     [SerializeField] private GameObject brickEffects;
     
     private bool isQuitting = false;
+    private bool isRestarting = false;
 
     void OnApplicationQuit() {
         isQuitting = true;
     }
 
     void OnDestroy() {
-        if (isQuitting) return;
+        if (isQuitting || isRestarting) return;
         if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene")) {
             GameObject mapManager = GameObject.Find("MapManager");
             if (mapManager && !mapManager.GetComponent<MapManager>().isSceneOver) {
@@ -33,6 +34,10 @@ public class InnerWallBehaviour : MonoBehaviour {
     // private void OnCollisionEnter2D(Collision2D other) {
     //     throw new NotImplementedException();
     // }
+
+    public void SetRestarting() {
+        isRestarting = true;
+    }
 
     public void PathGenDestroy() {
         isQuitting = true;

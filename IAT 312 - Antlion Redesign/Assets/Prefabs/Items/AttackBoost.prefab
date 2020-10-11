@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59a96097311d9742b531a391954c0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostParticles: {fileID: 7463254030120250658, guid: 75593491ed738cf44a0f73e9203233d3,
+    type: 3}
   healthBoost: 0
   attackBoost: 1.25
   speedBoost: 1

@@ -31,6 +31,19 @@ public class EscMenuBehavior : MonoBehaviour {
         Destroy(GameObject.FindGameObjectWithTag("EscMenu"));
         Destroy(GameObject.FindGameObjectWithTag("UI"));
         Destroy(GameObject.FindGameObjectWithTag("VN"));
+
+        GameObject[] tintedWalls = GameObject.FindGameObjectsWithTag("TintedWall");
+        for (int i = 0; i < tintedWalls.Length; i++) {
+            TintedWallBehaviour tw = tintedWalls[i].GetComponent<TintedWallBehaviour>();
+            tw.SetRestarting();
+        }
+
+        GameObject[] regWalls = GameObject.FindGameObjectsWithTag("InnerWall");
+        for (int i = 0; i < regWalls.Length; i++) {
+            InnerWallBehaviour iw = regWalls[i].GetComponent<InnerWallBehaviour>();
+            iw.SetRestarting();
+        }
+
         SceneManager.LoadScene("RunPhaseScene");
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
     }

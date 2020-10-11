@@ -2586,7 +2586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1517213241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4676,7 +4676,7 @@ PrefabInstance:
     - target: {fileID: 7328688380341577552, guid: 9302ebfeacd3c744b895cc9bfe94890d,
         type: 3}
       propertyPath: baseMovementSpeed
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7328688380341577552, guid: 9302ebfeacd3c744b895cc9bfe94890d,
         type: 3}
