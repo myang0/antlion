@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private GameObject bitePoint;
     [SerializeField] private SpriteRenderer bite;
 
+    [SerializeField] private GameObject rubbleParticles;
+    private int rubbleTimer = 0;
+
     public float attackMultiplier = 1f;
 
     public Rigidbody2D rigidBody;
@@ -51,6 +54,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // SceneManager.activeSceneChanged += sceneTransition;
         SetupCameraNoise();
+        StartCoroutine(ShowRubble());
     }
 
     void Update() {
@@ -83,6 +87,13 @@ public class PlayerMovement : MonoBehaviour {
                 vcamNoise.m_FrequencyGain = 0f;
                 Destroy(this.gameObject);
             }
+
+            if (currentMovementSpeed <= (baseMovementSpeed * 0.5f) && rubbleTimer <= 0) {
+                Instantiate(rubbleParticles, transform.position, Quaternion.identity);
+                rubbleTimer = 120;
+            }
+
+            rubbleTimer--;
         }
     }
 
@@ -212,6 +223,12 @@ public class PlayerMovement : MonoBehaviour {
         // bite.enabled = false;
         bitePoint.SetActive(!bitePoint.activeInHierarchy);
         rotationLock = false;
+    }
+
+    IEnumerator ShowRubble() {
+
+        yield return new WaitForSeconds(0.5f);
+        if (currentMovementSpeed < (baseMovementSpeed * 0.5f)) Instantiate(rubbleParticles, transform.position, Quaternion.identity);
     }
 
     private Quaternion GETAngleToMouse() {
