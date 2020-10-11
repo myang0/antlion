@@ -23,6 +23,7 @@ TagManager:
   - Swarmer
   - Key
   - VN
+  - UI
   layers:
   - Default
   - TransparentFX

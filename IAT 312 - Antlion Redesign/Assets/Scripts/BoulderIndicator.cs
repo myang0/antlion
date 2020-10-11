@@ -12,7 +12,7 @@ public class BoulderIndicator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (boulder == null || player == null) {
             Destroy(gameObject);
