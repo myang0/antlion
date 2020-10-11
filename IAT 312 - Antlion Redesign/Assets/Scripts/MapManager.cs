@@ -14,6 +14,7 @@ public class MapManager : MonoBehaviour {
     [SerializeField] private GameObject cameraBoundry;
 
     [SerializeField] private GameObject swarmerPrefab;
+    [SerializeField] private GameObject arrowPrefab;
 
     public bool isSceneOver = false;
 
@@ -304,12 +305,17 @@ public class MapManager : MonoBehaviour {
 
     private void SpawnBoulder() {
         float playerYPos = player.transform.position.y;
-        Instantiate(
+        GameObject boulder = Instantiate(
             boulderPrefab,
             new Vector3(Random.Range(-screenBounds.x * 0.75f, screenBounds.x * 0.75f),
-                playerYPos + (screenBounds.y * 4), 0),
+                playerYPos - (screenBounds.y * 4), 0),
             Quaternion.identity
         );
+
+        GameObject arrow = Instantiate(arrowPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        BoulderIndicator bIndicator = arrow.GetComponent<BoulderIndicator>();
+
+        bIndicator.boulder = boulder;
 
         boulderRespawnTime = Random.Range(8, 13);
     }

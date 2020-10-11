@@ -1260,6 +1260,8 @@ MonoBehaviour:
   cameraBoundry: {fileID: 1682200060}
   swarmerPrefab: {fileID: 6018191930908399206, guid: f6bcb5ec9029eb148b1dc310321eeadc,
     type: 3}
+  arrowPrefab: {fileID: 134527516699483585, guid: 8ae8d2b21e7c7a4459aa93d19749169e,
+    type: 3}
   isSceneOver: 0
   sprite: {fileID: 21300000, guid: 1c3febbf9e914a24faba0b7444a9138d, type: 3}
   isEntranceBlocked: 0
