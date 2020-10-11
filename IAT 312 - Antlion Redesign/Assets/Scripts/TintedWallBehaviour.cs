@@ -17,6 +17,7 @@ public class TintedWallBehaviour : MonoBehaviour
 
     private bool isEquipmentSpawn = false;
     private bool isQuitting = false;
+    private bool isRestarting = false;
     private int randIndex = 0;
 
     private void Start() {
@@ -28,7 +29,7 @@ public class TintedWallBehaviour : MonoBehaviour
     }
 
     void OnDestroy() {
-        if (isQuitting) return;
+        if (isQuitting || isRestarting) return;
         if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene")) {
             GameObject mapManager = GameObject.Find("MapManager");
             if (mapManager && !mapManager.GetComponent<MapManager>().isSceneOver) {
@@ -54,6 +55,10 @@ public class TintedWallBehaviour : MonoBehaviour
 
     public void ForceEquipmentSpawn() {
         isEquipmentSpawn = true;
+    }
+
+    public void SetRestarting() {
+        isRestarting = true;
     }
     
     private void OnTriggerEnter2D (Collider2D collider) {

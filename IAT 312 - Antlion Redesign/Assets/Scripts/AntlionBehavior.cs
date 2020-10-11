@@ -45,6 +45,8 @@ public class AntlionBehavior : MonoBehaviour {
             spriteRenderer.enabled = true;
             polyCollider.enabled = true;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void FixedUpdate() {
@@ -61,8 +63,10 @@ public class AntlionBehavior : MonoBehaviour {
                 }
             } else if (CompareCurrentSceneTo(FightPhaseStr)) {
                 if (player) {
+                    isInvulnerable = false;
                     FightPhaseAttack();
                 } else {
+
                 }
             }
         }
