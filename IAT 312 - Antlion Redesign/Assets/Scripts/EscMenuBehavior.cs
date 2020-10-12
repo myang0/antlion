@@ -8,13 +8,30 @@ using UnityEngine.SceneManagement;
 public class EscMenuBehavior : MonoBehaviour {
     [SerializeField] private GameObject escapeMenuBackground;
     [SerializeField] private GameObject vnBackgroundEdge;
+    [SerializeField] private GameObject dieScreen;
+    [SerializeField] private GameObject winScreen;
     public bool isEscMenuActive = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !winScreen.activeInHierarchy &&
+            !dieScreen.activeInHierarchy) {
             EscapeMenu();
         }
+    }
+
+    public void ShowWinScreen() {
+        winScreen.SetActive(true);
+        SetEndScreen();
+    }
+
+    public void ShowDieScreen() {
+        dieScreen.SetActive(true);
+        SetEndScreen();
+    }
+
+    private void SetEndScreen() {
+        Time.timeScale = 0;
     }
 
     public void EscapeMenu() {

@@ -116,8 +116,8 @@ public class FightMapManager : MonoBehaviour {
     }
 
     private void GenerateLockedWall() {
-        GenerateTile(columns / 2 - 1, rows - 1, Tile.LockedWall);
-        GenerateTile(columns / 2, rows - 1, Tile.LockedWall);
+        GenerateTileLayerZero(columns / 2 - 1, rows - 1, Tile.LockedWall);
+        GenerateTileLayerZero(columns / 2, rows - 1, Tile.LockedWall);
     }
 
     private void GenerateMap() {

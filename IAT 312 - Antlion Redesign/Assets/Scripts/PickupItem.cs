@@ -85,9 +85,9 @@ public class PickupItem : MonoBehaviour {
         // }
         
         weapon = Instantiate(swing, position, Quaternion.identity);
-        if (this.gameObject.CompareTag("Crossbow")) {
-            StartCoroutine(AttackCrossbow());
-        } 
+        // if (this.gameObject.CompareTag("Crossbow")) {
+        //     StartCoroutine(AttackCrossbow());
+        // } 
 
         weapon.transform.parent = player.gameObject.transform.parent;
         if (weapon.CompareTag("MeleeSwing")) {

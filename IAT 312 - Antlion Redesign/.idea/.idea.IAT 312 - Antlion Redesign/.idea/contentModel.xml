@@ -26,6 +26,7 @@
           <e p="BoostParticles.cs" t="Include" />
           <e p="BoulderBehaviour.cs" t="Include" />
           <e p="BoulderIndicator.cs" t="Include" />
+          <e p="ButtonHoverBehavior.cs" t="Include" />
           <e p="Dialogue.cs" t="Include" />
           <e p="DontDestroyOnLoad.cs" t="Include" />
           <e p="Enemies" t="Include">

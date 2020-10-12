@@ -127,5 +127,5 @@ MonoBehaviour:
   remainingUses: 50
   baseUses: 0
   baseCooldown: 0.25
-  baseDamage: 16
+  baseDamage: 15
   isDropped: 1

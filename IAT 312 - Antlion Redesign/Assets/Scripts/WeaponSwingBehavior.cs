@@ -26,7 +26,9 @@ public class WeaponSwingBehavior : MonoBehaviour {
 
     void DeleteOnAnimationEnd() {
         playerMovement.rotationLock = false;
-        Debug.Log("I'm gonna die");
+        if (gameObject.CompareTag("Crossbow")) {
+            playerMovement.shootProjectile(15f);
+        }
         Destroy(this.gameObject);
     }
 }
