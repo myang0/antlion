@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3542659388845579140}
   - component: {fileID: 3542659388845579147}
-  - component: {fileID: 3542659388845579146}
   - component: {fileID: 6073696470681636693}
+  - component: {fileID: -3304197835417356047}
   m_Layer: 0
   m_Name: SpeedBoost
   m_TagString: Untagged
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b8314e966dfce094a92f997869b9da32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 199fab07a766ec545b69b88afe956ffe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,32 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3542659388845579146
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3542659388845579144}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3, y: 0.75}
-    newSize: {x: 0.3, y: 0.75}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.6}
-  m_EdgeRadius: 0
 --- !u!114 &6073696470681636693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,3 +100,51 @@ MonoBehaviour:
   healthBoost: 0
   attackBoost: 1
   speedBoost: 1.05
+--- !u!60 &-3304197835417356047
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542659388845579144}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.3, y: 1.8}
+    newSize: {x: 0.3, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.38333336, y: -0.28666666}
+      - {x: 0.39000002, y: -0.25333333}
+      - {x: 0.39000002, y: -0.10666667}
+      - {x: 0.33666667, y: 0.033333335}
+      - {x: 0.23, y: 0.12666667}
+      - {x: 0.15666667, y: 0.16666667}
+      - {x: 0.19666667, y: 0.33333334}
+      - {x: 0.19666667, y: 0.47333336}
+      - {x: 0.18333334, y: 0.5866667}
+      - {x: -0.16333334, y: 0.5866667}
+      - {x: -0.18333334, y: 0.56666666}
+      - {x: -0.21666667, y: 0.31333333}
+      - {x: -0.15666667, y: 0.29333335}
+      - {x: -0.31, y: 0.06666667}
+      - {x: -0.38333336, y: -0.06666667}
+      - {x: -0.38333336, y: -0.28}
+      - {x: -0.33666667, y: -0.42666668}
+      - {x: -0.16333334, y: -0.55333334}
+      - {x: -0.07666667, y: -0.5733333}
+      - {x: 0.10333334, y: -0.5733333}
+      - {x: 0.21666667, y: -0.52000004}
+      - {x: 0.27, y: -0.49333334}
+      - {x: 0.37666667, y: -0.35333335}
