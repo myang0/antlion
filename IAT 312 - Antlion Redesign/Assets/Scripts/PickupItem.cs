@@ -31,7 +31,7 @@ public class PickupItem : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && isDropped) {
             float dist = Vector3.Distance(transform.position, player.transform.position);
 
             if (dist < 2f && isDropped) {
@@ -42,8 +42,7 @@ public class PickupItem : MonoBehaviour {
 
     void AddToInventory() {
         if (!player) return;
-        isDropped = false;
-
+        
         for (int i = 0; i < inventory.items.Length; i++) {
             if (!inventory.isFull[i]) {
                 inventory.selectedItemIndex = inventory.numItemsCarried;
@@ -55,8 +54,8 @@ public class PickupItem : MonoBehaviour {
 
                 hitbox.enabled = false;
                 sprite.enabled = false;
+                isDropped = false;
 
-                DontDestroyOnLoad(gameObject);
                 this.transform.parent = player.gameObject.transform.parent;
                 
                 i = inventory.items.Length;
