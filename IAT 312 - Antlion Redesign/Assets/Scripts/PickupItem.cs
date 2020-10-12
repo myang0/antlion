@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupItem : MonoBehaviour {
-    [SerializeField] private GameObject swordSwing;
-    [SerializeField] private GameObject axeSwing;
-    [SerializeField] private GameObject crossbowSwing;
+    // [SerializeField] private GameObject swordSwing;
+    // [SerializeField] private GameObject axeSwing;
+    // [SerializeField] private GameObject crossbowSwing;
+    [SerializeField] private GameObject swing;
     private Inventory inventory;
     private PlayerMovement player;
 
     public SpriteRenderer sprite;
 
-    public BoxCollider2D hitbox;
+    public Collider2D hitbox;
 
     public int remainingUses;
     public int baseUses;
@@ -19,10 +20,10 @@ public class PickupItem : MonoBehaviour {
     private float currentCooldown = 0;
 
     public float baseDamage;
-    public float attackRange;
+    // public float attackRange;
     public bool isDropped = true;
 
-    public bool isRanged;
+    // public bool isRanged;
 
     void Start() {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -74,16 +75,19 @@ public class PickupItem : MonoBehaviour {
             playerPosition.z);
 
         GameObject weapon = new GameObject();
+        // if (this.gameObject.CompareTag("Crossbow")) {
+        //     weapon = Instantiate(crossbowSwing, position, Quaternion.identity);
+        //     StartCoroutine(AttackCrossbow());
+        // } else if (this.gameObject.CompareTag("Axe")) {
+        //     weapon = Instantiate(axeSwing, position, Quaternion.identity);
+        // } else if (this.gameObject.CompareTag("Sword")) {
+        //     weapon = Instantiate(swordSwing, position, Quaternion.identity);
+        // }
+        
+        weapon = Instantiate(swing, position, Quaternion.identity);
         if (this.gameObject.CompareTag("Crossbow")) {
-            weapon = Instantiate(crossbowSwing, position, Quaternion.identity);
             StartCoroutine(AttackCrossbow());
-        } else if (this.gameObject.CompareTag("Axe")) {
-            weapon = Instantiate(axeSwing, position, Quaternion.identity);
-            // StartCoroutine(AttackAxe());
-        } else if (this.gameObject.CompareTag("Sword")) {
-            weapon = Instantiate(swordSwing, position, Quaternion.identity);
-            // StartCoroutine(AttackSword());
-        }
+        } 
 
         weapon.transform.parent = player.gameObject.transform.parent;
         if (weapon.CompareTag("MeleeSwing")) {
@@ -110,23 +114,6 @@ public class PickupItem : MonoBehaviour {
         player.rotationLock = false;
     }
     
-    IEnumerator AttackSword() {
-        player.rotationLock = true;
-        player.showSwingCrescent(baseDamage);
-        yield return new WaitForSeconds(0.1f);
-        // player.meleeAttack(attackRange, baseDamage);
-        player.showSwingCrescent(baseDamage);
-        player.rotationLock = false;
-    }
-    IEnumerator AttackAxe() {
-        player.rotationLock = true;
-        player.showSwingCrescent(baseDamage);
-        yield return new WaitForSeconds(0.2f);
-        // player.meleeAttack(attackRange, baseDamage);
-        player.showSwingCrescent(baseDamage);
-        player.rotationLock = false;
-    }
-
     IEnumerator AttackCooldown(float cooldown) {
         yield return new WaitForSeconds(cooldown);
         currentCooldown = 0;

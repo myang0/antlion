@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8245286020663017731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 01bce8e33fda2714ea3a8ace75e31cf2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad9acbd2bffa6a6459be45ea3659ca69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,14 +100,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3913044, y: 1.3913044}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1.3913044, y: 1.3913044}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3913044, y: 1.3913044}
+  m_Size: {x: 2.5, y: 2.5}
   m_EdgeRadius: 0
 --- !u!114 &8245286020663017791
 MonoBehaviour:
@@ -121,14 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5676ccc8441e234ba5f3d1dfc26897d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordSwing: {fileID: 8035450255340974111, guid: eca874eaa2d78cb4f8bae43b773d0cf7,
-    type: 3}
-  axeSwing: {fileID: 0}
-  crossbowSwing: {fileID: 0}
+  swing: {fileID: 1413903385245995147, guid: 5c57e1ab2194a5d4b8f6701679925024, type: 3}
   sprite: {fileID: 8245286020663017729}
   hitbox: {fileID: 8245286020663017728}
   remainingUses: 50
+  baseUses: 0
   baseCooldown: 0.25
   baseDamage: 16
-  attackRange: 1
-  isRanged: 0
+  isDropped: 1

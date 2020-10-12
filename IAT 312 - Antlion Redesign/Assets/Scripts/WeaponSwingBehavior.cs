@@ -20,12 +20,13 @@ public class WeaponSwingBehavior : MonoBehaviour {
     }
 
     void Update() {
-        this.gameObject.transform.position = player.transform.position;
-        this.gameObject.transform.rotation = player.transform.rotation;
+        gameObject.transform.position = player.transform.position;
+        gameObject.transform.rotation = player.transform.rotation;
     }
 
     void DeleteOnAnimationEnd() {
         playerMovement.rotationLock = false;
+        Debug.Log("I'm gonna die");
         Destroy(this.gameObject);
     }
 }

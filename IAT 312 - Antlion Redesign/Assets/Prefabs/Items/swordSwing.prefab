@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc204453a937c4699c4e6780107b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 0
 --- !u!60 &-7301244094179520879
 PolygonCollider2D:
   m_ObjectHideFlags: 0

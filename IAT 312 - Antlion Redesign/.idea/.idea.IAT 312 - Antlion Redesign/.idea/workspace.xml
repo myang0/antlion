@@ -27,6 +27,17 @@
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Axe.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Axe.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Crossbow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Crossbow.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Sword.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Sword.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/swordSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/swordSwing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TintedWall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TintedWall.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +60,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EE47BE73-F7EF-409C-A5E5-CE4B121745B7/8c/fae1028a/Quaternion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/RunPhaseScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/FightPhase.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EE47BE73-F7EF-409C-A5E5-CE4B121745B7/97/9ad59107/SpriteRenderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scripts/EscMenuBehavior.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -68,13 +80,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/DontDestroyOnLoad.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ShieldBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LockedWallBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/MeleeSwingBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ToolbarSlotBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/BossHPBarBehavior.cs" />
@@ -83,6 +92,10 @@
         <option value="$PROJECT_DIR$/Assets/PlayerHPBarBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/WeaponSpawnPointBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" />
       </list>
     </option>
   </component>
