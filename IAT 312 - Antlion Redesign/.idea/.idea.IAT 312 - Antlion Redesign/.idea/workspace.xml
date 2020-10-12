@@ -20,10 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,13 +61,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Inventory.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ToolbarSlotBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" />
       </list>
     </option>
   </component>
@@ -144,7 +141,7 @@
       <workItem from="1602289180727" duration="8391000" />
       <workItem from="1602386581310" duration="1546000" />
       <workItem from="1602388549920" duration="1643000" />
-      <workItem from="1602461433407" duration="9027000" />
+      <workItem from="1602461433407" duration="9365000" />
     </task>
     <servers />
   </component>

@@ -44,6 +44,11 @@ public class VNBehavior : MonoBehaviour {
             "to summon the wrath of Antonio, son of the legendary hero Antony."
         ));
         introDialogues.Add(new Dialogue("Antonio",
+            "I have been warned to be cautious of falling boulders, however thankfully the elders " +
+            "blessed me with their magic, allowing for warning arrows to appear and point in the " +
+            "boulders' direction."
+        ));
+        introDialogues.Add(new Dialogue("Antonio",
             "Wait a second, what are these crude cryptic drawings in the ground..? Anywho, " +
             "I must make haste if I am to save Queen Antifa."
         ));
