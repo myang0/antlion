@@ -497,7 +497,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: [{fileID: 1435862956}]
+  m_Children:
+  - {fileID: 1435862956}
   m_Father: {fileID: 803496759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3967,7 +3968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escapeMenuBackground: {fileID: 1884947057}
-  vnBackgroundEdge: {fileID: 666125443}
+  vnBackgroundEdge: {fileID: 0}
   isEscMenuActive: 0
 --- !u!114 &1577234273
 MonoBehaviour:
