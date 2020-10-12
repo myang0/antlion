@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ProgressBarBehavior : MonoBehaviour
 {
@@ -16,11 +17,9 @@ public class ProgressBarBehavior : MonoBehaviour
         slider.value = (dist < 0) ? 0 : dist;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Update() {
+        if (SceneManager.GetActiveScene().name == "FightPhase") {
+            Destroy(gameObject);
+        }
     }
-
-    
 }
