@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  particles: {fileID: 6335636094273566083, guid: 272e8f87af432d744b93e273d8205cba,
+    type: 3}
 --- !u!61 &1909569021221836939
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float damage;
+    
+    [SerializeField] private GameObject particles;
 
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.CompareTag("Antlion")) {
@@ -15,6 +17,7 @@ public class Projectile : MonoBehaviour
             ab.Damage(damage);
         }
 
+        Instantiate(particles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -22,6 +25,9 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Swarmer")) {
             Swarmer s = other.GetComponent<Swarmer>();
             s.inflictDamage(damage);
+
+            Instantiate(particles, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }

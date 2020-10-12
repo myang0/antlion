@@ -27,7 +27,7 @@ public class MapManager : MonoBehaviour {
     private int rows, columns;
     private int numRows;
 
-    private int boulderRespawnTime = 2;
+    private int boulderRespawnTime = 1;
     private int swarmerRespawnTime = 0;
 
     private Vector2 screenBounds;
@@ -340,7 +340,7 @@ public class MapManager : MonoBehaviour {
 
         bIndicator.boulder = boulder;
 
-        boulderRespawnTime = Random.Range(2, 5);
+        boulderRespawnTime = Random.Range(1, 4);
     }
 
     private void SpawnSwarmer() {

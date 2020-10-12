@@ -343,3 +343,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMultiplier: 0
   baseDamage: 0
+  particles: {fileID: 2931643745248784796, guid: bb85c777960f702468742fb945b40e4a,
+    type: 3}

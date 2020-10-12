@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class SandSpitBehavior : MonoBehaviour {
     [SerializeField] private GameObject sandTilePrefab;
+    [SerializeField] private GameObject particles;
 
     void Start() {
     }
@@ -44,5 +45,9 @@ public class SandSpitBehavior : MonoBehaviour {
         }
 
         return closestObject;
+    }
+
+    void OnDestroy() {
+        Instantiate(particles, transform.position, Quaternion.identity);
     }
 }

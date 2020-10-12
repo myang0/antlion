@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoulderBehaviour : MonoBehaviour
 {
     private GameObject player;
+    [SerializeField] private GameObject particles;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -25,5 +26,9 @@ public class BoulderBehaviour : MonoBehaviour
         if (col.gameObject.layer == 8) {
             Destroy(col.gameObject);
         }
+    }
+
+    void OnDestroy() {
+        Instantiate(particles, transform.position, Quaternion.identity);
     }
 }
