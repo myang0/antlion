@@ -21,6 +21,7 @@
           <e p="AntlionBehavior.cs" t="Include" />
           <e p="BitePointBehavior.cs" t="Include" />
           <e p="BoostItem.cs" t="Include" />
+          <e p="BoostParticles.cs" t="Include" />
           <e p="BoulderBehaviour.cs" t="Include" />
           <e p="BoulderIndicator.cs" t="Include" />
           <e p="Dialogue.cs" t="Include" />

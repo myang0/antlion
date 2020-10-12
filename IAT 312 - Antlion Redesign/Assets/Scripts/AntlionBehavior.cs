@@ -31,9 +31,15 @@ public class AntlionBehavior : MonoBehaviour {
     public float health = 1000;
     private float maxHealth;
     [SerializeField] private bool isInvulnerable = false;
+    private bool isCharging = false;
+    private bool isChargeReadyToStop = false;
     private Vector3 antlionPos;
     private const string FightPhaseStr = "FightPhase";
     private const string RunPhaseSceneStr = "RunPhaseScene";
+    [SerializeField] private int spitBarrageThreshhold = 33;
+    private int spitBarrageBaseThreshhold = 33;
+    [SerializeField] private int spitStreamThreshhold = 66;
+    private int spitStreamBaseThreshhold = 66;
 
     // Start is called before the first frame update
     void Start() {
@@ -47,6 +53,26 @@ public class AntlionBehavior : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+    
+    void Update() {
+        if (player) {
+            if (CompareCurrentSceneTo(RunPhaseSceneStr) &&
+                (player.transform.position.y > 22) && status == Status.NotSpawned &&
+                !GameObject.FindWithTag("MapManager").GetComponent<MapManager>().isTransitionWallBlocked) {
+                spriteRenderer.enabled = true;
+                polyCollider.enabled = true;
+                status = Status.Alive;
+                VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
+                vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Chase);
+            } else if (CompareCurrentSceneTo(FightPhaseStr)) {
+                spriteRenderer.enabled = true;
+                polyCollider.enabled = true;
+                if (status == Status.NotSpawned && player.transform.position.y > 1.5f) {
+                    StartCoroutine(WakeUpBossPhase());
+                }
+            }
+        }
     }
 
     void FixedUpdate() {
@@ -63,7 +89,7 @@ public class AntlionBehavior : MonoBehaviour {
                 }
             } else if (CompareCurrentSceneTo(FightPhaseStr)) {
                 if (player) {
-                    isInvulnerable = false;
+                    // isInvulnerable = false;
                     FightPhaseAttack();
                 } else {
 
@@ -73,32 +99,82 @@ public class AntlionBehavior : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        // if (IsFightPhase()) {
-            // if (other.CompareTag("MeleeSwingCrescent")) {
-            //     GameObject attackPoint = other.gameObject;
-            //     Damage(attackPoint.GetComponent<MeleePointBehavior>().getWeaponDamage());
-            // } else if (other.CompareTag("BiteCrescent")) {
-            //     GameObject attackPoint = other.gameObject;
-            //     Damage(attackPoint.GetComponent<BitePointBehavior>().getWeaponDamage());
-            // }
-        // }
         if (other.CompareTag("BiteCrescent")) {
             GameObject attackPoint = other.gameObject;
             Damage(attackPoint.GetComponent<BitePointBehavior>().getWeaponDamage());
         }
     }
+    
+    private void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.layer == 8) {
+            Destroy(col.gameObject);
+        } else if (col.gameObject.CompareTag("Boulder")) {
+            Damage(20);
+            StartCoroutine(BoulderStun());
+            Destroy(col.gameObject);
+        }
+
+        if (col.gameObject.CompareTag("OuterWall")) {
+            if (CompareCurrentSceneTo(RunPhaseSceneStr)) {
+                Physics2D.IgnoreCollision(polyCollider, col.gameObject.GetComponent<Collider2D>());
+            } else if (isChargeReadyToStop){
+                isCharging = false;
+                isChargeReadyToStop = false;
+                StartCoroutine(AttackDelay(5f));
+            }
+        }
+    }
 
     private void FightPhaseAttack() {
-        Vector3 vectorToPlayer = GETVectorToPlayer();
-        Quaternion angleToPlayer = GETAngleToPlayer();
         RotateToPlayer(GETAngleToPlayer());
 
         if (isAttackReady && IsFacingPlayer(GETAngleToPlayer())) {
-            if (Random.Range(0, 100) > 66) {
+            int randomAttack = Random.Range(0, 100);
+            
+            if (randomAttack > spitStreamThreshhold) {
+                Debug.Log(isAttackReady + "Stream");
                 SpitStreamStart();
-            } else {
+                spitBarrageThreshhold += 7;
+                spitStreamThreshhold = spitStreamBaseThreshhold;
+                spitStreamThreshhold += 14;
+            } else if (randomAttack > spitBarrageThreshhold) {
+                Debug.Log(isAttackReady + "Barrage");
                 SpitBarrageStart();
+                spitStreamThreshhold -= 7;
+                spitBarrageThreshhold = spitBarrageBaseThreshhold;
+                spitBarrageThreshhold += 7;
+            } else {
+                Debug.Log(isAttackReady + "Charge");
+                ChargeAttackStart();
+                spitBarrageThreshhold -= 14;
+                spitStreamThreshhold -= 7;
             }
+            isAttackReady = false;
+        }
+    }
+
+    private void ChargeAttackStart() {
+        Vector3 playerPos = player.transform.position;
+        Vector3 dir = (playerPos - antlionPos).normalized;
+        isCharging = true;
+        isChargeReadyToStop = false;
+        StartCoroutine(ChargeAttack(dir));
+        StartCoroutine(AllowChargeToStop());
+    }
+
+    IEnumerator AllowChargeToStop() {
+        yield return new WaitForSeconds(1f);
+        isChargeReadyToStop = true;
+    }
+
+    IEnumerator ChargeAttack(Vector3 chargeDir) {
+        while (isCharging) {
+            rigidBody.MovePosition(antlionPos +
+                                   chargeDir * (13f * Time.fixedDeltaTime));
+
+            float angle = Mathf.Atan2(chargeDir.y, chargeDir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            yield return null;
         }
     }
 
@@ -125,9 +201,7 @@ public class AntlionBehavior : MonoBehaviour {
         for (int i = 0; i < numOfShots; i++) {
             StartCoroutine(SpitBarrage(i * 0.05f));
         }
-
-        isAttackReady = false;
-        StartCoroutine(AttackDelay(6f));
+        StartCoroutine(AttackDelay(5f + numOfShots*0.05f));
     }
     
     private void SpitStreamStart() {
@@ -135,9 +209,7 @@ public class AntlionBehavior : MonoBehaviour {
         for (int i = 0; i < numOfShots; i++) {
             StartCoroutine(SpitStream(i * 0.1f));
         }
-
-        isAttackReady = false;
-        StartCoroutine(AttackDelay(7.5f));
+        StartCoroutine(AttackDelay(5f + numOfShots*0.1f));
     }
 
     private int LowHealthSpitMore() {
@@ -205,6 +277,14 @@ public class AntlionBehavior : MonoBehaviour {
                                dir * (movementSpeed * Time.fixedDeltaTime));
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        StartCoroutine(LeaveAfterRunningAway());
+    }
+
+    IEnumerator LeaveAfterRunningAway() {
+        yield return new WaitForSeconds(2.5f);
+        spriteRenderer.enabled = false;
+        polyCollider.enabled = false;
+        status = Status.NotSpawned;
     }
 
     private void RunPhaseMovement() {
@@ -228,42 +308,12 @@ public class AntlionBehavior : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.layer == 8) {
-            Destroy(col.gameObject);
-        } else if (col.gameObject.CompareTag("Boulder")) {
-            Damage(20);
-            StartCoroutine(BoulderStun());
-            Destroy(col.gameObject);
-        }
-
-        if (col.gameObject.CompareTag("OuterWall") && CompareCurrentSceneTo(RunPhaseSceneStr)) {
-            Physics2D.IgnoreCollision(polyCollider, col.gameObject.GetComponent<Collider2D>());
-        }
-    }
-
     private IEnumerator BoulderStun() {
         movementSpeed = baseMovementSpeed / 2;
         rageMovementSpeed = baseMovementSpeed / 2;
         yield return new WaitForSeconds(2f);
         movementSpeed = baseMovementSpeed;
         rageMovementSpeed = baseMovementSpeed * 2;
-    }
-
-    void Update() {
-        if (player) {
-            if (CompareCurrentSceneTo(RunPhaseSceneStr) &&
-                (player.transform.position.y > 22) && status == Status.NotSpawned) {
-                spriteRenderer.enabled = true;
-                polyCollider.enabled = true;
-                status = Status.Alive;
-                VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
-                vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Chase);
-            } else if (CompareCurrentSceneTo(FightPhaseStr) &&
-                       status == Status.NotSpawned && player.transform.position.y > 1.5f) {
-                StartCoroutine(WakeUpBossPhase());
-            }
-        }
     }
 
     private bool CompareCurrentSceneTo(string scene) {

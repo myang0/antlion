@@ -14,6 +14,7 @@ public class PickupItem : MonoBehaviour {
     public BoxCollider2D hitbox;
 
     public int remainingUses;
+    public int baseUses;
     public float baseCooldown;
     private float currentCooldown = 0;
 
@@ -26,6 +27,7 @@ public class PickupItem : MonoBehaviour {
     void Start() {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        baseUses = remainingUses;
     }
 
     void Update() {
