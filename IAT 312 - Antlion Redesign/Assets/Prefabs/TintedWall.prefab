@@ -128,6 +128,7 @@ MonoBehaviour:
   - {fileID: 3542659388845579144, guid: 8ab885dfe65655844a418828c02bb46e, type: 3}
   - {fileID: 4336648752967630470, guid: a30a66d8719b8a04f9defb62c54eab37, type: 3}
   - {fileID: 4153463914929258907, guid: 674d9c3cb19e96d48b6d59de2d0c9186, type: 3}
+  - {fileID: 6834650290903186210, guid: a17be37566a6b4b48b9d5cf5c051b137, type: 3}
   floorTilePrefab: {fileID: 6635668803160179835, guid: bd68b05fe9003204ea8459691c23ed4f,
     type: 3}
   brickEffects: {fileID: 7019832315854314677, guid: 3ec5bb2862f4c0a478654e2fe0dbb13d,
