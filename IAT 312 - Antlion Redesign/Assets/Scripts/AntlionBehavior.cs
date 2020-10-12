@@ -65,9 +65,12 @@ public class AntlionBehavior : MonoBehaviour {
                 status = Status.Alive;
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Chase);
-            } else if (CompareCurrentSceneTo(FightPhaseStr) &&
-                       status == Status.NotSpawned && player.transform.position.y > 1.5f) {
-                StartCoroutine(WakeUpBossPhase());
+            } else if (CompareCurrentSceneTo(FightPhaseStr)) {
+                spriteRenderer.enabled = true;
+                polyCollider.enabled = true;
+                if (status == Status.NotSpawned && player.transform.position.y > 1.5f) {
+                    StartCoroutine(WakeUpBossPhase());
+                }
             }
         }
     }
@@ -86,7 +89,7 @@ public class AntlionBehavior : MonoBehaviour {
                 }
             } else if (CompareCurrentSceneTo(FightPhaseStr)) {
                 if (player) {
-                    isInvulnerable = false;
+                    // isInvulnerable = false;
                     FightPhaseAttack();
                 } else {
 

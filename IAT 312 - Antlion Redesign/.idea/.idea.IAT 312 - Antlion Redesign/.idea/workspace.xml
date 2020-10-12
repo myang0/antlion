@@ -16,11 +16,19 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:item-stuffs" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,11 +40,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DontDestroyOnLoad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/FightPhase.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UIWeaponDurability.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scripts/EscMenuBehavior.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/FightPhase.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/RunPhaseScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LockedWallBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MeleePointBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scripts/EscMenuBehavior.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EE47BE73-F7EF-409C-A5E5-CE4B121745B7/8c/fae1028a/Quaternion.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/RunPhaseScene.unity" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -66,8 +80,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ToolbarSlotBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
       </list>
     </option>
   </component>
@@ -155,7 +169,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="item-stuffs" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -166,6 +192,14 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="154" y="94" key="MergeDialog" timestamp="1602476506802">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="154" y="94" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602476506802" />
+    <state x="932" y="245" key="MultipleFileMergeDialog" timestamp="1602476506809">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="932" y="245" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602476506809" />
     <state x="1040" y="246" key="RiderGenerateDialog" timestamp="1601794521868">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
