@@ -12,6 +12,8 @@ public class ToolbarSlotBehavior : MonoBehaviour {
     [SerializeField] private GameObject durabilityBar;
     private Image image;
 
+    [SerializeField] private Image arrowImg;
+
     // Start is called before the first frame update
     void Start() {
         image = GetComponent<Image>();
@@ -29,10 +31,18 @@ public class ToolbarSlotBehavior : MonoBehaviour {
                 slider.maxValue = weaponScript.baseUses;
                 slider.value = weaponScript.remainingUses;
                 image.color = new Color(255, 255, 255, 1);
+
+                if (inventory.selectedItemIndex == slotIndex) {
+                    arrowImg.enabled = true;
+                } else {
+                    arrowImg.enabled = false;
+                }
             } else {
                 image.overrideSprite = null;
                 image.color = new Color(255, 255 ,255, 0);
                 durabilityBar.SetActive(false);
+
+                arrowImg.enabled = false;
             }
         }    
     }
