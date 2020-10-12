@@ -16,6 +16,8 @@ public class MapManager : MonoBehaviour {
     [SerializeField] private GameObject swarmerPrefab;
     [SerializeField] private GameObject arrowPrefab;
 
+    [SerializeField] private ProgressBarBehavior progBar;
+
     public bool isSceneOver = false;
 
     public int[,] grid;
@@ -72,10 +74,14 @@ public class MapManager : MonoBehaviour {
         GenerateMap();
         GenerateEntranceAndExit();
         GeneratePath();
+
+        progBar.SetMax(rows * 2);
     }
 
     void Update() {
         if (player) {
+            progBar.SetDist(player.transform.position.y);
+
             if (player.transform.position.y > GETEndOfRunMap()) {
                 isSceneOver = true;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -127,6 +133,10 @@ public class MapManager : MonoBehaviour {
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Desert);
             }
         }
+    }
+
+    void FixedUpdate() {
+
     }
 
     public float GETEndOfRunMap() {
@@ -300,7 +310,7 @@ public class MapManager : MonoBehaviour {
             
         } else {
             if (value > 8) {
-                int sndRand = Random.Range(0, 6);
+                int sndRand = Random.Range(0, 6 );
                 GameObject wallType = (sndRand == 0) ? tintedWallPrefab : innerWallPrefab;
 
                 GameObject wall = Instantiate(wallType, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 1),
