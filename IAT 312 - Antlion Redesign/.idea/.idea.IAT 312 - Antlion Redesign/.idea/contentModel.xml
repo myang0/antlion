@@ -17,6 +17,8 @@
             </e>
           </e>
         </e>
+        <e p="BossHPBarBehavior.cs" t="Include" />
+        <e p="PlayerHPBarBehavior.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AntlionBehavior.cs" t="Include" />
           <e p="BitePointBehavior.cs" t="Include" />
@@ -35,6 +37,8 @@
           <e p="Inventory.cs" t="Include" />
           <e p="Items" t="Include">
             <e p="Key.cs" t="Include" />
+            <e p="Orbital.cs" t="Include" />
+            <e p="PassiveItem.cs" t="Include" />
           </e>
           <e p="LockedWallBehavior.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />

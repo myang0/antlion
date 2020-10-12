@@ -8,6 +8,8 @@ public class VNBehavior : MonoBehaviour {
     [SerializeField] private GameObject backgroundEdge;
     [SerializeField] private Text speakerName;
     [SerializeField] private Text speakerWords;
+    [SerializeField] private GameObject antonioPotrait;
+    [SerializeField] private GameObject antleonPortrait;
     private List<List<Dialogue>> currentDialogue = new List<List<Dialogue>>();
     private int lineIndex = 0;
     private int dialogueIndex = 0;
@@ -69,19 +71,6 @@ public class VNBehavior : MonoBehaviour {
             "I better make good use of any equipment I found during my escape. I'll have to fend " +
             "off his underlings if I am to make my way across these sands."
         ));
-        desertDialogue.Add(new Dialogue("Antonio",
-            "Although I could explore the desert and attempt to find the rumored Antlion " + 
-            "slaying sword." 
-        ));
-        desertDialogue.Add(new Dialogue("Antonio",
-            "The elder ants told me tales of how my father, Antony, had slain the Antlion tyrant " +
-            "Anthur with a legendary sword capable of levelling sand dunes."
-        ));
-        desertDialogue.Add(new Dialogue("Antonio",
-            "If I dare seek its power, then I must tear down every wall here until I find it. " +
-            "However I am unsure if I should be keeping Queen Antifa waiting."
-        ));
-
         endOfRunPhaseDialogue.Add(new Dialogue("Antonio",
             "There it is! The path to the chambers where Queen Antifa is locked away must be " +
             "down the hall. I must hurry."
@@ -169,5 +158,12 @@ public class VNBehavior : MonoBehaviour {
     private void UpdateVNText() {
         speakerName.text = currentDialogue[dialogueIndex][lineIndex].GETName();
         speakerWords.text = currentDialogue[dialogueIndex][lineIndex].GETText();
+        if (currentDialogue[dialogueIndex][lineIndex].GETName() == "Antonio") {
+            antonioPotrait.SetActive(true);
+            antleonPortrait.SetActive(false);
+        } else {
+            antonioPotrait.SetActive(false);
+            antleonPortrait.SetActive(true);
+        }
     }
 }

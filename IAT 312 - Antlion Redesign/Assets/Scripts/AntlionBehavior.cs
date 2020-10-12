@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class AntlionBehavior : MonoBehaviour {
-    private enum Status {
+    public enum Status {
         NotSpawned,
         Alive,
         Dead
     }
 
-    private Status status = Status.NotSpawned;
+    public Status status = Status.NotSpawned;
     public float baseMovementSpeed = 4;
     public float movementSpeed = 4f;
     public float rageMovementSpeed = 10f;
@@ -29,7 +29,7 @@ public class AntlionBehavior : MonoBehaviour {
     private float baseRotationSpeed = 0.2f;
     private float spitReadyRotationSpeed = 3f;
     public float health = 1000;
-    private float maxHealth;
+    public float maxHealth = 1000;
     [SerializeField] private bool isInvulnerable = false;
     private bool isCharging = false;
     private bool isChargeReadyToStop = false;
@@ -58,7 +58,7 @@ public class AntlionBehavior : MonoBehaviour {
     void Update() {
         if (player) {
             if (CompareCurrentSceneTo(RunPhaseSceneStr) &&
-                (player.transform.position.y > 22) && status == Status.NotSpawned &&
+                (player.transform.position.y > 22) && status == Status.NotSpawned && health > 999 &&
                 !GameObject.FindWithTag("MapManager").GetComponent<MapManager>().isTransitionWallBlocked) {
                 spriteRenderer.enabled = true;
                 polyCollider.enabled = true;

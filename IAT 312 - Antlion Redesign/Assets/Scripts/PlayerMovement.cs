@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour {
     public float kbTimer = 0f;
 
     public float health = 100;
+    public float maxHealth = 100;
 
     public bool shielded = false;
     public float shieldedSpeed = 7.5f;
