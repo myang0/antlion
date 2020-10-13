@@ -26,7 +26,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/InnerWall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/InnerWall.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/AntlionSwarmer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/AntlionSwarmer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Swarmer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Swarmer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +40,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DontDestroyOnLoad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PlaySoundOnce.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UIWeaponDurability.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LockedWallBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MeleePointBehavior.cs" root0="FORCE_HIGHLIGHTING" />
@@ -57,7 +60,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/BoostItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIWeaponDurability.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleePointBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/InnerWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BitePointBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TempSandTileBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SandSpitBehavior.cs" />
@@ -85,6 +87,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/PlaySoundOnce.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/InnerWallBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Swarmer.cs" />
       </list>
     </option>
   </component>
