@@ -271,7 +271,6 @@ public class PlayerMovement : MonoBehaviour {
     
         Projectile p = projectile.GetComponent<Projectile>();
         p.damage = baseDmg * attackMultiplier;
-        p.transform.Rotate(0, 0, 180);
     }
 
     public void SceneTransition() {
