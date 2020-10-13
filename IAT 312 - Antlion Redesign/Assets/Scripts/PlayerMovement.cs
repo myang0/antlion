@@ -47,12 +47,12 @@ public class PlayerMovement : MonoBehaviour {
     public float shieldedSpeed = 7.5f;
     public bool rotationLock = false;
     public bool hasKey = false;
-
+    private AudioSource audio;
     public GameObject projectilePrefab;
     
     void Start() {
         currentMovementSpeed = baseMovementSpeed;
-
+        audio = gameObject.GetComponent<AudioSource>();
         // SceneManager.activeSceneChanged += sceneTransition;
         SetupCameraNoise();
         StartCoroutine(ShowRubble());
@@ -223,6 +223,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     IEnumerator ShowBite() {
+        audio.Play();
         rotationLock = true;
         transform.rotation = GETAngleToMouse();
         bitePoint.SetActive(!bitePoint.activeInHierarchy);

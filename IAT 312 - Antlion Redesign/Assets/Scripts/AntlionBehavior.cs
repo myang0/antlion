@@ -40,7 +40,7 @@ public class AntlionBehavior : MonoBehaviour {
     private int spitBarrageBaseThreshhold = 33;
     [SerializeField] private int spitStreamThreshhold = 66;
     private int spitStreamBaseThreshhold = 66;
-
+    
     // Start is called before the first frame update
     void Start() {
         antlion = GameObject.Find("Antlion");

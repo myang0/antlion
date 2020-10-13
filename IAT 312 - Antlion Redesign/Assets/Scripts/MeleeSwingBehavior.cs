@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeSwingBehavior : MonoBehaviour {
+    private AudioSource audio;
     private PolygonCollider2D polyCollider;
     public float damageMultiplier;
     public float baseDamage;
     private List<Collider2D> objectsHit;
 
     void Start() {
+        audio = gameObject.GetComponent<AudioSource>();
+        audio.Play();
         polyCollider = this.gameObject.GetComponent<PolygonCollider2D>();
         objectsHit = new List<Collider2D>();
     }
