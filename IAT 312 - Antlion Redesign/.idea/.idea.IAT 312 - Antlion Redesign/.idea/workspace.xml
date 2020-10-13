@@ -26,7 +26,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Flail.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Flail.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TintedWall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TintedWall.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +73,6 @@
         <option value="$PROJECT_DIR$/Assets/PlayerHPBarBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VNBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/WeaponSpawnPointBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/CrossbowBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" />
@@ -79,9 +80,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/BossHPBarBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
       </list>
     </option>
   </component>

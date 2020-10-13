@@ -16,6 +16,7 @@ public class TintedWallBehaviour : MonoBehaviour
     [SerializeField] private GameObject brickEffects;
 
     private bool isEquipmentSpawn = false;
+    private bool isPassiveSpawn = false;
     private bool isQuitting = false;
     private bool isRestarting = false;
     private int randIndex = 0;
@@ -44,7 +45,9 @@ public class TintedWallBehaviour : MonoBehaviour
 
     private void SpawnItem() {
         if (isEquipmentSpawn) {
-            randIndex = Random.Range(0, 4);
+            randIndex = Random.Range(0, 6);
+        } else if (isPassiveSpawn) {
+            randIndex = Random.Range(6, 9);
         }
         Vector3 floorTilePosition = new Vector3(transform.position.x, transform.position.y, 1);
         Instantiate(floorTilePrefab, floorTilePosition, Quaternion.identity);
@@ -55,6 +58,10 @@ public class TintedWallBehaviour : MonoBehaviour
 
     public void ForceEquipmentSpawn() {
         isEquipmentSpawn = true;
+    }
+    
+    public void ForcePassiveSpawn() {
+        isPassiveSpawn = true;
     }
 
     public void SetRestarting() {

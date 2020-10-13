@@ -128,7 +128,12 @@ public class FightMapManager : MonoBehaviour {
                 grid[colIdx, rowIdx] = gridValue;
                 
                 if ((rowIdx == 4 || rowIdx == 10) && (colIdx == 4 || colIdx == 10)) {
-                    GenerateTile(colIdx, rowIdx, Tile.TintedWall);
+                    GameObject tintedWall = GenerateTile(colIdx, rowIdx, Tile.TintedWall);
+                    if (rowIdx == 4) {
+                        tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
+                    } else {
+                        tintedWall.GetComponent<TintedWallBehaviour>().ForcePassiveSpawn();
+                    }
                 } else if ((rowIdx > 5 && rowIdx < 9) && (colIdx > 5 && colIdx < 9)) {
                     GenerateTile(colIdx, rowIdx, Tile.Sand);
                 } else if (IsOuterWall(colIdx, rowIdx) && 
@@ -156,7 +161,7 @@ public class FightMapManager : MonoBehaviour {
                 return Instantiate(sandTilePrefab, tilePosition, Quaternion.identity);
             case Tile.TintedWall:
                 GameObject tintedWall = Instantiate(tintedWallPrefab, tilePosition, Quaternion.identity);
-                tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
+                // tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
                 return tintedWall;
             case Tile.LockedWall:
                 return Instantiate(lockedWallPrefab, tilePosition, Quaternion.identity);
