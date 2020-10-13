@@ -26,18 +26,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BossHPBarBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BossHPBarBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Axe.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Axe.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Crossbow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Crossbow.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Spear.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Spear.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Sword.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Sword.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/spearSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/spearSwing.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TintedWall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TintedWall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sword/swordSwingNew.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/sword/swordSwingNew.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Flail.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Flail.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +79,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/BossHPBarBehavior.cs" />
       </list>
     </option>
