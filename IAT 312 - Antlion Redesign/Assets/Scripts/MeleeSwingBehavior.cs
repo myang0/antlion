@@ -8,6 +8,7 @@ public class MeleeSwingBehavior : MonoBehaviour {
     public float damageMultiplier;
     public float baseDamage;
     private List<Collider2D> objectsHit;
+
     void Start() {
         polyCollider = this.gameObject.GetComponent<PolygonCollider2D>();
         objectsHit = new List<Collider2D>();

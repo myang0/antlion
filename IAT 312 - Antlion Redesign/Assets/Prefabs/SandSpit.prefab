@@ -145,3 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sandTilePrefab: {fileID: 5029717193280403436, guid: 7236ee1efe45a9f438a81af7b6e0eebd,
     type: 3}
+  particles: {fileID: 2307865366547478469, guid: 8a4b926b8d1069a48831760fef134403,
+    type: 3}
