@@ -10,17 +10,17 @@ public class BossHPBarBehavior : MonoBehaviour {
     private AntlionBehavior antlionBehavior;
     // Start is called before the first frame update
     void Start() {
+        antlionBehavior = GameObject.FindGameObjectWithTag("Antlion").GetComponent<AntlionBehavior>();
+        slider.maxValue = antlionBehavior.maxHealth;
     }
 
     // Update is called once per frame
     void Update() {
         if (!antlionBehavior) {
-            antlionBehavior = GameObject.FindGameObjectWithTag("Antlion").GetComponent<AntlionBehavior>();
-            slider.maxValue = antlionBehavior.maxHealth;
+            hpBar.SetActive(false);
         } else {
             slider.value = antlionBehavior.health;
+            hpBar.SetActive(antlionBehavior.status != AntlionBehavior.Status.NotSpawned);
         }
-
-        hpBar.SetActive(antlionBehavior.status != AntlionBehavior.Status.NotSpawned);
     }
 }

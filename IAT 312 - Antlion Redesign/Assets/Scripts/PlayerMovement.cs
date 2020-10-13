@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.M)) {
                 MapManager mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
+                StartCoroutine(FixBossPhaseSkip());
                 Vector3 newPosition = new Vector3(transform.position.x, mapManager.GETEndOfRunMap()+1f,
                     transform.position.z);
                 transform.position = newPosition;
@@ -86,6 +87,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (health < 0) {
                 vcamNoise.m_FrequencyGain = 0f;
+                GameObject.FindGameObjectWithTag("EscMenu").GetComponent<EscMenuBehavior>().ShowDieScreen();
                 Destroy(this.gameObject);
             }
 
@@ -111,6 +113,15 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         RotateAnt();
+    }
+
+    IEnumerator FixBossPhaseSkip() {
+        yield return new WaitForSeconds(0.5f);
+        AntlionBehavior antlionBehavior = GameObject.FindGameObjectWithTag("Antlion").GetComponent<AntlionBehavior>();
+        antlionBehavior.status = AntlionBehavior.Status.NotSpawned;
+        antlionBehavior.polyCollider.enabled = false;
+        antlionBehavior.spriteRenderer.enabled = false;
+        antlionBehavior.isInvulnerable = true;
     }
 
     public void ApplyBuffs(float healthBoost, float attackBoost, float speedBoost) {
@@ -216,7 +227,7 @@ public class PlayerMovement : MonoBehaviour {
         transform.rotation = GETAngleToMouse();
         bitePoint.SetActive(!bitePoint.activeInHierarchy);
         if (bitePoint.activeInHierarchy) {
-            bitePoint.GetComponent<BitePointBehavior>().setWeaponDamage(10f * attackMultiplier);
+            bitePoint.GetComponent<BitePointBehavior>().setWeaponDamage(2.5f * attackMultiplier);
         }
 
         // bite.enabled = true;
@@ -252,12 +263,12 @@ public class PlayerMovement : MonoBehaviour {
     public void shootProjectile(float baseDmg) {
         GameObject projectile =
             Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-
+    
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         // rb.AddForce(firePoint.up * 20f, ForceMode2D.Impulse);
         
         rb.velocity = GETAngleToMouse() * new Vector2(0, 25f);
-
+    
         Projectile p = projectile.GetComponent<Projectile>();
         p.damage = baseDmg * attackMultiplier;
     }

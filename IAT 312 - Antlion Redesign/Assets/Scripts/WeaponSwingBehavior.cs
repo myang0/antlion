@@ -20,12 +20,15 @@ public class WeaponSwingBehavior : MonoBehaviour {
     }
 
     void Update() {
-        this.gameObject.transform.position = player.transform.position;
-        this.gameObject.transform.rotation = player.transform.rotation;
+        gameObject.transform.position = player.transform.position;
+        gameObject.transform.rotation = player.transform.rotation;
     }
 
     void DeleteOnAnimationEnd() {
         playerMovement.rotationLock = false;
+        if (gameObject.CompareTag("Crossbow")) {
+            playerMovement.shootProjectile(15f);
+        }
         Destroy(this.gameObject);
     }
 }

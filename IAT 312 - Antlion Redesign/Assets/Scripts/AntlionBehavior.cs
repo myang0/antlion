@@ -30,7 +30,7 @@ public class AntlionBehavior : MonoBehaviour {
     private float spitReadyRotationSpeed = 3f;
     public float health = 1000;
     public float maxHealth = 1000;
-    [SerializeField] private bool isInvulnerable = false;
+    [SerializeField] public bool isInvulnerable = false;
     private bool isCharging = false;
     private bool isChargeReadyToStop = false;
     private Vector3 antlionPos;
