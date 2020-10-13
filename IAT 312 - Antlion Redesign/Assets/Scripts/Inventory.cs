@@ -17,12 +17,21 @@ public class Inventory : MonoBehaviour
 
     private Vector3 mousePos;
 
+    private KeyCode[] keyCodes = {
+        KeyCode.Alpha1,
+        KeyCode.Alpha2,
+        KeyCode.Alpha3,
+        KeyCode.Alpha4,
+        KeyCode.Alpha5,
+        KeyCode.Alpha6
+    };
+
     void Update() {
         if (Time.timeScale != 0) {
-            if (Input.GetKeyDown(KeyCode.Q)) {
-                if (numItemsCarried > 0) prevItem();
-            } else if (Input.GetKeyDown(KeyCode.E)) {
+            if (Input.mouseScrollDelta.y > 0) {
                 if (numItemsCarried > 0) nextItem();
+            } else if (Input.mouseScrollDelta.y < 0) {
+                if (numItemsCarried > 0) prevItem();
             }
 
             GameObject player = GameObject.FindWithTag("Player");
@@ -33,6 +42,13 @@ public class Inventory : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F)) {
                 DropSelectedItem();
+            }
+
+            for(int i = 0 ; i < keyCodes.Length; i ++ ){
+                if (Input.GetKeyDown(keyCodes[i])) {
+                    SwitchToItemWithIndex(i);
+                    i = keyCodes.Length;
+                }
             }
         }
     }
@@ -55,6 +71,13 @@ public class Inventory : MonoBehaviour
         selectedItemIndex = (selectedItemIndex + 1) % numItemsCarried;
 
         selectedItem = items[selectedItemIndex];
+    }
+
+    void SwitchToItemWithIndex(int index) {
+        if (numItemsCarried > 0 && index < numItemsCarried) {
+            selectedItemIndex = index;
+            selectedItem = items[selectedItemIndex];
+        }
     }
 
     void useCurrentItem() {
