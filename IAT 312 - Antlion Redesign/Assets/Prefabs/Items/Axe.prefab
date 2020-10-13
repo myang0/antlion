@@ -98,7 +98,7 @@ MonoBehaviour:
   swing: {fileID: 3362019666909499684, guid: 18661c4a6d5071e42b564477645e43ba, type: 3}
   sprite: {fileID: 965351526710032595}
   hitbox: {fileID: 965351526710032589}
-  remainingUses: 30
+  remainingUses: 20
   baseUses: 0
   baseCooldown: 0.5
   baseDamage: 25

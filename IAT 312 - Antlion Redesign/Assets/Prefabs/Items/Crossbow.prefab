@@ -95,13 +95,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5676ccc8441e234ba5f3d1dfc26897d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swing: {fileID: 9143512355916838435, guid: 3b25a100abc7ef347844ae7e319c315b, type: 3}
+  swing: {fileID: 5993010576831036631, guid: b8796dabd6f65074f8b024b9e262be9d, type: 3}
   sprite: {fileID: 6729280604246878751}
   hitbox: {fileID: 7067264446533199518}
-  remainingUses: 20
+  remainingUses: 15
   baseUses: 0
   baseCooldown: 0.25
-  baseDamage: 15
+  baseDamage: 20
   isDropped: 1
 --- !u!60 &7067264446533199518
 PolygonCollider2D:

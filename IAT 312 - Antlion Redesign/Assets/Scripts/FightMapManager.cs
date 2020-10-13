@@ -60,6 +60,7 @@ public class FightMapManager : MonoBehaviour {
 
         if (player.transform.position.y > 50.5f && !playerReachedEnd) {
             playerReachedEnd = true;
+            GameObject.FindGameObjectWithTag("EscMenu").GetComponent<EscMenuBehavior>().ShowWinScreen();
         }
     }
 

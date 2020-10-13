@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     IEnumerator FixBossPhaseSkip() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         AntlionBehavior antlionBehavior = GameObject.FindGameObjectWithTag("Antlion").GetComponent<AntlionBehavior>();
         antlionBehavior.status = AntlionBehavior.Status.NotSpawned;
         antlionBehavior.polyCollider.enabled = false;
@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour {
         transform.rotation = GETAngleToMouse();
         bitePoint.SetActive(!bitePoint.activeInHierarchy);
         if (bitePoint.activeInHierarchy) {
-            bitePoint.GetComponent<BitePointBehavior>().setWeaponDamage(10f * attackMultiplier);
+            bitePoint.GetComponent<BitePointBehavior>().setWeaponDamage(2.5f * attackMultiplier);
         }
 
         // bite.enabled = true;
