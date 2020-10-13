@@ -48,6 +48,7 @@ public class EscMenuBehavior : MonoBehaviour {
         Destroy(GameObject.FindGameObjectWithTag("EscMenu"));
         Destroy(GameObject.FindGameObjectWithTag("UI"));
         Destroy(GameObject.FindGameObjectWithTag("VN"));
+        Destroy(GameObject.FindGameObjectWithTag("Orbital"));
 
         GameObject[] tintedWalls = GameObject.FindGameObjectsWithTag("TintedWall");
         for (int i = 0; i < tintedWalls.Length; i++) {
