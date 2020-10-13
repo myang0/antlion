@@ -17,13 +17,13 @@
             </e>
           </e>
         </e>
-        <e p="BossHPBarBehavior.cs" t="Include" />
-        <e p="PlayerHPBarBehavior.cs" t="Include" />
+        <e p="PlaySoundWhenActive.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AntlionBehavior.cs" t="Include" />
           <e p="BitePointBehavior.cs" t="Include" />
           <e p="BoostItem.cs" t="Include" />
           <e p="BoostParticles.cs" t="Include" />
+          <e p="BossHPBarBehavior.cs" t="Include" />
           <e p="BoulderBehaviour.cs" t="Include" />
           <e p="BoulderIndicator.cs" t="Include" />
           <e p="ButtonHoverBehavior.cs" t="Include" />
@@ -48,13 +48,18 @@
           <e p="MeleeSwingBehavior.cs" t="Include" />
           <e p="OuterWallBehavior.cs" t="Include" />
           <e p="PickupItem.cs" t="Include" />
+          <e p="PlayerHPBarBehavior.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
+          <e p="ProgressBarBehavior.cs" t="Include" />
           <e p="Projectile.cs" t="Include" />
           <e p="SandSpitBehavior.cs" t="Include" />
           <e p="ShieldBehavior.cs" t="Include" />
           <e p="TempSandTileBehavior.cs" t="Include" />
           <e p="TintedWallBehaviour.cs" t="Include" />
           <e p="ToolbarSlotBehavior.cs" t="Include" />
+          <e p="UI" t="Include">
+            <e p="ProgressBar.cs" t="Include" />
+          </e>
           <e p="UIAntlionHealth.cs" t="Include" />
           <e p="UIPlayerHealth.cs" t="Include" />
           <e p="UIWeapon.cs" t="Include" />
