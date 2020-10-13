@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class FightMapManager : MonoBehaviour {
-    private AudioSource audio;
+    private AudioSource[] audio;
     [SerializeField] private GameObject outerWallPrefab;
     [SerializeField] private GameObject sandTilePrefab;
     [SerializeField] private GameObject floorTilePrefab;
@@ -49,8 +49,8 @@ public class FightMapManager : MonoBehaviour {
         GenerateEntranceAndExit();
         GenerateLockedWall();
 
-        audio = gameObject.GetComponent<AudioSource>();
-        audio.Play();
+        audio = gameObject.GetComponents<AudioSource>();
+        audio[0].Play();
     }
 
     private void Update() {
@@ -60,12 +60,13 @@ public class FightMapManager : MonoBehaviour {
             GenerateTileLayerZero(columns / 2, 0, Tile.OuterWall);
             VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
             vnBehavior.UpdateVN(VNBehavior.DialogueChapter.BossStart);
+            audio[1].Play();
         }
 
         if (player.transform.position.y > 50.5f && !playerReachedEnd) {
             playerReachedEnd = true;
             GameObject.FindGameObjectWithTag("EscMenu").GetComponent<EscMenuBehavior>().ShowWinScreen();
-            audio.Pause();
+            audio[0].Pause();
         }
     }
 

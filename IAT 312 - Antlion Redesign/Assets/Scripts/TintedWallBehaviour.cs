@@ -12,7 +12,7 @@ public class TintedWallBehaviour : MonoBehaviour
     private GameObject[] possibleLoot;
 
     [SerializeField] private GameObject floorTilePrefab;
-    
+    [SerializeField] private GameObject wallBreakFxPrefab;
     [SerializeField] private GameObject brickEffects;
 
     private bool isEquipmentSpawn = false;
@@ -51,9 +51,9 @@ public class TintedWallBehaviour : MonoBehaviour
         }
         Vector3 floorTilePosition = new Vector3(transform.position.x, transform.position.y, 1);
         Instantiate(floorTilePrefab, floorTilePosition, Quaternion.identity);
-        
         Vector3 itemPosition = new Vector3(transform.position.x, transform.position.y, 0);
         Instantiate(possibleLoot[randIndex], itemPosition, Quaternion.identity);
+        Instantiate(wallBreakFxPrefab);
     }
 
     public void ForceEquipmentSpawn() {
