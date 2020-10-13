@@ -26,9 +26,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwingNew.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwingNew.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/InnerWall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/InnerWall.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,14 +77,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ButtonHoverBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/BossHPBarBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/PlaySoundWhenActive.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Projectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
       </list>
     </option>
   </component>

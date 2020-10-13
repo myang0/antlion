@@ -17,6 +17,7 @@
             </e>
           </e>
         </e>
+        <e p="PlaySoundOnce.cs" t="Include" />
         <e p="PlaySoundWhenActive.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AntlionBehavior.cs" t="Include" />

@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class InnerWallBehaviour : MonoBehaviour {
     [SerializeField] private GameObject brokenInnerWallPrefab;
     [SerializeField] private GameObject brickEffects;
+    [SerializeField] private GameObject breakFX;
     
     private bool isQuitting = false;
     private bool isRestarting = false;
@@ -18,6 +19,7 @@ public class InnerWallBehaviour : MonoBehaviour {
 
     void OnDestroy() {
         if (isQuitting || isRestarting) return;
+        Instantiate(breakFX);
         if (string.Equals(SceneManager.GetActiveScene().name, "RunPhaseScene")) {
             GameObject mapManager = GameObject.Find("MapManager");
             if (mapManager && !mapManager.GetComponent<MapManager>().isSceneOver) {
