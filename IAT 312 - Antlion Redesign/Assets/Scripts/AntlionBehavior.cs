@@ -41,6 +41,8 @@ public class AntlionBehavior : MonoBehaviour {
     [SerializeField] private int spitStreamThreshhold = 66;
     private int spitStreamBaseThreshhold = 66;
 
+    [SerializeField] private GameObject deathFxPrefab;
+
     private AudioSource audio;
     
     // Start is called before the first frame update
@@ -337,6 +339,7 @@ public class AntlionBehavior : MonoBehaviour {
             audio.Play();
             if (health <= 0) {
                 Instantiate(keyPrefab, transform.position, Quaternion.identity);
+                Instantiate(deathFxPrefab);
                 Destroy(gameObject);
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.BossEnd);

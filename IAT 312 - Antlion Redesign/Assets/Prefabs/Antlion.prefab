@@ -65,6 +65,8 @@ MonoBehaviour:
   isInvulnerable: 0
   spitBarrageThreshhold: 33
   spitStreamThreshhold: 66
+  deathFxPrefab: {fileID: 2393503231432502222, guid: b62f87dbd8206e74a871e66d38b2fa5d,
+    type: 3}
 --- !u!50 &533414960819427358
 Rigidbody2D:
   serializedVersion: 4
@@ -685,7 +687,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dfd808830dfd30b4b96c9cb94dad001c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
