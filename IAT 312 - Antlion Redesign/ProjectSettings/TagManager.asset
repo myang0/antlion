@@ -26,6 +26,8 @@ TagManager:
   - UI
   - Orbital
   - SandSpit
+  - Spear
+  - WeaponSpawnPoint
   layers:
   - Default
   - TransparentFX

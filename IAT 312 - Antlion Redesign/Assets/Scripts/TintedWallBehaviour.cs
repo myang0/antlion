@@ -44,7 +44,7 @@ public class TintedWallBehaviour : MonoBehaviour
 
     private void SpawnItem() {
         if (isEquipmentSpawn) {
-            randIndex = Random.Range(0, 3);
+            randIndex = Random.Range(0, 4);
         }
         Vector3 floorTilePosition = new Vector3(transform.position.x, transform.position.y, 1);
         Instantiate(floorTilePrefab, floorTilePosition, Quaternion.identity);
