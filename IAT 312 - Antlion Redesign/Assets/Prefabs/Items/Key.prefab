@@ -152,3 +152,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 757920302917382269, guid: 79d51949649457f419a736b4bf8f5856,
     type: 3}
+  keyPickupSfxPrefab: {fileID: 7891235870117066733, guid: 3160049e17e845546a1e78a94af71f19,
+    type: 3}

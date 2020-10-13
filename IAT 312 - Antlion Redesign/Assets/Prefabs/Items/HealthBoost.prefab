@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59a96097311d9742b531a391954c0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostPickupSfxPrefab: {fileID: 8491866692948553624, guid: 9f79fb6ff78fc7e4daea368d4f4a20e5,
+    type: 3}
   boostParticles: {fileID: 2690823536454779632, guid: 32b36b9c18c5f2045a11aa3fd10f9603,
     type: 3}
   healthBoost: 25

@@ -90,6 +90,7 @@ public class MapManager : MonoBehaviour {
                 isSceneOver = true;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 player.GetComponent<PlayerMovement>().SceneTransition();
+                //audio[2].Play();
             }
 
             if (player.transform.position.y > 3.5 && !isEntranceWallBlocked) {
@@ -100,6 +101,7 @@ public class MapManager : MonoBehaviour {
 
                 StartCoroutine(BoulderWave());
                 audio[0].Pause();
+                audio[2].Play();
                 audio[1].Play();
             }
 
@@ -107,6 +109,7 @@ public class MapManager : MonoBehaviour {
                 isEntranceBlocked = true;
                 GenerateTile(columns / 2 - 1, 0, Tile.OuterWall);
                 GenerateTile(columns / 2, 0, Tile.OuterWall);
+                audio[2].Play();
             }
 
             if (player.transform.position.y > (rows-5)*2f-4 && !isExitWallBlocked) {
@@ -114,6 +117,8 @@ public class MapManager : MonoBehaviour {
                 for (int i = 0; i < columns; i++) {
                     GenerateTile(i, rows-5, Tile.OuterWall);
                 }
+
+                audio[2].Play();
 
                 areSwarmersSpawning = false;
                 GameObject[] swarmers = GameObject.FindGameObjectsWithTag("Swarmer");
@@ -131,6 +136,8 @@ public class MapManager : MonoBehaviour {
                 for (int i = 0; i < columns; i++) {
                     GenerateTile(i, rows / 2 - 1, Tile.OuterWall);
                 }
+
+                audio[2].Play();
 
                 areBouldersSpawning = false;
 

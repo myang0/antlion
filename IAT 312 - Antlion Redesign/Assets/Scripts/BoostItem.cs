@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoostItem : MonoBehaviour {
+    [SerializeField] private GameObject boostPickupSfxPrefab;
     [SerializeField] private GameObject boostParticles;
 
     [SerializeField] private float healthBoost;
@@ -15,6 +16,7 @@ public class BoostItem : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Player")) {
+            Instantiate(boostPickupSfxPrefab);
             col.gameObject.GetComponent<PlayerMovement>()
                 .ApplyBuffs(healthBoost, attackBoost, speedBoost);
 
