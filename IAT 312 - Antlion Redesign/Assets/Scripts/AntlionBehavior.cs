@@ -40,6 +40,8 @@ public class AntlionBehavior : MonoBehaviour {
     private int spitBarrageBaseThreshhold = 33;
     [SerializeField] private int spitStreamThreshhold = 66;
     private int spitStreamBaseThreshhold = 66;
+
+    private AudioSource audio;
     
     // Start is called before the first frame update
     void Start() {
@@ -51,6 +53,8 @@ public class AntlionBehavior : MonoBehaviour {
             spriteRenderer.enabled = true;
             polyCollider.enabled = true;
         }
+
+        audio = gameObject.GetComponent<AudioSource>();
 
         DontDestroyOnLoad(gameObject);
     }
@@ -330,6 +334,7 @@ public class AntlionBehavior : MonoBehaviour {
         if (!isInvulnerable) {
             Debug.Log("Hit!");
             health -= damage;
+            audio.Play();
             if (health <= 0) {
                 Instantiate(keyPrefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);

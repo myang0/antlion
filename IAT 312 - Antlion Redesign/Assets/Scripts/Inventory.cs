@@ -26,6 +26,12 @@ public class Inventory : MonoBehaviour
         KeyCode.Alpha6
     };
 
+    private AudioSource audio;
+
+    void Start() {
+        audio = gameObject.GetComponents<AudioSource>()[1];
+    }
+
     void Update() {
         if (Time.timeScale != 0) {
             if (Input.mouseScrollDelta.y > 0) {
@@ -65,19 +71,28 @@ public class Inventory : MonoBehaviour
         selectedItemIndex = (selectedItemIndex < 0) ? numItemsCarried - 1 : selectedItemIndex;
 
         selectedItem = items[selectedItemIndex];
+
+        PlaySwitchSound();
     }
 
     void nextItem() {
         selectedItemIndex = (selectedItemIndex + 1) % numItemsCarried;
-
         selectedItem = items[selectedItemIndex];
+
+        PlaySwitchSound();
     }
 
     void SwitchToItemWithIndex(int index) {
         if (numItemsCarried > 0 && index < numItemsCarried) {
             selectedItemIndex = index;
             selectedItem = items[selectedItemIndex];
+
+            PlaySwitchSound();
         }
+    }
+
+    void PlaySwitchSound() {
+        audio.Play();
     }
 
     void useCurrentItem() {

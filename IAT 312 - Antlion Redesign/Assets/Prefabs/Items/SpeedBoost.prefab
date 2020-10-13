@@ -102,6 +102,7 @@ MonoBehaviour:
   healthBoost: 0
   attackBoost: 1
   speedBoost: 1.05
+  getFX: {fileID: 0}
 --- !u!60 &-3304197835417356047
 PolygonCollider2D:
   m_ObjectHideFlags: 0

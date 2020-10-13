@@ -15,6 +15,8 @@ public class Swarmer : MonoBehaviour
     private bool isStunned;
     private bool isFleeing;
 
+    private AudioSource audio;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -22,6 +24,8 @@ public class Swarmer : MonoBehaviour
         isLocked = false;
         isStunned = false;
         isFleeing = false;
+
+        audio = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -81,6 +85,7 @@ public class Swarmer : MonoBehaviour
 
     public void inflictDamage(float damage) {
         health -= damage;
+        audio.Play();
 
         if (health <= 0) {
             Destroy(gameObject);

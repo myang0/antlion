@@ -128,3 +128,4 @@ MonoBehaviour:
   healthBoost: 0
   attackBoost: 1.15
   speedBoost: 1
+  getFX: {fileID: 0}

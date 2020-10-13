@@ -27,6 +27,10 @@ public class BoulderBehaviour : MonoBehaviour
         if (col.gameObject.layer == 8) {
             Destroy(col.gameObject);
         }
+
+        if (col.gameObject.name.Contains("OuterWall")) {
+            Destroy(gameObject);
+        }
     }
 
     void OnDestroy() {
