@@ -6432,7 +6432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586381726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3795624, y: -19.413572, z: -0.5}
+  m_LocalPosition: {x: 3.3760986, y: -19.413572, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9334,6 +9334,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6404386377643591983, guid: 9a98666b73f1eca4aabeec1f7546c8f8,
         type: 3}
+    - target: {fileID: 533414960819427357, guid: 9ffd77b57e3c843408bb9abcbcccd6de,
+        type: 3}
+      propertyPath: deathFxPrefab
+      value: 
+      objectReference: {fileID: 2393503231432502222, guid: b62f87dbd8206e74a871e66d38b2fa5d,
+        type: 3}
     - target: {fileID: 533414960819427358, guid: 9ffd77b57e3c843408bb9abcbcccd6de,
         type: 3}
       propertyPath: m_UseAutoMass
@@ -9348,6 +9354,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227533866415893389, guid: 9ffd77b57e3c843408bb9abcbcccd6de,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ffd77b57e3c843408bb9abcbcccd6de, type: 3}

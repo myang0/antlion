@@ -9,6 +9,8 @@ public class Swarmer : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
 
+    [SerializeField] private GameObject deathFxPrefab;
+
     private GameObject player;
 
     private bool isLocked;
@@ -88,6 +90,7 @@ public class Swarmer : MonoBehaviour
         audio.Play();
 
         if (health <= 0) {
+            Instantiate(deathFxPrefab);
             Destroy(gameObject);
         } else {
             inflictKnockback();
