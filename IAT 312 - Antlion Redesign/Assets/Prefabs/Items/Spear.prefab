@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swing: {fileID: 6521145967427913569, guid: 900a27314d4a7d44fbb3117bf218264a, type: 3}
+  itemPickupSfxPrefab: {fileID: 7891235870117066733, guid: 3160049e17e845546a1e78a94af71f19,
+    type: 3}
   sprite: {fileID: 8410889722923728448}
   hitbox: {fileID: 8642805774392695435}
   remainingUses: 30

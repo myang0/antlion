@@ -20,15 +20,24 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:asmr-tings" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:new-new-branch" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d7900f4-056e-4211-b387-14bd8dfb5639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Antlion Redesign/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/BoostPickupSFX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/BoostPickupSFX.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/FlailSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/FlailSwing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/ItemPickupSFX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/ItemPickupSFX.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/OrbitalPickupSFX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/OrbitalPickupSFX.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/ScytheSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/ScytheSwing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/SwordSwingNew.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/SwordSwingNew.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwingNew.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/axeSwingNew.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/spearSwing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/spearSwing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FightPhase.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/RunPhaseScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,16 +49,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DontDestroyOnLoad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PlaySoundOnce.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PlaySoundWhenActive.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UIWeaponDurability.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/RunPhaseScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LockedWallBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MeleePointBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ButtonHoverBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dialogue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EE47BE73-F7EF-409C-A5E5-CE4B121745B7/97/9ad59107/SpriteRenderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/RunPhaseScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EE47BE73-F7EF-409C-A5E5-CE4B121745B7/8c/fae1028a/Quaternion.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/PlaySoundWhenActive.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-antlion-redesign/IAT 312 - Antlion Redesign/Assets/Scenes/RunPhaseScene.unity" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EE47BE73-F7EF-409C-A5E5-CE4B121745B7/97/9ad59107/SpriteRenderer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -59,7 +69,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/BoostItem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIWeaponDurability.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleePointBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/InnerWallBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BitePointBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TempSandTileBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SandSpitBehavior.cs" />
@@ -79,14 +88,18 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ButtonHoverBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponSwingBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EscMenuBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/BossHPBarBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TintedWallBehaviour.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
         <option value="$PROJECT_DIR$/Assets/PlaySoundWhenActive.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Projectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MeleeSwingBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AntlionBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/PlaySoundOnce.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Swarmer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/InnerWallBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/HowToWindowBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FightMapManager.cs" />
       </list>
     </option>
   </component>
@@ -162,6 +175,7 @@
       <workItem from="1602388549920" duration="1643000" />
       <workItem from="1602461433407" duration="9365000" />
       <workItem from="1602539027563" duration="4245000" />
+      <workItem from="1602626843244" duration="833000" />
     </task>
     <servers />
   </component>
@@ -181,7 +195,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="item-stuffs" />
+                        <option value="new-new-branch" />
                       </list>
                     </value>
                   </entry>
@@ -198,14 +212,14 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="154" y="94" key="MergeDialog" timestamp="1602577655407">
+    <state x="266" y="74" key="MergeDialog" timestamp="1602627022753">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="154" y="94" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602577655407" />
-    <state x="932" y="245" key="MultipleFileMergeDialog" timestamp="1602577616249">
+    <state x="266" y="74" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602627022753" />
+    <state x="932" y="245" key="MultipleFileMergeDialog" timestamp="1602627022759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="932" y="245" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602577616249" />
+    <state x="932" y="245" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602627022759" />
     <state x="1040" y="246" key="RiderGenerateDialog" timestamp="1601794521868">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

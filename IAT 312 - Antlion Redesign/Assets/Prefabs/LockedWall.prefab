@@ -123,3 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 6097276121182105135, guid: a395ed40731f0d74abb75c8ff575b4e6,
     type: 3}
+  wallBreakFxPrefab: {fileID: 7879179870277148304, guid: e59bd34819cf5e342bfdd59f101bba5b,
+    type: 3}

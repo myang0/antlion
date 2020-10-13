@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class InnerWallBehaviour : MonoBehaviour {
     [SerializeField] private GameObject brokenInnerWallPrefab;
     [SerializeField] private GameObject brickEffects;
+    [SerializeField] private GameObject breakFX;
     
     private bool isQuitting = false;
     private bool isRestarting = false;
@@ -23,6 +24,7 @@ public class InnerWallBehaviour : MonoBehaviour {
             if (mapManager && !mapManager.GetComponent<MapManager>().isSceneOver) {
                 Instantiate(brokenInnerWallPrefab, transform.position, Quaternion.identity);
                 Instantiate(brickEffects, transform.position, Quaternion.identity);
+                Instantiate(breakFX);
             }
         } else if (string.Equals(SceneManager.GetActiveScene().name, "FightPhase")) {
             GameObject mapManager = GameObject.Find("FightMapManager");
@@ -30,10 +32,6 @@ public class InnerWallBehaviour : MonoBehaviour {
             Instantiate(brickEffects, transform.position, Quaternion.identity);
         }
     }
-
-    // private void OnCollisionEnter2D(Collision2D other) {
-    //     throw new NotImplementedException();
-    // }
 
     public void SetRestarting() {
         isRestarting = true;

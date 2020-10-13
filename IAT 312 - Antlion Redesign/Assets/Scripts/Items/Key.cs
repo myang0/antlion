@@ -5,6 +5,7 @@ using UnityEngine;
 public class Key : MonoBehaviour
 {
     [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject keyPickupSfxPrefab;
 
     void FixedUpdate() {
         transform.Rotate(0, 1.5f, 0);
@@ -16,6 +17,7 @@ public class Key : MonoBehaviour
     }
 
     void OnDestroy() {
+        Instantiate(keyPickupSfxPrefab);
         Instantiate(particles, transform.position, Quaternion.identity);
     }
 }

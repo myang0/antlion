@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class LockedWallBehavior : MonoBehaviour {
     [SerializeField] GameObject particles;
+    [SerializeField] private GameObject wallBreakFxPrefab;
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             if (other.gameObject.GetComponent<PlayerMovement>().hasKey) {
+                Instantiate(wallBreakFxPrefab);
                 Destroy(this.gameObject);
             }
         }

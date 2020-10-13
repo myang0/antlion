@@ -147,3 +147,4 @@ MonoBehaviour:
     type: 3}
   brickEffects: {fileID: 8602104401249711700, guid: b3d619b01564a504498b879aaa732b2c,
     type: 3}
+  breakFX: {fileID: 7879179870277148304, guid: e59bd34819cf5e342bfdd59f101bba5b, type: 3}

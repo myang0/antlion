@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour {
+    private AudioSource[] audio;
     [SerializeField] private GameObject innerWallPrefab;
     [SerializeField] private GameObject tintedWallPrefab;
     [SerializeField] private GameObject floorTilePrefab;
@@ -76,7 +77,10 @@ public class MapManager : MonoBehaviour {
         GeneratePath();
 
         progBar.SetMax(rows * 2);
-    }
+
+        audio = gameObject.GetComponents<AudioSource>();
+        audio[0].Play();
+        }
 
     void Update() {
         if (player) {
@@ -86,6 +90,7 @@ public class MapManager : MonoBehaviour {
                 isSceneOver = true;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 player.GetComponent<PlayerMovement>().SceneTransition();
+                //audio[2].Play();
             }
 
             if (player.transform.position.y > 3.5 && !isEntranceWallBlocked) {
@@ -95,12 +100,16 @@ public class MapManager : MonoBehaviour {
                 }
 
                 StartCoroutine(BoulderWave());
+                audio[0].Pause();
+                audio[2].Play();
+                audio[1].Play();
             }
 
             if (player.transform.position.y > -4.5 && !isEntranceBlocked) {
                 isEntranceBlocked = true;
                 GenerateTile(columns / 2 - 1, 0, Tile.OuterWall);
                 GenerateTile(columns / 2, 0, Tile.OuterWall);
+                audio[2].Play();
             }
 
             if (player.transform.position.y > (rows-5)*2f-4 && !isExitWallBlocked) {
@@ -108,6 +117,8 @@ public class MapManager : MonoBehaviour {
                 for (int i = 0; i < columns; i++) {
                     GenerateTile(i, rows-5, Tile.OuterWall);
                 }
+
+                audio[2].Play();
 
                 areSwarmersSpawning = false;
                 GameObject[] swarmers = GameObject.FindGameObjectsWithTag("Swarmer");
@@ -126,12 +137,17 @@ public class MapManager : MonoBehaviour {
                     GenerateTile(i, rows / 2 - 1, Tile.OuterWall);
                 }
 
+                audio[2].Play();
+
                 areBouldersSpawning = false;
 
                 StartCoroutine(SwarmerWave());
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Desert);
             }
+        } else {
+            // if player is dead, stop run phase music
+            audio[1].Pause();
         }
     }
 

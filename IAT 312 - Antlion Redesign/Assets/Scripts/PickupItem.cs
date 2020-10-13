@@ -7,6 +7,7 @@ public class PickupItem : MonoBehaviour {
     // [SerializeField] private GameObject axeSwing;
     // [SerializeField] private GameObject crossbowSwing;
     [SerializeField] private GameObject swing;
+    [SerializeField] private GameObject itemPickupSfxPrefab;
     private Inventory inventory;
     private PlayerMovement player;
 
@@ -37,6 +38,7 @@ public class PickupItem : MonoBehaviour {
 
             if (dist < 2f && isDropped) {
                 AddToInventory();
+                Instantiate(itemPickupSfxPrefab);
             }
         }
     }

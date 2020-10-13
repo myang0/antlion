@@ -135,3 +135,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 5593794782827385936, guid: c1431fbcd59ea604d8a0882e494e436c,
     type: 3}
+  boulderBreakSfxPrefab: {fileID: 8473973022532943313, guid: 08ac381337922e2408cdd1e5ec38b832,
+    type: 3}

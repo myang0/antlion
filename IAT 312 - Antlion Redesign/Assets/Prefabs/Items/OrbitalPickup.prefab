@@ -144,3 +144,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 2892875113921179173, guid: 27e8e5f6f71753d40aa4d717b49af3fb, type: 3}
+  OrbitalPickupSfxPrefab: {fileID: 8356737130744704974, guid: 045344d4e404cfd4eb5ebdb012afcc2b,
+    type: 3}

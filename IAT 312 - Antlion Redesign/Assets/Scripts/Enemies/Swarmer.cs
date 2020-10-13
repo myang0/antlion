@@ -62,10 +62,14 @@ public class Swarmer : MonoBehaviour
     } 
 
     void rotateToPlayer(Vector3 playerPos, Vector3 swarmerPos) {
-        Vector3 vectorToPlayer = (swarmerPos - playerPos).normalized;
+        // Vector3 vectorToPlayer = (swarmerPos - playerPos).normalized;
+        // float angle = Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
+        // Quaternion angleToPlayer = Quaternion.AngleAxis(angle, Vector3.forward);
+        // transform.rotation = angleToPlayer;
+        Vector3 vectorToPlayer = (playerPos - swarmerPos).normalized;
         float angle = Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
-        Quaternion angleToPlayer = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = angleToPlayer;
+        Quaternion transformRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        transform.rotation = transformRotation;
     }
 
     float playerDist(Vector3 playerPos, Vector3 swarmerPos) {
