@@ -6,6 +6,7 @@ public class BoulderBehaviour : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject boulderBreakSfxPrefab;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -29,6 +30,7 @@ public class BoulderBehaviour : MonoBehaviour
     }
 
     void OnDestroy() {
+        Instantiate(boulderBreakSfxPrefab);
         Instantiate(particles, transform.position, Quaternion.identity);
     }
 }

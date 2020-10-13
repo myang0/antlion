@@ -5,9 +5,11 @@ using UnityEngine;
 public class PassiveItem : MonoBehaviour
 {
     [SerializeField] private GameObject item;
+    [SerializeField] private GameObject OrbitalPickupSfxPrefab;
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Player")) {
+            Instantiate(OrbitalPickupSfxPrefab);
             GameObject orbital = GameObject.FindGameObjectWithTag("Orbital");
             if (orbital == null) {
                 Instantiate(item, transform.position, Quaternion.identity);
@@ -17,6 +19,7 @@ public class PassiveItem : MonoBehaviour
             }
 
             Destroy(gameObject);
+
         }
     }
 }

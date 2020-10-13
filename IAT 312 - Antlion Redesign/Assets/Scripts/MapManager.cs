@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour {
+    private AudioSource[] audio;
     [SerializeField] private GameObject innerWallPrefab;
     [SerializeField] private GameObject tintedWallPrefab;
     [SerializeField] private GameObject floorTilePrefab;
@@ -76,7 +77,10 @@ public class MapManager : MonoBehaviour {
         GeneratePath();
 
         progBar.SetMax(rows * 2);
-    }
+
+        audio = gameObject.GetComponents<AudioSource>();
+        audio[0].Play();
+        }
 
     void Update() {
         if (player) {
@@ -95,6 +99,8 @@ public class MapManager : MonoBehaviour {
                 }
 
                 StartCoroutine(BoulderWave());
+                audio[0].Pause();
+                audio[1].Play();
             }
 
             if (player.transform.position.y > -4.5 && !isEntranceBlocked) {
@@ -132,6 +138,9 @@ public class MapManager : MonoBehaviour {
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.Desert);
             }
+        } else {
+            // if player is dead, stop run phase music
+            audio[1].Pause();
         }
     }
 
