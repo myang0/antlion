@@ -42,14 +42,17 @@ public class AntlionBehavior : MonoBehaviour {
     private int spitStreamBaseThreshhold = 66;
 
     [SerializeField] private GameObject deathFxPrefab;
-
+    private DifficultySetting difficultySetting;
     private AudioSource audio;
     
     // Start is called before the first frame update
     void Start() {
+        difficultySetting = GameObject.FindGameObjectWithTag("DifficultyManager")
+            .GetComponent<DifficultySetting>();
+        health = difficultySetting.isHardMode ? 1500 : 1000;
+        maxHealth = health;
         antlion = GameObject.Find("Antlion");
         player = GameObject.Find("Player");
-        maxHealth = health;
 
         if (CompareCurrentSceneTo(FightPhaseStr)) {
             spriteRenderer.enabled = true;
@@ -64,7 +67,7 @@ public class AntlionBehavior : MonoBehaviour {
     void Update() {
         if (player) {
             if (CompareCurrentSceneTo(RunPhaseSceneStr) &&
-                (player.transform.position.y > 22) && status == Status.NotSpawned && health > 999 &&
+                (player.transform.position.y > 22) && status == Status.NotSpawned && health > maxHealth-1 &&
                 !GameObject.FindWithTag("MapManager").GetComponent<MapManager>().isTransitionWallBlocked) {
                 spriteRenderer.enabled = true;
                 polyCollider.enabled = true;
@@ -85,7 +88,7 @@ public class AntlionBehavior : MonoBehaviour {
         if (status == Status.Alive) {
             antlionPos = this.transform.position;
             if (CompareCurrentSceneTo(RunPhaseSceneStr)) {
-                if (player && health > 500 && 
+                if (player && health > maxHealth - 500 && 
                     !GameObject.FindWithTag("MapManager").GetComponent<MapManager>().isTransitionWallBlocked) {
                     isInvulnerable = false;
                     RunPhaseMovement();
@@ -126,7 +129,11 @@ public class AntlionBehavior : MonoBehaviour {
             } else if (isChargeReadyToStop){
                 isCharging = false;
                 isChargeReadyToStop = false;
-                StartCoroutine(AttackDelay(5f));
+                if (difficultySetting.isHardMode) {
+                    StartCoroutine(AttackDelay(2f));
+                } else {
+                    StartCoroutine(AttackDelay(5f));
+                }
             }
         }
     }
@@ -175,9 +182,11 @@ public class AntlionBehavior : MonoBehaviour {
 
     IEnumerator ChargeAttack(Vector3 chargeDir) {
         while (isCharging) {
-            rigidBody.MovePosition(antlionPos +
-                                   chargeDir * (13f * Time.fixedDeltaTime));
+            float chargeSpeed = 0f;
+            chargeSpeed = difficultySetting.isHardMode ? 17f : 13f;
 
+            rigidBody.MovePosition(antlionPos +
+                                   chargeDir * (chargeSpeed * Time.fixedDeltaTime));
             float angle = Mathf.Atan2(chargeDir.y, chargeDir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             yield return null;
@@ -203,19 +212,36 @@ public class AntlionBehavior : MonoBehaviour {
     }
 
     private void SpitBarrageStart() {
-        int numOfShots = Random.Range(6, 11) + LowHealthSpitMore();
-        for (int i = 0; i < numOfShots; i++) {
-            StartCoroutine(SpitBarrage(i * 0.05f));
+        if (difficultySetting.isHardMode) {
+            int numOfShots = (Random.Range(6, 11) + LowHealthSpitMore())*3;
+            for (int i = 0; i < numOfShots; i++) {
+                StartCoroutine(SpitBarrage(i * 0.015f));
+            }
+            StartCoroutine(AttackDelay(5f + numOfShots*0.015f));
+        } else {
+            int numOfShots = Random.Range(6, 11) + LowHealthSpitMore();
+            for (int i = 0; i < numOfShots; i++) {
+                StartCoroutine(SpitBarrage(i * 0.05f));
+            }
+            StartCoroutine(AttackDelay(5f + numOfShots*0.05f));
         }
-        StartCoroutine(AttackDelay(5f + numOfShots*0.05f));
+        
     }
     
     private void SpitStreamStart() {
-        int numOfShots = Random.Range(18, 33) + LowHealthSpitMore()*3;
-        for (int i = 0; i < numOfShots; i++) {
-            StartCoroutine(SpitStream(i * 0.1f));
+        if (difficultySetting.isHardMode) {
+            int numOfShots = (Random.Range(18, 33) + LowHealthSpitMore()*3)*3;
+            for (int i = 0; i < numOfShots; i++) {
+                StartCoroutine(SpitStream(i * 0.03f));
+            }
+            StartCoroutine(AttackDelay(5f + numOfShots*0.03f));
+        } else {
+            int numOfShots = Random.Range(18, 33) + LowHealthSpitMore()*3;
+            for (int i = 0; i < numOfShots; i++) {
+                StartCoroutine(SpitStream(i * 0.1f));
+            }
+            StartCoroutine(AttackDelay(5f + numOfShots*0.1f));
         }
-        StartCoroutine(AttackDelay(5f + numOfShots*0.1f));
     }
 
     private int LowHealthSpitMore() {
@@ -236,6 +262,9 @@ public class AntlionBehavior : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         Quaternion angleToPlayer = GETAngleToPlayer();
         float randomAngle = Random.Range(-20, 20);
+        if (difficultySetting.isHardMode) {
+            randomAngle = Random.Range(-30, 30);
+        }
         angleToPlayer *= Quaternion.Euler(Vector3.forward * randomAngle);
         Vector3 spitSpawnPosition = GETSpitSpawnPosition(angleToPlayer);
         GameObject sandSpitObject =
@@ -249,6 +278,9 @@ public class AntlionBehavior : MonoBehaviour {
         Quaternion angleToPlayer = GETAngleToPlayer();
         this.transform.rotation = angleToPlayer;
         float randomAngle = Random.Range(-5, 5);
+        if (difficultySetting.isHardMode) {
+            randomAngle = Random.Range(-15, 15);
+        }
         angleToPlayer *= Quaternion.Euler(Vector3.forward * randomAngle);
         Vector3 spitSpawnPosition = GETSpitSpawnPosition(angleToPlayer);
         GameObject sandSpitObject =
@@ -317,6 +349,10 @@ public class AntlionBehavior : MonoBehaviour {
     private IEnumerator BoulderStun() {
         movementSpeed = baseMovementSpeed / 2;
         rageMovementSpeed = baseMovementSpeed / 2;
+        if (difficultySetting.isHardMode) {
+            movementSpeed = baseMovementSpeed / 1.25f;
+            rageMovementSpeed = baseMovementSpeed / 1.25f;
+        }
         yield return new WaitForSeconds(2f);
         movementSpeed = baseMovementSpeed;
         rageMovementSpeed = baseMovementSpeed * 2;

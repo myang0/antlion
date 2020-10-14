@@ -28,6 +28,7 @@ TagManager:
   - SandSpit
   - Spear
   - WeaponSpawnPoint
+  - DifficultyManager
   layers:
   - Default
   - TransparentFX

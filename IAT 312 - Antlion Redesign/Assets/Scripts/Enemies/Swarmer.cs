@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Swarmer : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Swarmer : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     [SerializeField] private GameObject deathFxPrefab;
-
+    private DifficultySetting difficultySetting;
     private GameObject player;
 
     private bool isLocked;
@@ -28,6 +29,12 @@ public class Swarmer : MonoBehaviour
         isFleeing = false;
 
         audio = gameObject.GetComponent<AudioSource>();
+        difficultySetting = GameObject.FindGameObjectWithTag("DifficultyManager")
+            .GetComponent<DifficultySetting>();
+        if (difficultySetting.isHardMode) {
+            health = 100;
+            speed = 12f;
+        }
     }
 
     void Update()
