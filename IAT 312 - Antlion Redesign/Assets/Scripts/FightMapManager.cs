@@ -105,8 +105,13 @@ public class FightMapManager : MonoBehaviour {
                         GenerateTile(columnIndex, -hallLength - rowIndex, Tile.OuterWall);
                     }
                 } else {
-                    //room floor
-                    GenerateTile(columnIndex, -hallLength - rowIndex, Tile.Floor);
+                    if (columnIndex == leftMostColumn + 1 && rowIndex == 1) {
+                        GameObject tintedWall = GenerateTile(columnIndex, -hallLength - rowIndex, Tile.TintedWall);
+                        tintedWall.GetComponent<TintedWallBehaviour>().ForceEquipmentSpawn();
+                    } else {
+                        //room floor
+                        GenerateTile(columnIndex, -hallLength - rowIndex, Tile.Floor);
+                    }
                 }
             }
         }
