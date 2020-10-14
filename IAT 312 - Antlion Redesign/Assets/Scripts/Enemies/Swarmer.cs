@@ -34,7 +34,7 @@ public class Swarmer : MonoBehaviour
         difficultySetting = GameObject.FindGameObjectWithTag("DifficultyManager")
             .GetComponent<DifficultySetting>();
         if (difficultySetting.isHardMode) {
-            health = 100;
+            health = 80;
             speed = 12f;
         }
     }
@@ -100,6 +100,7 @@ public class Swarmer : MonoBehaviour
 
         if (health <= 0) {
             Instantiate(deathFxPrefab);
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
         } else {
             inflictKnockback();
