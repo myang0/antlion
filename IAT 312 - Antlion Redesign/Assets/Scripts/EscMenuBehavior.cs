@@ -49,6 +49,7 @@ public class EscMenuBehavior : MonoBehaviour {
         Destroy(GameObject.FindGameObjectWithTag("UI"));
         Destroy(GameObject.FindGameObjectWithTag("VN"));
         Destroy(GameObject.FindGameObjectWithTag("Orbital"));
+        Destroy(GameObject.FindGameObjectWithTag("DifficultyManager"));
 
         GameObject[] tintedWalls = GameObject.FindGameObjectsWithTag("TintedWall");
         for (int i = 0; i < tintedWalls.Length; i++) {
@@ -62,7 +63,7 @@ public class EscMenuBehavior : MonoBehaviour {
             iw.SetRestarting();
         }
 
-        SceneManager.LoadScene("RunPhaseScene");
+        SceneManager.LoadScene("MainMenuScene");
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
     }
 

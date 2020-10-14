@@ -13,6 +13,7 @@ public class Swarmer : MonoBehaviour
 
     [SerializeField] private GameObject deathParticles;
 
+    private DifficultySetting difficultySetting;
     private GameObject player;
 
     private bool isLocked;
@@ -30,6 +31,12 @@ public class Swarmer : MonoBehaviour
         isFleeing = false;
 
         audio = gameObject.GetComponent<AudioSource>();
+        difficultySetting = GameObject.FindGameObjectWithTag("DifficultyManager")
+            .GetComponent<DifficultySetting>();
+        if (difficultySetting.isHardMode) {
+            health = 100;
+            speed = 12f;
+        }
     }
 
     void Update()
@@ -93,7 +100,6 @@ public class Swarmer : MonoBehaviour
 
         if (health <= 0) {
             Instantiate(deathFxPrefab);
-            Instantiate(deathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
         } else {
             inflictKnockback();

@@ -100,7 +100,7 @@ MonoBehaviour:
     type: 3}
   sprite: {fileID: 965351526710032595}
   hitbox: {fileID: 965351526710032589}
-  remainingUses: 20
+  remainingUses: 30
   baseUses: 0
   baseCooldown: 0.5
   baseDamage: 25
