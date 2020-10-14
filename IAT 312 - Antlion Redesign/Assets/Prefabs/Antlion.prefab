@@ -65,6 +65,10 @@ MonoBehaviour:
   isInvulnerable: 0
   spitBarrageThreshhold: 33
   spitStreamThreshhold: 66
+  hitParticles: {fileID: 3519613422329529276, guid: db1a6baa6b05eaf4bbdcbff073c414cf,
+    type: 3}
+  deathParticles: {fileID: 1315878329251607294, guid: fa6a86e7ac56a0e4dacd3204b5403a11,
+    type: 3}
   deathFxPrefab: {fileID: 2393503231432502222, guid: b62f87dbd8206e74a871e66d38b2fa5d,
     type: 3}
 --- !u!50 &533414960819427358
@@ -687,7 +691,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dfd808830dfd30b4b96c9cb94dad001c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
