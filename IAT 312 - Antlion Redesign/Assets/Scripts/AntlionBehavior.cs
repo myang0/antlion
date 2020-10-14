@@ -133,7 +133,7 @@ public class AntlionBehavior : MonoBehaviour {
                 isCharging = false;
                 isChargeReadyToStop = false;
                 if (difficultySetting.isHardMode) {
-                    StartCoroutine(AttackDelay(2f));
+                    StartCoroutine(AttackDelay(2.5f));
                 } else {
                     StartCoroutine(AttackDelay(5f));
                 }
@@ -186,7 +186,7 @@ public class AntlionBehavior : MonoBehaviour {
     IEnumerator ChargeAttack(Vector3 chargeDir) {
         while (isCharging) {
             float chargeSpeed = 0f;
-            chargeSpeed = difficultySetting.isHardMode ? 17f : 13f;
+            chargeSpeed = difficultySetting.isHardMode ? 16f : 13f;
 
             rigidBody.MovePosition(antlionPos +
                                    chargeDir * (chargeSpeed * Time.fixedDeltaTime));

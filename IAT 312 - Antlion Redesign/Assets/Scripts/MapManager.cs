@@ -326,7 +326,7 @@ public class MapManager : MonoBehaviour {
             
         } else {
             if (value > 8) {
-                int sndRand = Random.Range(0, 6 );
+                int sndRand = Random.Range(0, 5);
                 GameObject wallType = (sndRand == 0) ? tintedWallPrefab : innerWallPrefab;
 
                 GameObject wall = Instantiate(wallType, new Vector3(col * 2 - 8, row * 2 - (float) 6.5, 1),
