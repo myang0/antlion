@@ -11,6 +11,8 @@ public class Swarmer : MonoBehaviour
 
     [SerializeField] private GameObject deathFxPrefab;
 
+    [SerializeField] private GameObject deathParticles;
+
     private GameObject player;
 
     private bool isLocked;
@@ -91,6 +93,7 @@ public class Swarmer : MonoBehaviour
 
         if (health <= 0) {
             Instantiate(deathFxPrefab);
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
         } else {
             inflictKnockback();

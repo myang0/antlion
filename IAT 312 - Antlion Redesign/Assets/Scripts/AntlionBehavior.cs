@@ -41,6 +41,9 @@ public class AntlionBehavior : MonoBehaviour {
     [SerializeField] private int spitStreamThreshhold = 66;
     private int spitStreamBaseThreshhold = 66;
 
+    [SerializeField] private GameObject hitParticles;
+    [SerializeField] private GameObject deathParticles;
+
     [SerializeField] private GameObject deathFxPrefab;
 
     private AudioSource audio;
@@ -340,9 +343,12 @@ public class AntlionBehavior : MonoBehaviour {
             if (health <= 0) {
                 Instantiate(keyPrefab, transform.position, Quaternion.identity);
                 Instantiate(deathFxPrefab);
+                Instantiate(deathParticles, transform.position, Quaternion.identity);
                 Destroy(gameObject);
                 VNBehavior vnBehavior = GameObject.FindWithTag("VN").GetComponent<VNBehavior>();
                 vnBehavior.UpdateVN(VNBehavior.DialogueChapter.BossEnd);
+            } else {
+                Instantiate(hitParticles, transform.position, Quaternion.identity);
             }
         } else {
             Debug.Log("Invulnerable!");

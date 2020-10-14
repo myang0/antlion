@@ -125,6 +125,8 @@ MonoBehaviour:
   rb: {fileID: 6018191930908399210}
   deathFxPrefab: {fileID: 1669105215893398083, guid: 612817c8fbe60144287e81d368e591ed,
     type: 3}
+  deathParticles: {fileID: 5425224389429308529, guid: 570c7296227f10f4b8c7fc9824d48832,
+    type: 3}
 --- !u!95 &358946751
 Animator:
   serializedVersion: 3
@@ -405,7 +407,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dfd808830dfd30b4b96c9cb94dad001c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
